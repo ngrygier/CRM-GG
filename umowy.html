@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Umowy - CRM firmy kamieniarskiej</title>
+    <link rel="stylesheet" href="style/umowyStyle.css">
+</head>
+<body>
+
+<div class="container-wrapper">
+    <nav class="side_list">
+        <button class="tab">UTWÓRZ</button>
+        <button class="tab">KLIENCI</button>
+        <button class="tab">OFERTY</button>
+        <button class="tab" data-page="projekty.html">PROJEKTY</button>
+        <button class="tab active-dark">UMOWY</button>
+        <button class="tab">DOSTĘPY</button>
+        <button class="tab">USTAWIENIA</button>
+
+        <div class="logo">
+            <img src=".idea/assets/Logo.png" alt="Logo">
+        </div>
+    </nav>
+
+    <div class="container">
+        <main class="main">
+            <div class="status_menu_container">
+                <section class="status-menu contract-top-menu">
+                    <button class="status-item active-status" data-contract-view="browse">
+                        PRZEGLĄDAJ UMOWY
+                    </button>
+
+                    <button class="status-item" data-contract-view="generator">
+                        GENERATOR UMÓW
+                    </button>
+                </section>
+            </div>
+
+            <button class="hamburger" id="hamburgerBtn">
+                ☰
+            </button>
+
+            <nav class="burger-menu">
+                <section class="tabs">
+                    <button class="tab">UTWÓRZ</button>
+                    <button class="tab">KLIENCI</button>
+                    <button class="tab">OFERTY</button>
+                    <button class="tab" data-page="projekty.html">PROJEKTY</button>
+                    <button class="tab active-dark">UMOWY</button>
+                    <button class="tab">DOSTĘPY</button>
+                    <button class="tab">USTAWIENIA</button>
+                </section>
+            </nav>
+
+            <section class="contracts-browser" id="contractsBrowser">
+                <div class="contract-filters">
+                    <label>
+                        Klient / kontrahent
+                        <input type="text" id="contractClientFilter" placeholder="np. Jan Kowalski">
+                    </label>
+
+                    <label>
+                        Data od
+                        <input type="date" id="contractDateFrom">
+                    </label>
+
+                    <label>
+                        Data do
+                        <input type="date" id="contractDateTo">
+                    </label>
+
+                    <button class="contract-search-btn" type="button" id="contractSearchButton">
+                        Szukaj
+                    </button>
+                </div>
+
+                <p class="form-message" id="contractsMessage" hidden></p>
+
+                <div class="contracts-list" id="contractsList"></div>
+            </section>
+
+            <section class="contract-layout" id="contractGenerator" hidden>
+                <form class="contract-form" id="contractForm">
+                    <div class="form-heading">
+                        <p class="eyebrow">Generator umów</p>
+                        <h1>Umowa na wykonanie prac kamieniarskich</h1>
+                    </div>
+
+                    <div class="form-message" id="formMessage" hidden></div>
+
+                    <div class="form-grid">
+                        <label>
+                            Numer umowy
+                            <input name="contractNumber" value="UM/001/2026" required>
+                        </label>
+
+                        <label>
+                            Data zawarcia
+                            <input name="contractDate" type="date" required>
+                        </label>
+
+                        <label>
+                            Miejscowość
+                            <input name="city" value="Warszawa" required>
+                        </label>
+
+                        <label>
+                            Imię i nazwisko klienta
+                            <input name="clientName" value="Jan Kowalski" required>
+                        </label>
+
+                        <label>
+                            Adres klienta
+                            <input name="clientAddress" value="ul. Granitowa 12, 00-001 Warszawa" required>
+                        </label>
+
+                        <label>
+                            Telefon klienta
+                            <input name="clientPhone" value="500 100 200">
+                        </label>
+
+                        <label>
+                            Nazwa wykonawcy
+                            <input name="companyName" value="Kamieniarstwo GRANIT Sp. z o.o." required>
+                        </label>
+
+                        <label>
+                            Adres wykonawcy
+                            <input name="companyAddress" value="ul. Marmurowa 8, 00-002 Warszawa" required>
+                        </label>
+
+                        <label>
+                            NIP wykonawcy
+                            <input name="companyTaxId" value="5250000000">
+                        </label>
+
+                        <label>
+                            Przedmiot umowy
+                            <input name="product" value="blat kuchenny z kamienia naturalnego" required>
+                        </label>
+
+                        <label>
+                            Materiał
+                            <input name="material" value="granit Nero Zimbabwe" required>
+                        </label>
+
+                        <label>
+                            Termin realizacji
+                            <input name="deadline" type="date" required>
+                        </label>
+
+                        <label>
+                            Cena brutto
+                            <input name="grossPrice" type="number" min="0" step="0.01" value="8500" required>
+                        </label>
+
+                        <label>
+                            Zaliczka
+                            <input name="deposit" type="number" min="0" step="0.01" value="2500">
+                        </label>
+                    </div>
+
+                    <label>
+                        Zakres prac
+                        <textarea name="workScope" rows="4">pomiar, wykonanie, transport oraz montaż elementów kamiennych zgodnie z zaakceptowaną ofertą</textarea>
+                    </label>
+
+                    <label>
+                        Dodatkowe ustalenia
+                        <textarea name="notes" rows="4">Klient akceptuje naturalne różnice w strukturze i odcieniu kamienia.</textarea>
+                    </label>
+
+                    <div class="actions">
+                        <button type="button" class="secondary-btn" id="downloadJson">Pobierz JSON</button>
+                        <button type="button" class="primary-btn" id="exportPdf">Eksportuj PDF</button>
+                    </div>
+                </form>
+
+                <article class="contract-preview" id="contractPreview" aria-live="polite"></article>
+            </section>
+        </main>
+    </div>
+</div>
+
+<script type="module" src="js/umowy.js"></script>
+
+</body>
+</html>
