@@ -5,36 +5,99 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kalendarz</title>
 
+    <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/kalendarz.css">
 </head>
 <body>
 
-<div class="container">
+<div class="container-wrapper">
 
-    <div class="calendar-card">
-        <div class="calendar-header">
-            <button id="prevMonth" class="calendar-btn">◀</button>
+    <!-- SIDEBAR DESKTOP -->
+    <nav class="side_list">
 
-            <h2 id="monthYear"></h2>
+        <button class="tab">UTWÓRZ</button>
+        <button class="tab">KLIENCI</button>
+        <button class="tab">OFERTY</button>
 
-            <button id="nextMonth" class="calendar-btn">▶</button>
+        <button class="tab active-dark">
+            PROJEKTY
+        </button>
+
+        <button class="tab" onclick="window.location.href='umowy.html'">
+            UMOWY
+        </button>
+
+        <button class="tab">DOSTĘPY</button>
+        <button class="tab">USTAWIENIA</button>
+
+        <div class="logo">
+            <img src=".idea/assets/Logo.png" alt="Logo">
         </div>
 
-        <div class="calendar-days">
-            <div>Pn</div>
-            <div>Wt</div>
-            <div>Śr</div>
-            <div>Cz</div>
-            <div>Pt</div>
-            <div>So</div>
-            <div>Nd</div>
+    </nav>
+
+    <!-- GŁÓWNA ZAWARTOŚĆ -->
+    <main class="container">
+
+        <!-- MENU MOBILE -->
+        <nav class="burger-menu">
+
+            <section class="tabs">
+
+                <button class="tab">UTWÓRZ</button>
+                <button class="tab">KLIENCI</button>
+                <button class="tab">OFERTY</button>
+
+                <button class="tab active-dark">
+                    PROJEKTY
+                </button>
+
+                <button class="tab" onclick="window.location.href='umowy.html'">
+                    UMOWY
+                </button>
+
+                <button class="tab">DOSTĘPY</button>
+                <button class="tab">USTAWIENIA</button>
+
+            </section>
+
+        </nav>
+
+        <!-- KALENDARZ -->
+
+        <div class="calendar-card">
+
+            <div class="calendar-header">
+                <button id="prevMonth" class="calendar-btn">
+                    ◀
+                </button>
+
+                <h2 id="monthYear"></h2>
+
+                <button id="nextMonth" class="calendar-btn">
+                    ▶
+                </button>
+            </div>
+
+            <div class="calendar-days">
+                <div>Pn</div>
+                <div>Wt</div>
+                <div>Śr</div>
+                <div>Cz</div>
+                <div>Pt</div>
+                <div>So</div>
+                <div>Nd</div>
+            </div>
+
+            <div id="calendar" class="calendar-grid"></div>
+
         </div>
 
-        <div id="calendar" class="calendar-grid"></div>
-    </div>
+    </main>
 
 </div>
 
 <script src="js/kalendarz.js"></script>
+
 </body>
 </html>
