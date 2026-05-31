@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalendarz</title>
+
+    <link rel="stylesheet" href="style/kalendarz.css">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="calendar-card">
+        <div class="calendar-header">
+            <button id="prevMonth" class="calendar-btn">◀</button>
+
+            <h2 id="monthYear"></h2>
+
+            <button id="nextMonth" class="calendar-btn">▶</button>
+        </div>
+
+        <div class="calendar-days">
+            <div>Pn</div>
+            <div>Wt</div>
+            <div>Śr</div>
+            <div>Cz</div>
+            <div>Pt</div>
+            <div>So</div>
+            <div>Nd</div>
+        </div>
+
+        <div id="calendar" class="calendar-grid"></div>
+    </div>
+
+</div>
+
+<script src="js/kalendarz.js"></script>
+</body>
+</html>
