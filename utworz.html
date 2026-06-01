@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utwórz - CRM firmy kamieniarskiej</title>
+    <link rel="stylesheet" href="style/utworzStyle.css">
+</head>
+<body>
+
+<div class="container-wrapper">
+
+    <nav class="side_list">
+        <button class="tab active-dark">UTWÓRZ</button>
+        <button class="tab">KLIENCI</button>
+        <button class="tab">OFERTY</button>
+        <button class="tab" data-page="projekty.html">PROJEKTY</button>
+        <button class="tab" data-page="umowy.html">UMOWY</button>
+        <button class="tab" data-page="kalendarz.html">KALENDARZ</button>
+        <button class="tab">DOSTĘPY</button>
+        <button class="tab">USTAWIENIA</button>
+
+        <div class="logo">
+            <img src=".idea/assets/Logo.png" alt="Logo">
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <main class="main">
+
+            <div class="status_menu_container">
+                <section class="status-menu create-top-menu">
+
+                    <button
+                            class="status-item active-status"
+                            data-create-view="client">
+                        PROFIL KLIENTA
+                    </button>
+
+                    <button
+                            class="status-item"
+                            data-create-view="offer">
+                        OFERTA
+                    </button>
+
+                    <button
+                            class="status-item"
+                            data-create-view="project">
+                        PROJEKT
+                    </button>
+
+                </section>
+            </div>
+
+            <button class="hamburger" id="hamburgerBtn">
+                ☰
+            </button>
+
+            <nav class="burger-menu">
+                <section class="tabs">
+                    <button class="tab active-dark">UTWÓRZ</button>
+                    <button class="tab">KLIENCI</button>
+                    <button class="tab">OFERTY</button>
+                    <button class="tab" data-page="projekty.html">
+                        PROJEKTY
+                    </button>
+                    <button class="tab" data-page="umowy.html">
+                        UMOWY
+                    </button>
+                    <button class="tab" data-page="kalendarz.html">
+                        KALENDARZ
+                    </button>
+                    <button class="tab">DOSTĘPY</button>
+                    <button class="tab">USTAWIENIA</button>
+                </section>
+            </nav>
+
+            <!-- PROFIL KLIENTA -->
+
+            <section id="clientSection">
+
+                <div class="placeholder-section">
+
+                    <div class="form-heading">
+                        <p class="eyebrow">Profil klienta</p>
+                        <h1>Moduł w budowie</h1>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- OFERTA -->
+
+            <section id="offerSection" hidden>
+
+                <form id="offerForm" class="offer-form">
+
+                    <div class="form-heading">
+                        <p class="eyebrow">Oferta</p>
+                        <h1>Nowa oferta</h1>
+                    </div>
+
+                    <div class="form-grid">
+
+                        <label>
+                            Imię klienta
+                            <input name="firstName">
+                        </label>
+
+                        <label>
+                            Nazwisko klienta
+                            <input name="lastName">
+                        </label>
+
+                        <label>
+                            Typ współpracy
+                            <select name="cooperationType">
+                                <option>Klient indywidualny</option>
+                                <option>Kontrahent</option>
+                            </select>
+                        </label>
+
+                        <label>
+                            Typ produktu
+                            <select id="productType" name="productType">
+
+                                <option value="">
+                                    Wybierz produkt
+                                </option>
+
+                                <option value="blat">
+                                    Blat
+                                </option>
+
+                                <option value="parapet">
+                                    Parapet
+                                </option>
+
+                                <option value="nagrobek">
+                                    Nagrobek
+                                </option>
+
+                            </select>
+                        </label>
+
+                    </div>
+
+                    <!-- BLAT -->
+
+                    <section id="countertopFields" hidden>
+
+                        <h3>Blat</h3>
+
+                        <div class="form-grid">
+
+                            <label>
+                                Rodzaj blatu
+                                <select>
+                                    <option>Kuchenny</option>
+                                    <option>Łazienkowy</option>
+                                    <option>Inny</option>
+                                </select>
+                            </label>
+
+                            <label>
+                                Materiał
+                                <input name="countertopMaterial">
+                            </label>
+
+                            <label>
+                                Grubość (cm)
+                                <input type="number" name="countertopThickness">
+                            </label>
+
+                            <label>
+                                Powierzchnia (m²)
+                                <input type="number" step="0.01" name="countertopArea">
+                            </label>
+
+                        </div>
+
+                    </section>
+
+                    <!-- PARAPET -->
+
+                    <section id="windowSillFields" hidden>
+
+                        <h3>Parapet</h3>
+
+                        <div class="form-grid">
+
+                            <label>
+                                Materiał
+                                <input name="windowSillMaterial">
+                            </label>
+
+                            <label>
+                                Długość (cm)
+                                <input type="number" name="windowSillLength">
+                            </label>
+
+                            <label>
+                                Szerokość (cm)
+                                <input type="number" name="windowSillWidth">
+                            </label>
+
+                            <label>
+                                Ilość sztuk
+                                <input type="number" name="windowSillCount">
+                            </label>
+
+                        </div>
+
+                    </section>
+
+                    <!-- NAGROBEK -->
+
+                    <section id="tombstoneFields" hidden>
+
+                        <h3>Nagrobek</h3>
+
+                        <div class="form-grid">
+
+                            <label>
+                                Typ nagrobka
+                                <select name="tombstoneType">
+                                    <option>Pojedynczy</option>
+                                    <option>Podwójny</option>
+                                    <option>Dziecięcy</option>
+                                </select>
+                            </label>
+
+                            <label>
+                                Materiał
+                                <input name="tombstoneMaterial">
+                            </label>
+
+                            <label>
+                                Kolor liter
+                                <input name="lettersColor">
+                            </label>
+
+                        </div>
+
+                        <label>
+                            Dodatkowe elementy
+                            <textarea
+                                    name="tombstoneNotes"
+                                    rows="4"></textarea>
+                        </label>
+
+                    </section>
+
+                    <label>
+                        Notatki
+                        <textarea name="notes" rows="6"></textarea>
+                    </label>
+
+                    <label>
+                        Załączniki
+                        <input type="file" multiple>
+                    </label>
+
+                    <div class="actions">
+
+                        <button
+                                type="button"
+                                class="secondary-btn">
+                            Zapisz ofertę
+                        </button>
+
+                        <button
+                                type="button"
+                                class="secondary-btn"
+                                id="downloadOfferJson">
+                            Pobierz JSON
+                        </button>
+
+                        <button
+                                type="button"
+                                class="primary-btn">
+                            Utwórz projekt
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+
+            <!-- PROJEKT -->
+
+            <section id="projectSection" hidden>
+
+                <div class="placeholder-section">
+
+                    <div class="form-heading">
+                        <p class="eyebrow">Projekt</p>
+                        <h1>Moduł w budowie</h1>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+</div>
+
+<script type="module" src="js/utworz.js"></script>
+
+</body>
+</html>

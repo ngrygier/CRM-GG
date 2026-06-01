@@ -123,6 +123,13 @@ class WidokUmow {
         this.podgladUmowy = document.querySelector("#contractPreview");
         this.przyciskJson = document.querySelector("#downloadJson");
         this.przyciskPdf = document.querySelector("#exportPdf");
+
+        this.przyciskImportu =
+            document.querySelector("#importOfferButton");
+
+        this.plikOferty =
+            document.querySelector("#offerJsonFile");
+
         this.komunikatFormularza = document.querySelector("#formMessage");
 
         this.przyciskiZakladek = document.querySelectorAll("[data-contract-view]");
@@ -214,6 +221,22 @@ class WidokUmow {
         this.formularz.addEventListener("input", () => this.odswiezPodglad());
         this.przyciskJson.addEventListener("click", () => this.eksportujJson());
         this.przyciskPdf.addEventListener("click", () => this.eksportujPdf());
+
+        this.przyciskImportu.addEventListener(
+            "click",
+            () => this.plikOferty.click()
+        );
+
+        this.plikOferty.addEventListener(
+            "change",
+            (event) => {
+                const plik = event.target.files[0];
+
+                if (plik) {
+                    this.importujOferte(plik);
+                }
+            }
+        );
 
         const hamburgerBtn = document.querySelector("#hamburgerBtn");
         const tabs = document.querySelector(".tabs");
@@ -310,6 +333,66 @@ class WidokUmow {
         const umowa = Umowa.zFormularza(this.formularz);
         this.podgladUmowy.innerHTML = this.stworzHtmlUmowy(umowa);
         this.ukryjKomunikat(this.komunikatFormularza);
+    }
+
+    async importujOferte(plik) {
+
+        try {
+
+            const tekst = await plik.text();
+
+            const oferta = JSON.parse(tekst);
+
+            if (oferta.typ !== "OFERTA") {
+                throw new Error("Niepoprawny format pliku oferty.");
+            }
+
+            if (!oferta.klient) {
+                throw new Error("Brak danych klienta w ofercie.");
+            }
+
+            this.wypelnijFormularzZOfery(oferta);
+
+            this.odswiezPodglad();
+
+            this.pokazKomunikat(
+                this.komunikatFormularza,
+                "Oferta została wczytana."
+            );
+
+        } catch (error) {
+
+            this.pokazKomunikat(
+                this.komunikatFormularza,
+                error.message || "Nie udało się odczytać pliku oferty."
+            );
+
+        }
+    }
+
+
+    wypelnijFormularzZOfery(oferta) {
+
+        this.formularz.elements.clientName.value =
+            `${oferta.klient.imie || ""} ${oferta.klient.nazwisko || ""}`.trim();
+
+        this.formularz.elements.clientAddress.value =
+            oferta.klient.adres || "";
+
+        this.formularz.elements.clientPhone.value =
+            oferta.klient.telefon || "";
+
+        this.formularz.elements.product.value =
+            oferta.produkt || "";
+
+        this.formularz.elements.material.value =
+            oferta.material || "";
+
+        this.formularz.elements.grossPrice.value =
+            oferta.cenaBrutto || 0;
+
+        this.formularz.elements.notes.value =
+            oferta.notatki || "";
     }
 
     eksportujJson() {
