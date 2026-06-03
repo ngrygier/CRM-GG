@@ -1,0 +1,19 @@
+/* dzien w kalendarzu */
+#dzien{
+    padding:15px;
+    text-align: center;
+}
+
+/* responsywnosc */
+
+@media (min-width: 1024px) {
+    .main{
+        min-height: 700px !important;
+        margin-top: 10px;
+    }
+    .container{
+        margin-top: 25px;
+        margin-bottom: 0;
+    }
+
+}

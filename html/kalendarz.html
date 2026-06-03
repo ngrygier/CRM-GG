@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kalendarz</title>
 
-    <link rel="stylesheet" href="style/style.css">
-    <link rel="stylesheet" href="style/kalendarz.css">
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/kalendarz.css">
 </head>
 <body>
 
@@ -16,10 +16,12 @@
     <nav class="side_list">
 
         <button class="tab">UTWÓRZ</button>
+
         <button class="tab">KLIENCI</button>
+
         <button class="tab">OFERTY</button>
 
-        <button class="tab active-dark">
+        <button class="tab" onClick="window.location.href ='projekty.html'">
             PROJEKTY
         </button>
 
@@ -27,12 +29,60 @@
             UMOWY
         </button>
 
+        <button class="tab active active-dark" onclick="window.location.href='kalendarz.html'">
+            KALENDARZ
+        </button>
+
         <button class="tab">DOSTĘPY</button>
+
         <button class="tab">USTAWIENIA</button>
 
         <div class="logo">
-            <img src=".idea/assets/Logo.png" alt="Logo">
+            <img src="../.idea/assets/Logo.png" alt="Logo">
         </div>
+
+    </nav>
+    <button class="hamburger">
+        ☰
+    </button>
+    <!-- MOBILE MENU -->
+    <nav class="burger-menu">
+
+        <section class="tabs">
+
+            <button class="tab">
+                UTWÓRZ
+            </button>
+
+            <button class="tab">
+                KLIENCI
+            </button>
+
+            <button class="tab">
+                OFERTY
+            </button>
+
+            <button class="tab" onClick="window.location.href ='projekty.html'">
+                PROJEKTY
+            </button>
+
+            <button class="tab" onclick="window.location.href='umowy.html'">
+                UMOWY
+            </button>
+
+            <button class="tab active active-dark" onclick="window.location.href='kalendarz.html'">
+                KALENDARZ
+            </button>
+
+            <button class="tab">
+                DOSTĘPY
+            </button>
+
+            <button class="tab">
+                USTAWIENIA
+            </button>
+
+        </section>
 
     </nav>
 
@@ -54,6 +104,10 @@
 
                 <button class="tab" onclick="window.location.href='umowy.html'">
                     UMOWY
+                </button>
+
+                <button class="tab active active-dark" onclick="window.location.href='kalendarz.html'">
+                    KALENDARZ
                 </button>
 
                 <button class="tab">DOSTĘPY</button>
@@ -97,7 +151,7 @@
 
 </div>
 
-<script src="js/kalendarz.js"></script>
+<script src="../js/kalendarz.js"></script>
 
 </body>
 </html>
