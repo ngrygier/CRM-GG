@@ -9,4 +9,3 @@ hamburger.addEventListener("click", () => {
     tabs.classList.toggle("active");
 
 });
-
