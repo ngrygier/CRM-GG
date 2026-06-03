@@ -52,6 +52,13 @@ function renderCalendar() {
         dayElement.classList.add("calendar-day");
         dayElement.textContent = day;
 
+        dayElement.onclick = function() {
+            const monthStr = String(month + 1).padStart(2, "0");
+            const dayStr = String(day + 1).padStart(2, "0");
+
+            window.location.href = `dzien.html?data=${year}-${monthStr}-${dayStr}`;
+        }
+
         if (
             day === today.getDate() &&
             month === today.getMonth() &&
@@ -75,3 +82,16 @@ nextBtn.addEventListener("click", () => {
 });
 
 renderCalendar();
+
+// hamburger menu
+const hamburger =
+    document.querySelector(".hamburger");
+
+const tabs =
+    document.querySelector(".tabs");
+
+hamburger.addEventListener("click", () => {
+
+    tabs.classList.toggle("active");
+
+});

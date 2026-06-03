@@ -4,15 +4,23 @@
     box-sizing:border-box;
 }
 
+.tab{
+    margin:5px;
+}
+
+.side_list{
+    margin: 5px;
+}
+
 body{
-    background:#dcdcdc;
+    background:#4A4A4A;
     font-family:Arial,sans-serif;
-    padding:30px;
+    padding:0;
 }
 
 .container{
     max-width:1200px;
-    margin:auto;
+    margin:10px;
 }
 
 .calendar-card{
@@ -121,6 +129,14 @@ body{
     .calendar-btn{
         width:40px;
         height:40px;
+    }
+    .burger-menu{
+        display:block;
+    }
+    .hamburger {
+        display: flex;
+        padding: 5px;
+        margin: 10px;
     }
 }
 
