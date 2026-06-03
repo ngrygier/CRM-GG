@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang = "pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dzień</title>
+
+    <link rel="stylesheet" href="/style/style.css">
+    <link rel="stylesheet" href="/style/dzien.css">
+
+</head>
+<body>
+<div class="container-wrapper">
+
+    <!-- SIDEBAR DESKTOP -->
+    <nav class="side_list" >
+
+        <button class="tab">
+            UTWÓRZ
+        </button>
+
+        <button class="tab">
+            KLIENCI
+        </button>
+
+        <button class="tab">
+            OFERTY
+        </button>
+
+        <button class="tab" onclick="window.location.href='projekty.html';">
+            PROJEKTY
+        </button>
+
+        <button class="tab" onclick="window.location.href='umowy.html'">
+            UMOWY
+        </button>
+
+        <button class="tab active-dark" onclick="window.location.href='kalendarz.html'">
+            KALENDARZ
+        </button>
+
+        <button class="tab">
+            DOSTĘPY
+        </button>
+
+        <button class="tab">
+            USTAWIENIA
+        </button>
+
+        <div class="logo">
+            <img src="/.idea/assets/Logo.png" alt="Logo">
+        </div>
+
+    </nav>
+
+    <!-- ZAWARTOŚĆ PROJEKTY -->
+    <div class="container">
+
+        <main class="main">
+
+            <!-- SEARCH -->
+            <section class="search-bar">
+
+                <button class="hamburger">
+                    ☰
+                </button>
+
+                <input type="text" placeholder="szukaj wydarzenia">
+
+                <button class="filtruj-btn">
+                    ⚙
+                </button>
+
+                <button class="icon-btn green">
+                    ✔
+                </button>
+
+            </section>
+
+            <!-- MOBILE MENU -->
+
+
+            <nav class="burger-menu">
+
+                <section class="tabs">
+
+                    <button class="tab">
+                        UTWÓRZ
+                    </button>
+
+                    <button class="tab">
+                        KLIENCI
+                    </button>
+
+                    <button class="tab">
+                        OFERTY
+                    </button>
+
+                    <button class="tab" onclick="window.location.href='projekty.html'">
+                        PROJEKTY
+                    </button>
+
+                    <button class="tab" onclick="window.location.href='umowy.html'">
+                        UMOWY
+                    </button>
+
+                    <button class="tab active-dark" onclick="window.location.href='kalendarz.html'">
+                        KALENDARZ
+                    </button>
+
+                    <button class="tab">
+                        DOSTĘPY
+                    </button>
+
+                    <button class="tab">
+                        USTAWIENIA
+                    </button>
+
+                </section>
+
+            </nav>
+
+            <h1 id="dzien"></h1>
+
+            <!-- TABLE -->
+            <section class="table-container">
+
+                <div class="table-card">
+
+                    <p id="content"></p>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+</div>
+
+
+
+<script src="js/dzien.js"></script>
+
+
+
+</body>
+</html>
