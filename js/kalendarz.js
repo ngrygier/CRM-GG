@@ -95,3 +95,16 @@ hamburger.addEventListener("click", () => {
     tabs.classList.toggle("active");
 
 });
+
+// przejscie do stron
+document.querySelectorAll("[data-page]")
+    .forEach((przycisk) => {
+
+        przycisk.addEventListener("click", () => {
+
+            window.location.href =
+                przycisk.dataset.page;
+
+        });
+
+    });
