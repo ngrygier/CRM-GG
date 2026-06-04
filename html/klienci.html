@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klienci</title>
+    <link rel="stylesheet" href="/style/klienci.css">
+</head>
+<body>
+
+<div class="container-wrapper">
+
+    <!-- MENU BOCZNE -->
+
+    <nav class="side_list">
+        <button class="tab">UTWÓRZ</button>
+        <button class="tab active-dark">KLIENCI</button>
+        <button class="tab">OFERTY</button>
+        <button class="tab">PROJEKTY</button>
+        <button class="tab">UMOWY</button>
+        <button class="tab">KALENDARZ</button>
+        <button class="tab">DOSTĘPY</button>
+        <button class="tab">USTAWIENIA</button>
+
+        <div class="logo">
+            <img src="/.idea/assets/Logo.png" alt="Logo">
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <main class="main">
+
+            <!-- GÓRNE MENU -->
+
+            <div class="status_menu_container">
+                <section class="status-menu clients-top-menu">
+
+                    <button
+                            class="status-item active-status"
+                            data-view="create">
+                        UTWÓRZ KLIENTA
+                    </button>
+
+                    <button
+                            class="status-item"
+                            data-view="list">
+                        LISTA KLIENTÓW
+                    </button>
+
+                </section>
+            </div>
+
+            <!-- HAMBURGER -->
+
+            <button class="hamburger" id="hamburgerBtn">
+                ☰
+            </button>
+
+            <nav class="burger-menu">
+                <section class="tabs">
+                    <button class="tab">UTWÓRZ</button>
+                    <button class="tab active-dark">KLIENCI</button>
+                    <button class="tab">OFERTY</button>
+                    <button class="tab">PROJEKTY</button>
+                    <button class="tab">UMOWY</button>
+                    <button class="tab">KALENDARZ</button>
+                    <button class="tab">DOSTĘPY</button>
+                    <button class="tab">USTAWIENIA</button>
+                </section>
+            </nav>
+
+            <!-- UTWÓRZ KLIENTA -->
+
+            <section id="createClientSection">
+
+                <form id="clientForm" class="client-form">
+
+                    <div class="form-heading">
+                        <p class="eyebrow">Klienci</p>
+                        <h1>Nowy klient</h1>
+                    </div>
+
+                    <div class="form-grid">
+
+                        <label>
+                            Imię
+                            <input type="text" name="firstName">
+                        </label>
+
+                        <label>
+                            Nazwisko
+                            <input type="text" name="lastName">
+                        </label>
+
+                        <label>
+                            Telefon
+                            <input type="tel" name="phone">
+                        </label>
+
+                        <label>
+                            E-mail
+                            <input type="email" name="email">
+                        </label>
+
+                        <label>
+                            Miasto
+                            <input type="text" name="city">
+                        </label>
+
+                        <label>
+                            Kod pocztowy
+                            <input type="text" name="postalCode">
+                        </label>
+
+                    </div>
+
+                    <label>
+                        Adres
+                        <textarea rows="3" name="address"></textarea>
+                    </label>
+
+                    <label>
+                        Notatki
+                        <textarea rows="5" name="notes"></textarea>
+                    </label>
+
+                    <div class="actions">
+
+                        <button
+                                type="reset"
+                                class="secondary-btn">
+                            Wyczyść
+                        </button>
+
+                        <button
+                                type="submit"
+                                class="primary-btn">
+                            Zapisz klienta
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+            <!-- LISTA KLIENTÓW -->
+
+            <section id="clientsListSection" hidden>
+
+            </section>
+
+        </main>
+
+    </div>
+
+</div>
+
+<script src="/js/klienci.js"></script>
+
+</body>
+</html>
