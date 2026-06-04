@@ -1,0 +1,74 @@
+.client-card {
+    background: #efefef;
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    margin: 15px 0;
+}
+
+.client-card h2 {
+    color: #5b5347;
+    font-size: 24px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #d7b16b;
+}
+
+.client-card h3 {
+    color: #444;
+    font-size: 16px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.client-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.client-card ul li {
+    background: #fff;
+    border-left: 4px solid #d7b16b;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    color: #333;
+    font-size: 14px;
+}
+
+.client-card p {
+    background: #fff;
+    padding: 15px;
+    border-radius: 12px;
+    color: #555;
+    line-height: 1.7;
+    font-size: 14px;
+    text-align: justify;
+}
+.formularzDolaczenia{
+    display: flex;
+}
+
+.hamburger {
+    font-size: 13px;
+}
+
+@media (min-width: 768px) {
+    .client-card {
+        padding: 30px;
+    }
+
+    .client-card h2 {
+        font-size: 28px;
+    }
+
+    .client-card h3 {
+        font-size: 18px;
+    }
+
+    .client-card ul li,
+    .client-card p {
+        font-size: 15px;
+    }
+}

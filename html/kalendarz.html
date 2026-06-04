@@ -14,111 +14,42 @@
 
     <!-- SIDEBAR DESKTOP -->
     <nav class="side_list">
-
-        <button class="tab">UTWÓRZ</button>
-
+        <button class="tab" data-page="utworz.html">UTWÓRZ</button>
         <button class="tab">KLIENCI</button>
-
         <button class="tab">OFERTY</button>
-
-        <button class="tab" onClick="window.location.href ='projekty.html'">
-            PROJEKTY
-        </button>
-
-        <button class="tab" onclick="window.location.href='umowy.html'">
-            UMOWY
-        </button>
-
-        <button class="tab active active-dark" onclick="window.location.href='kalendarz.html'">
-            KALENDARZ
-        </button>
-
+        <button class="tab" data-page="projekty.html">PROJEKTY</button>
+        <button class="tab" data-page="umowy.html">UMOWY</button>
+        <button class="tab active-dark" data-page="kalendarz.html" >KALENDARZ</button>
         <button class="tab">DOSTĘPY</button>
-
         <button class="tab">USTAWIENIA</button>
 
         <div class="logo">
             <img src="../.idea/assets/Logo.png" alt="Logo">
         </div>
-
     </nav>
-    <button class="hamburger">
+
+    <button class="hamburger" id="hamburgerBtn">
         ☰
     </button>
-    <!-- MOBILE MENU -->
+
     <nav class="burger-menu">
-
         <section class="tabs">
-
-            <button class="tab">
-                UTWÓRZ
-            </button>
-
-            <button class="tab">
-                KLIENCI
-            </button>
-
-            <button class="tab">
-                OFERTY
-            </button>
-
-            <button class="tab">
-                PROJEKTY
-            </button>
-
-            <button class="tab">
-                UMOWY
-            </button>
-
-            <button class="tab active active-dark">
-                KALENDARZ
-            </button>
-
-            <button class="tab">
-                DOSTĘPY
-            </button>
-
-            <button class="tab">
-                USTAWIENIA
-            </button>
-
+            <button class="tab" data-page="utworz.html">UTWÓRZ</button>
+            <button class="tab">KLIENCI</button>
+            <button class="tab">OFERTY</button>
+            <button class="tab" data-page="projekty.html">PROJEKTY</button>
+            <button class="tab" data-page="kalendarz.html">KALENDARZ</button>
+            <button class="tab">DOSTĘPY</button>
+            <button class="tab">USTAWIENIA</button>
         </section>
-
     </nav>
 
     <!-- GŁÓWNA ZAWARTOŚĆ -->
     <main class="container">
 
         <!-- MENU MOBILE -->
-        <nav class="burger-menu">
-
-            <section class="tabs">
-
-                <button class="tab">UTWÓRZ</button>
-                <button class="tab">KLIENCI</button>
-                <button class="tab">OFERTY</button>
-
-                <button class="tab active-dark">
-                    PROJEKTY
-                </button>
-
-                <button class="tab">
-                    UMOWY
-                </button>
-
-                <button class="tab active active-dark">
-                    KALENDARZ
-                </button>
-
-                <button class="tab">DOSTĘPY</button>
-                <button class="tab">USTAWIENIA</button>
-
-            </section>
-
-        </nav>
 
         <!-- KALENDARZ -->
-
         <div class="calendar-card">
 
             <div class="calendar-header">

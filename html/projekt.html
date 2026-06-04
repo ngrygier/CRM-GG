@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/style/style.css">
+  <link rel="stylesheet" href="/style/projekt.css">
+
+
+
+    <title>Projekt</title>
+</head>
+<body>
+<!-- SIDEBAR DESKTOP -->
+<nav class="side_list">
+
+    <button class="tab" onclick="window.location.href ='utworz.html'">
+        UTWÓRZ
+    </button>
+
+    <button class="tab">
+        KLIENCI
+    </button>
+
+    <button class="tab">
+        OFERTY
+    </button>
+
+    <button class="tab active-dark">
+        PROJEKTY
+    </button>
+
+    <button class="tab" onclick="window.location.href='umowy.html'">
+        UMOWY
+    </button>
+
+    <button class="tab" onclick="window.location.href='kalendarz.html'">
+        KALENDARZ
+    </button>
+
+    <button class="tab">
+        DOSTĘPY
+    </button>
+
+    <button class="tab">
+        USTAWIENIA
+    </button>
+
+    <div class="logo">
+        <img src="/.idea/assets/Logo.png" alt="Logo">
+    </div>
+
+</nav>
+
+<div class="container">
+
+  <main class="main">
+    <!-- STATUS MENU -->
+    <div class="status_menu_container">
+      <section class="status-menu">
+
+        <button class="status-item active-status">
+          PROJEKTY
+        </button>
+
+        <button class="status-item">
+          WSZYSTKIE
+        </button>
+
+        <button class="status-item underline-red">
+          OCZEKUJĄCE
+        </button>
+
+        <button class="status-item underline-orange">
+          DO POMIARU
+        </button>
+
+        <button class="status-item underline-yellow">
+          PRODUKCJA
+        </button>
+
+        <button class="status-item underline-green">
+          ZAKOŃCZONE
+        </button>
+
+      </section>
+    </div>
+
+
+    <!-- SEARCH -->
+    <section class="search-bar">
+
+      <button class="hamburger">
+        ☰
+      </button>
+
+      <input type="text" placeholder="wyszukaj">
+
+      <button class="filtruj-btn">
+        ⚙
+      </button>
+
+      <button class="icon-btn green">
+        ✔
+      </button>
+
+    </section>
+
+    <!-- MOBILE MENU -->
+    <nav class="burger-menu">
+
+      <section class="tabs">
+
+        <button class="tab" onclick="window.location.href ='utworz.html'">
+          UTWÓRZ
+        </button>
+
+        <button class="tab">
+          KLIENCI
+        </button>
+
+        <button class="tab">
+          OFERTY
+        </button>
+
+        <button class="tab active-dark">
+          PROJEKTY
+        </button>
+
+        <button class="tab" onclick="window.location.href='umowy.html'">
+          UMOWY
+        </button>
+
+        <button class="tab" onclick="window.location.href='kalendarz.html'">
+          KALENDARZ
+        </button>
+
+        <button class="tab">
+          DOSTĘPY
+        </button>
+
+        <button class="tab">
+          USTAWIENIA
+        </button>
+
+      </section>
+
+    </nav>
+
+    <!-- dołączenie do czatu-->
+
+    <form id="formularzDoDolaczenia" class="formularzDolaczenia">
+      <input type="text" id="nickname" class="tab" placeholder="Twój nick">
+      <button type="submit" id="join" class="hamburger">Dołącz</button>
+
+    </form>
+
+    <!-- przykladowy-projekt-->
+    <div id="client-card" class="client-card" style="display:none">
+      <h2>Klient: Jan Kowalski</h2>
+
+      <h3>Zamówione rzeczy:</h3>
+      <ul>
+        <li>Blat kuchenny</li>
+        <li>Schody</li>
+        <li>Blat łazienkowy</li>
+      </ul>
+
+      <h3>Opis:</h3>
+      <p>
+      Zamówienie obejmuje wykonanie i montaż blatu kuchennego
+        z granitu Nero Assoluto o wymiarach 320 × 65 cm i grubości
+        3 cm, schodów granitowych składających się z 15 stopni o wymiarach 120 × 35 cm
+        i grubości 3 cm oraz blatu łazienkowego z konglomeratu kwarcowego Calacatta o
+        wymiarach 140 × 55 cm i grubości 2 cm. Wszystkie elementy zostaną wykonane zgodnie
+        z ustalonym projektem i przygotowane do montażu na miejscu inwestycji.
+    </p>
+
+        <h3>Notatki:</h3>
+        <div class="notes-container">
+
+            <div id="messages" class="messages"></div>
+
+            <div class="notes-input">
+                <input
+                        type="text"
+                        id="messageInput"
+                        placeholder="Napisz wiadomość..."
+                >
+
+                <button id="sendBtn">
+                    Wyślij
+                </button>
+            </div>
+
+        </div>
+    </div>
+      <p>
+
+      </p>
+
+  </main>
+</div>
+
+<script src="/js/projekt.js"></script>
+
+</body>
+</html>

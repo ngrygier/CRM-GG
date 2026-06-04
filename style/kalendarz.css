@@ -105,6 +105,9 @@ body{
     color:#d7b16b;
     font-weight:bold;
 }
+.burger-menu{
+    display: block;
+}
 
 @media(max-width:768px){
 

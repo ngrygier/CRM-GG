@@ -63,15 +63,9 @@
                     <button class="tab active-dark">UTWÓRZ</button>
                     <button class="tab">KLIENCI</button>
                     <button class="tab">OFERTY</button>
-                    <button class="tab" data-page="projekty.html">
-                        PROJEKTY
-                    </button>
-                    <button class="tab" data-page="umowy.html">
-                        UMOWY
-                    </button>
-                    <button class="tab" data-page="kalendarz.html">
-                        KALENDARZ
-                    </button>
+                    <button class="tab" data-page="projekty.html"> PROJEKTY</button>
+                    <button class="tab" data-page="umowy.html">UMOWY</button>
+                    <button class="tab" data-page="kalendarz.html">KALENDARZ</button>
                     <button class="tab">DOSTĘPY</button>
                     <button class="tab">USTAWIENIA</button>
                 </section>
@@ -296,14 +290,89 @@
 
             <section id="projectSection" hidden>
 
-                <div class="placeholder-section">
-
-                    <div class="form-heading">
-                        <p class="eyebrow">Projekt</p>
-                        <h1>Moduł w budowie</h1>
-                    </div>
-
+                <div class="form-heading">
+                    <p class="eyebrow">Projekt</p>
+                    <h1>Nowy projekt</h1>
                 </div>
+
+                <label>
+                    Sposób utworzenia projektu
+                    <select id="projectCreationType">
+
+                        <option value="">
+                            Wybierz opcję
+                        </option>
+
+                        <option value="new">
+                            Utwórz od nowa
+                        </option>
+
+                        <option value="offer">
+                            Utwórz na podstawie oferty
+                        </option>
+
+                    </select>
+                </label>
+
+                <!-- PROJEKT OD NOWA -->
+
+                <section id="newProjectFields" hidden>
+
+                    <form id="projectForm">
+
+                        <h3>Dane projektu</h3>
+
+                        <div class="form-grid">
+
+                            <label>
+                                Nazwa projektu
+                                <input id="nazwaProjektu" name="nazwaProjektu">
+                            </label>
+
+                            <label>
+                                Klient
+                                <input id="klient" name="klientName">
+                                <!-- tu bedzie konkretny klient jak michalina zrobi modul -->
+                            </label>
+
+                            <label>
+                                Termin realizacji
+                                <input type="date" name="deadline" id="deadline">
+                            </label>
+
+                        </div>
+
+                        <label>
+                            Opis
+                            <textarea rows="5" id="opis"></textarea>
+                        </label>
+
+                        <input type="submit" value="Stwórz projekt">
+
+                    </form>
+
+
+
+                </section>
+
+                <!-- PROJEKT Z OFERTY -->
+
+                <section id="offerProjectFields" hidden>
+
+                    <h3>Projekt z oferty</h3>
+
+                    <label>
+                        Wybierz ofertę
+                        <select id="offerSelector">
+                            <option value="">
+                                Wybierz ofertę
+                            </option>
+                        </select>
+                    </label>
+
+                    <div id="offerPreview"></div>
+
+                </section>
 
             </section>
 

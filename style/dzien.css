@@ -4,6 +4,15 @@
     text-align: center;
 }
 
+.burger-menu {
+    display: none;
+}
+
+.burger-menu.active {
+    display: flex;
+    flex-direction: column;
+}
+
 /* responsywnosc */
 
 @media (min-width: 1024px) {

@@ -259,3 +259,74 @@ const widokTworzenia =
     new WidokTworzenia();
 
 widokTworzenia.start();
+
+
+// MODUŁ PROJEKTOWY
+
+
+//projekt
+const projectForm = document.getElementById("projectForm");
+
+const projekty = [];
+
+projectForm.addEventListener("submit", function (e) {
+
+    e.preventDefault();
+
+    const nowyProjekt = {
+        id: Date.now(),
+
+        nazwaProjektu:
+        document.getElementById("nazwaProjektu").value,
+
+        klient:
+        document.getElementById("klient").value,
+
+        deadline:
+        document.getElementById("deadline").value,
+
+        opis:
+        document.getElementById("opis").value,
+
+        status: "Nowy"
+    };
+
+    projekty.push(nowyProjekt);
+
+    console.log("Utworzono projekt:");
+    console.log(nowyProjekt);
+
+    console.log("Wszystkie projekty:");
+    console.log(projekty);
+
+    projectForm.reset();
+});
+
+const projectCreationType =
+    document.getElementById("projectCreationType");
+
+const newProjectFields =
+    document.getElementById("newProjectFields");
+
+const offerProjectFields =
+    document.getElementById("offerProjectFields");
+
+projectCreationType.addEventListener("change", () => {
+
+    newProjectFields.hidden = true;
+    offerProjectFields.hidden = true;
+
+    if(projectCreationType.value === "new") {
+        newProjectFields.hidden = false;
+    }
+
+    if(projectCreationType.value === "offer") {
+        offerProjectFields.hidden = false;
+    }
+});
+
+// tworzenie projektu od zera
+const projectName = document.getElementById("nazwaProjektu");
+const klientName = document.getElementById("klient");
+const deadline = document.getElementById("deadline");
+const opis = document.getElementById("opis");

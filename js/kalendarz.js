@@ -54,9 +54,9 @@ function renderCalendar() {
 
         dayElement.onclick = function() {
             const monthStr = String(month + 1).padStart(2, "0");
-            const dayStr = String(day + 1).padStart(2, "0");
+            const dayStr = String(day).padStart(2, "0");
 
-            window.location.href = `dzien.html?data=${year}-${monthStr}-${dayStr}`;
+            window.location.href = `dzien.html?data=${dayStr}-${monthStr}-${year}`;
         }
 
         if (
@@ -83,18 +83,14 @@ nextBtn.addEventListener("click", () => {
 
 renderCalendar();
 
-// hamburger menu
-const hamburger =
-    document.querySelector(".hamburger");
+const hamburgerBtn = document.querySelector("#hamburgerBtn");
+const tabs = document.querySelector(".tabs");
 
-const tabs =
-    document.querySelector(".tabs");
-
-hamburger.addEventListener("click", () => {
-
-    tabs.classList.toggle("active");
-
-});
+if (hamburgerBtn && tabs) {
+    hamburgerBtn.addEventListener("click", () => {
+        tabs.classList.toggle("active");
+    });
+}
 
 // przejscie do stron
 document.querySelectorAll("[data-page]")
