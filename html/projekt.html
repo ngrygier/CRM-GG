@@ -183,7 +183,7 @@
 
             <div id="messages" class="messages"></div>
 
-            <div class="notes-input">
+            <form class="notes-input" id="notes-input">
                 <input
                         type="text"
                         id="messageInput"
@@ -193,13 +193,25 @@
                 <button id="sendBtn">
                     Wyślij
                 </button>
-            </div>
+            </form>
+
+            <button id="export-json">
+                Eksportuj historię notatek do JSON
+            </button>
+
+            <form class="notes-input" id="search-form">
+                <input
+                        id="search-notes"
+                        type="text"
+                        placeholder="Szukaj w notatkach..."
+                >
+                <button type="submit" id="search-notes-button">
+                    Szukaj
+                </button>
+            </form>
 
         </div>
     </div>
-      <p>
-
-      </p>
 
   </main>
 </div>
