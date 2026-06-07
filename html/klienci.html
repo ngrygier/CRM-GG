@@ -78,29 +78,29 @@
 
                     <div class="form-heading">
                         <p class="eyebrow">Klienci</p>
-                        <h1>Nowy klient</h1>
+                        <h1 id="formTitle">Nowy klient</h1>
                     </div>
 
                     <div class="form-grid">
 
                         <label>
                             Imię
-                            <input type="text" name="firstName">
+                            <input type="text" name="firstName" required>
                         </label>
 
                         <label>
                             Nazwisko
-                            <input type="text" name="lastName">
+                            <input type="text" name="lastName" required>
                         </label>
 
                         <label>
                             Telefon
-                            <input type="tel" name="phone">
+                            <input type="tel" name="phone" required pattern="^\d{3}\s?\d{3}\s?\d{3}$">
                         </label>
 
                         <label>
                             E-mail
-                            <input type="email" name="email">
+                            <input type="email" name="email" required pattern="[^@\s]+@[^@\s]+\.[^@\s]+">
                         </label>
 
                         <label>
@@ -148,6 +148,10 @@
             <!-- LISTA KLIENTÓW -->
 
             <section id="clientsListSection" hidden>
+
+            </section>
+
+            <section id="clientDetailsSection" hidden>
 
             </section>
 

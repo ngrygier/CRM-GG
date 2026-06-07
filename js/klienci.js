@@ -1,8 +1,10 @@
 let editingClientId = null;
 const buttons = document.querySelectorAll('.status-item');
 
+const formTitle = document.getElementById('formTitle');
 const createSection = document.getElementById('createClientSection');
 const listSection = document.getElementById('clientsListSection');
+const detailsSection = document.getElementById('clientDetailsSection');
 const clientForm = document.getElementById('clientForm');
 
 buttons.forEach(button => {
@@ -19,11 +21,14 @@ buttons.forEach(button => {
 
             createSection.hidden = false;
             listSection.hidden = true;
+            detailsSection.hidden = true;
+            detailsSection.innerHTML = '';
 
         } else {
 
             createSection.hidden = true;
             listSection.hidden = false;
+            detailsSection.hidden = true;
 
             renderClients();
         }
@@ -33,23 +38,31 @@ buttons.forEach(button => {
 
 clientForm.addEventListener('submit', (e) => {
 
+    if (!clientForm.checkValidity()) {
+        e.preventDefault();
+        clientForm.reportValidity();
+        return;
+    }
+
     e.preventDefault();
 
     let clients =
         JSON.parse(localStorage.getItem('clients')) || [];
 
+    const phone = clientForm.phone.value.replace(/\s/g, '');
+
     const clientData = {
 
         id: editingClientId || Date.now(),
 
-        firstName: clientForm.firstName.value,
-        lastName: clientForm.lastName.value,
-        phone: clientForm.phone.value,
-        email: clientForm.email.value,
-        city: clientForm.city.value,
-        postalCode: clientForm.postalCode.value,
-        address: clientForm.address.value,
-        notes: clientForm.notes.value
+        firstName: clientForm.firstName.value.trim(),
+        lastName: clientForm.lastName.value.trim(),
+        phone: phone,
+        email: clientForm.email.value.trim().toLowerCase(),
+        city: clientForm.city.value.trim(),
+        postalCode: clientForm.postalCode.value.trim(),
+        address: clientForm.address.value.trim(),
+        notes: clientForm.notes.value.trim()
     };
 
     if (editingClientId) {
@@ -74,67 +87,126 @@ clientForm.addEventListener('submit', (e) => {
         JSON.stringify(clients)
     );
 
-    editingClientId = null;
+    if (editingClientId) {
 
-    clientForm.reset();
+        const editedId = editingClientId;
 
-    renderClients();
+        editingClientId = null;
+
+        formTitle.textContent = 'Nowy klient';
+
+        clientForm.reset();
+
+        showClientDetails(editedId);
+
+    } else {
+
+        editingClientId = null;
+
+        clientForm.reset();
+
+        createSection.hidden = true;
+        listSection.hidden = false;
+
+        buttons.forEach(btn =>
+            btn.classList.remove('active-status')
+        );
+
+        buttons[1].classList.add('active-status');
+
+        renderClients();
+    }
 });
+
+function formatPhone(phone) {
+    return phone.replace(
+        /(\d{3})(\d{3})(\d{3})/,
+        '$1 $2 $3'
+    );
+}
 
 function renderClients() {
 
     const clients =
         JSON.parse(localStorage.getItem('clients')) || [];
 
-    listSection.innerHTML = '';
-
     if (clients.length === 0) {
 
-        listSection.innerHTML =
-            '<div class="table-card"><div class="info"><h3>Brak klientów</h3></div></div>';
+        listSection.innerHTML = `
+            <div class="table-card">
+                <div class="info">
+                    <h3>Brak klientów</h3>
+                </div>
+            </div>
+        `;
 
         return;
     }
 
-    clients.forEach(client => {
+    listSection.innerHTML = `
+    <div class="client-form">
 
-        listSection.innerHTML += `
-            <div class="table-card">
+        <div class="form-heading">
+            <p class="eyebrow">Klienci</p>
+            <h1>Lista klientów</h1>
+        </div>
 
-                <div class="info">
+        <div class="clients-table-wrapper">
 
-                    <h3>
-                        ${client.firstName}
-                        ${client.lastName}
-                    </h3>
+            <table class="clients-table">
 
-                    <p>📞 ${client.phone}</p>
+                <thead>
+                    <tr>
+                        <th>Klient</th>
+                        <th>Telefon</th>
+                        <th>Email</th>
+                        <th>Miasto</th>
+                        <th>Akcje</th>
+                    </tr>
+                </thead>
 
-                    <p>✉ ${client.email}</p>
+                <tbody>
 
-                    <p>📍 ${client.city}</p>
-                    
-                    <div class="actions">
+                    ${clients.map(client => {
 
-                <button
-                    class="secondary-btn"
-                    onclick="editClient(${client.id})">
-                    Edytuj
-                </button>
+        const formattedPhone = formatPhone(client.phone);
 
-                <button
-                    class="primary-btn"
-                    onclick="deleteClient(${client.id})">
-                    Usuń
-                </button>
+        return `
+                            <tr>
 
-            </div>
+                                <td>
+                                    ${client.firstName}
+                                    ${client.lastName}
+                                </td>
 
-                </div>
+                                <td>${formattedPhone}</td>
 
-            </div>
-        `;
-    });
+                                <td>${client.email}</td>
+
+                                <td>${client.city}</td>
+
+                                <td>
+
+                                    <button
+                                        class="secondary-btn"
+                                        onclick="showClientDetails(${client.id})">
+                                        Szczegóły
+                                    </button>
+
+                                </td>
+
+                            </tr>
+                        `;
+    }).join('')}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+    `;
 }
 
 function deleteClient(id) {
@@ -170,6 +242,7 @@ function editClient(id) {
     if (!client) return;
 
     editingClientId = id;
+    formTitle.textContent = 'Edycja klienta';
 
     clientForm.firstName.value = client.firstName;
     clientForm.lastName.value = client.lastName;
@@ -182,10 +255,137 @@ function editClient(id) {
 
     createSection.hidden = false;
     listSection.hidden = true;
+    detailsSection.hidden = true;
 
     buttons.forEach(btn =>
         btn.classList.remove('active-status')
     );
 
     buttons[0].classList.add('active-status');
+}
+
+function showClientDetails(id) {
+
+    const clients =
+        JSON.parse(localStorage.getItem('clients')) || [];
+
+    const client =
+        clients.find(client => client.id === id);
+
+    if (!client) return;
+
+    buttons.forEach(btn =>
+        btn.classList.remove('active-status')
+    );
+
+    buttons[1].classList.add('active-status');
+
+    createSection.hidden = true;
+    listSection.hidden = true;
+    detailsSection.hidden = false;
+
+    detailsSection.innerHTML = `
+
+    <div class="client-form">
+
+        <div class="form-heading">
+            <p class="eyebrow">Klienci</p>
+            <h1>Szczegóły klienta</h1>
+        </div>
+
+        <div class="client-details-card">
+
+            <h2>
+                ${client.firstName}
+                ${client.lastName}
+            </h2>
+
+    <div class="details-grid">
+
+        <div class="detail-item">
+            <span class="label">Telefon</span>
+            <span class="value">
+                ${formatPhone(client.phone)}
+            </span>
+        </div>
+
+        <div class="detail-item">
+            <span class="label">Email</span>
+            <span class="value">
+                ${client.email || '-'}
+            </span>
+        </div>
+
+        <div class="detail-item">
+            <span class="label">Miasto</span>
+            <span class="value">
+                ${client.city || '-'}
+            </span>
+        </div>
+
+        <div class="detail-item">
+            <span class="label">Kod pocztowy</span>
+            <span class="value">
+                ${client.postalCode || '-'}
+            </span>
+        </div>
+
+        <div class="detail-item full-width">
+            <span class="label">Adres</span>
+            <span class="value">
+                ${client.address || '-'}
+            </span>
+        </div>
+
+        <div class="detail-item full-width">
+            <span class="label">Notatki</span>
+            <span class="value">
+                ${client.notes || '-'}
+            </span>
+        </div>
+
+        </div>
+    
+        <hr>
+    
+        <h3>Powiązane projekty</h3>
+    
+        <div class="projects-placeholder">
+            Brak projektów
+        </div>
+    
+        <div class="actions">
+    
+            <button
+                class="secondary-btn"
+                onclick="backToClientsList()">
+                Powrót
+            </button>
+    
+            <button
+                class="secondary-btn"
+                onclick="editClient(${client.id})">
+                Edytuj
+            </button>
+    
+            <button
+                class="primary-btn"
+                onclick="deleteClient(${client.id})">
+                Usuń
+            </button>
+    
+        </div>
+
+    </div>
+
+</div>
+`;
+}
+
+function backToClientsList() {
+
+    detailsSection.hidden = true;
+    detailsSection.innerHTML = '';
+
+    listSection.hidden = false;
 }

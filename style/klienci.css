@@ -1,6 +1,6 @@
 @charset "UTF-8";
 * {
-    margin: 5px;
+    margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, sans-serif;
@@ -144,7 +144,7 @@ body {
     body { padding: 20px; }
 
     .container {
-        max-width: 1100px;
+        /*max-width: 1100px;*/
         margin: auto;
         gap: 25px;
     }
@@ -170,7 +170,7 @@ body {
     .container-wrapper {
         display: flex;
         align-items: flex-start;
-        max-width: 1600px;
+        /*max-width: 1600px;*/
         margin: 0;
     }
 
@@ -180,7 +180,7 @@ body {
         width: 260px;
         background: #4a4a4a;
         padding: 25px 20px;
-        gap: 18px;
+        gap: 25px;
         height: 100vh;
         position: sticky;
         top: 0;
@@ -213,12 +213,10 @@ body {
 
     .container {
         flex: 1;
-        max-width: none;
+        margin: 20px 20px 20px 0;
         background: #ececec;
         border-radius: 30px;
-        padding: 30px;
-        gap: 28px;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+        padding: 20px 30px 30px 30px;
     }
 
     .status-menu {
@@ -385,7 +383,8 @@ body {
 }
 
 #createClientSection[hidden],
-#clientsListSection[hidden] {
+#clientsListSection[hidden],
+#clientDetailsSection[hidden] {
     display: none !important;
 }
 
@@ -417,8 +416,139 @@ body {
     outline: none;
 }
 
-#clientsListSection {
+#clientsListSection,
+#clientDetailsSection,
+#createClientSection {
+    margin: 0;
+}
+
+.clients-table-wrapper {
+    overflow-x: auto;
+}
+
+.clients-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #efefef;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.clients-table th {
+    background: #5b5347;
+    color: #d7b16b;
+    text-align: center;
+    padding: 16px;
+}
+
+.clients-table td {
+    padding: 16px;
+    border-bottom: 1px solid #d8d8d8;
+    text-align: center;
+}
+
+.clients-table tr:hover {
+    background: #e8e8e8;
+}
+
+#clientDetailsSection {
     display: flex;
     flex-direction: column;
+}
+
+.client-details-card {
+    padding: 0;
+}
+
+.client-details-card h2 {
+    margin-bottom: 20px;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 15px;
+    margin-bottom: 20px;
+}
+
+.client-details-card hr {
+    margin: 20px 0;
+}
+
+.client-details-card {
+    background: #efefef;
+    border-radius: 20px;
+    padding: 24px;
+}
+
+.client-details-card h2 {
+    margin-bottom: 20px;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.detail-item {
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+.label {
+    font-size: 12px;
+    color: #777;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+}
+
+.value {
+    font-size: 15px;
+    color: #333;
+    word-break: break-word;
+}
+
+.projects-placeholder {
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    margin-top: 10px;
+}
+
+.clients-table,
+.clients-table * {
+    margin: 0;
+}
+
+.main {
+    width: 100%;
+}
+
+#createClientSection,
+#clientsListSection,
+#clientDetailsSection {
+    width: 100%;
+}
+
+.client-form,
+.clients-table-wrapper,
+.client-details-card {
+    width: 100%;
+    max-width: 100%;
+}
+
+.status_menu_container,
+#createClientSection,
+#clientsListSection,
+#clientDetailsSection {
+    margin-top: 20px;
 }
