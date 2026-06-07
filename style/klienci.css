@@ -158,6 +158,15 @@ body {
 
     .info h3 { font-size: 22px; }
     .info p { font-size: 15px; }
+
+    .burger-menu{
+        display:block;
+    }
+    .hamburger {
+        display: flex;
+        padding: 5px;
+        margin: 10px;
+    }
 }
 
 @media (min-width: 1200px) {
@@ -339,10 +348,6 @@ body {
 .secondary-btn {
     background: #d6d6d6;
     color: #333;
-}
-
-.burger-menu {
-    display: block;
 }
 
 .hamburger {
@@ -570,3 +575,4 @@ body {
     flex-direction: column;
     gap: 7px;
 }
+

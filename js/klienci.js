@@ -410,3 +410,35 @@ function backToClientsList() {
 
     listSection.hidden = false;
 }
+
+const hamburger =
+    document.querySelector(".hamburger");
+
+const tabs =
+    document.querySelector(".tabs");
+
+hamburger.addEventListener("click", () => {
+
+    tabs.classList.toggle("active");
+
+});
+
+const currentPage = window.location.pathname.split('/').pop();
+
+document.querySelectorAll('.tab').forEach(button => {
+
+    if (button.dataset.page === currentPage) {
+        button.classList.add('active-dark');
+    }
+
+    button.addEventListener('click', () => {
+
+        const page = button.dataset.page;
+
+        if (page) {
+            window.location.href = page;
+        }
+
+    });
+
+});
