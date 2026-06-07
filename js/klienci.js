@@ -7,6 +7,10 @@ const listSection = document.getElementById('clientsListSection');
 const detailsSection = document.getElementById('clientDetailsSection');
 const clientForm = document.getElementById('clientForm');
 
+const secondaryActionBtn = document.getElementById('secondaryActionBtn');
+
+const submitBtn = document.getElementById('submitBtn');
+
 buttons.forEach(button => {
 
     button.addEventListener('click', () => {
@@ -96,6 +100,14 @@ clientForm.addEventListener('submit', (e) => {
         formTitle.textContent = 'Nowy klient';
 
         clientForm.reset();
+
+        submitBtn.textContent = 'Zapisz klienta';
+
+        secondaryActionBtn.textContent = 'Wyczyść';
+
+        secondaryActionBtn.onclick = () => {
+            clientForm.reset();
+        };
 
         showClientDetails(editedId);
 
@@ -243,6 +255,15 @@ function editClient(id) {
 
     editingClientId = id;
     formTitle.textContent = 'Edycja klienta';
+
+    submitBtn.textContent = 'Zapisz zmiany';
+
+    secondaryActionBtn.textContent =
+        'Powrót';
+
+    secondaryActionBtn.onclick = () => {
+        showClientDetails(id);
+    };
 
     clientForm.firstName.value = client.firstName;
     clientForm.lastName.value = client.lastName;
