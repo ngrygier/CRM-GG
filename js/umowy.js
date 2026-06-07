@@ -19,11 +19,14 @@ class Umowa {
             klient: {
                 imieNazwisko: formularz.elements.clientName.value.trim(),
                 adres: formularz.elements.clientAddress.value.trim(),
-                telefon: formularz.elements.clientPhone.value.trim()
+                telefon: formularz.elements.clientPhone.value.trim(),
+                email: formularz.elements.clientEmail.value.trim(),
+                nip: formularz.elements.clientTaxId.value.trim()
             },
             wykonawca: {
                 nazwa: formularz.elements.companyName.value.trim(),
                 adres: formularz.elements.companyAddress.value.trim(),
+                email: formularz.elements.companyEmail.value.trim(),
                 nip: formularz.elements.companyTaxId.value.trim()
             },
             zlecenie: {
@@ -34,6 +37,7 @@ class Umowa {
                 cenaBrutto: cenaBrutto,
                 zaliczka: zaliczka,
                 doZaplaty: cenaBrutto - zaliczka,
+                gwarancja: Number(formularz.elements.warrantyMonths.value || 0),
                 dodatkoweUstalenia: formularz.elements.notes.value.trim()
             }
         });
@@ -71,8 +75,11 @@ class WalidatorUmowy {
             bledy.push("Adres klienta jest za krótki.");
         }
 
-        if (umowa.klient.telefon !== "" && umowa.klient.telefon.length < 7) {
-            bledy.push("Telefon klienta powinien mieć minimum 7 znaków.");
+        if (
+            umowa.klient.telefon !== "" &&
+            !/^\d{9}$/.test(umowa.klient.telefon)
+        ) {
+            bledy.push("Telefon klienta powinien zawierać 9 cyfr.");
         }
 
         if (umowa.wykonawca.nazwa.length < 3) {
@@ -113,6 +120,38 @@ class WalidatorUmowy {
             bledy.push("Zaliczka nie może być większa niż cena brutto.");
         }
 
+        if (
+            umowa.klient.email !== "" &&
+            !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(umowa.klient.email)
+        ) {
+            bledy.push("Podaj poprawny e-mail klienta.");
+        }
+
+        if (
+            umowa.wykonawca.email !== "" &&
+            !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(umowa.wykonawca.email)
+        ) {
+            bledy.push("Podaj poprawny e-mail wykonawcy.");
+        }
+
+        if (
+            umowa.klient.nip !== "" &&
+            !/^\d{10}$/.test(umowa.klient.nip)
+        ) {
+            bledy.push("NIP klienta powinien zawierać 10 cyfr.");
+        }
+
+        if (
+            umowa.wykonawca.nip !== "" &&
+            !/^\d{10}$/.test(umowa.wykonawca.nip)
+        ) {
+            bledy.push("NIP wykonawcy powinien zawierać 10 cyfr.");
+        }
+
+        if (umowa.zlecenie.gwarancja < 0) {
+            bledy.push("Okres gwarancji nie może być ujemny.");
+        }
+
         return bledy;
     }
 }
@@ -123,12 +162,15 @@ class WidokUmow {
         this.podgladUmowy = document.querySelector("#contractPreview");
         this.przyciskJson = document.querySelector("#downloadJson");
         this.przyciskPdf = document.querySelector("#exportPdf");
+        this.przyciskZapisu =
+            document.querySelector("#saveContract");
 
         this.przyciskImportu =
             document.querySelector("#importOfferButton");
 
         this.plikOferty =
             document.querySelector("#offerJsonFile");
+
 
         this.komunikatFormularza = document.querySelector("#formMessage");
 
@@ -149,7 +191,7 @@ class WidokUmow {
 
     async start() {
         try {
-            this.umowy = await this.wczytajPrzykladoweUmowy();
+            this.umowy = this.pobierzUmowyZLocalStorage();
             this.ustawDzisiejszaDate();
             this.podlaczZdarzenia();
             this.wyswietlListeUmow(this.umowy);
@@ -159,38 +201,6 @@ class WidokUmow {
         }
     }
 
-    async wczytajPrzykladoweUmowy() {
-        return Promise.resolve([
-            {
-                numerUmowy: "UM/001/2026",
-                klient: "Jan Kowalski",
-                kontrahent: "Kamieniarstwo GRANIT Sp. z o.o.",
-                data: "2026-05-31",
-                przedmiot: "blat kuchenny z kamienia naturalnego"
-            },
-            {
-                numerUmowy: "UM/002/2026",
-                klient: "Anna Nowak",
-                kontrahent: "Kamieniarstwo GRANIT Sp. z o.o.",
-                data: "2026-06-02",
-                przedmiot: "schody z marmuru"
-            },
-            {
-                numerUmowy: "UM/003/2026",
-                klient: "Marta Wiśniewska",
-                kontrahent: "Kamieniarstwo GRANIT Sp. z o.o.",
-                data: "2026-06-10",
-                przedmiot: "parapety z konglomeratu"
-            },
-            {
-                numerUmowy: "UM/004/2026",
-                klient: "Tomasz Lewandowski",
-                kontrahent: "Kamieniarstwo GRANIT Sp. z o.o.",
-                data: "2026-06-18",
-                przedmiot: "nagrobek granitowy"
-            }
-        ]);
-    }
 
     podlaczZdarzenia() {
         this.przyciskiZakladek.forEach((przycisk) => {
@@ -198,6 +208,11 @@ class WidokUmow {
                 this.pokazZakladke(przycisk.dataset.contractView);
             });
         });
+
+        this.przyciskZapisu.addEventListener(
+            "click",
+            () => this.zapiszUmowe()
+        );
 
         document.querySelectorAll("[data-page]").forEach((przycisk) => {
             przycisk.addEventListener("click", () => {
@@ -214,7 +229,13 @@ class WidokUmow {
             const kartaUmowy = event.target.closest(".contract-list-item");
 
             if (kartaUmowy) {
+
                 this.zaznaczUmowe(kartaUmowy);
+
+                const id =
+                    Number(kartaUmowy.dataset.contractId);
+
+                this.pokazUmowe(id);
             }
         });
 
@@ -264,17 +285,37 @@ class WidokUmow {
     }
 
     filtrujUmowy() {
-        const tekst = this.filtrKlienta.value.trim().toLowerCase();
-        const dataOd = this.filtrDatyOd.value;
-        const dataDo = this.filtrDatyDo.value;
+
+        const tekst =
+            this.filtrKlienta.value.trim().toLowerCase();
+
+        const dataOd =
+            this.filtrDatyOd.value;
+
+        const dataDo =
+            this.filtrDatyDo.value;
 
         const wynik = this.umowy.filter((umowa) => {
-            const klientIKontrahent = `${umowa.klient} ${umowa.kontrahent}`.toLowerCase();
-            const pasujeTekst = tekst === "" || klientIKontrahent.includes(tekst);
-            const pasujeDataOd = dataOd === "" || umowa.data >= dataOd;
-            const pasujeDataDo = dataDo === "" || umowa.data <= dataDo;
 
-            return pasujeTekst && pasujeDataOd && pasujeDataDo;
+            const klient =
+                umowa.klient.imieNazwisko.toLowerCase();
+
+            const pasujeTekst =
+                tekst === "" || klient.includes(tekst);
+
+            const pasujeDataOd =
+                dataOd === "" ||
+                umowa.dataZawarcia >= dataOd;
+
+            const pasujeDataDo =
+                dataDo === "" ||
+                umowa.dataZawarcia <= dataDo;
+
+            return (
+                pasujeTekst &&
+                pasujeDataOd &&
+                pasujeDataDo
+            );
         });
 
         this.wyswietlListeUmow(wynik);
@@ -290,20 +331,19 @@ class WidokUmow {
 
         this.ukryjKomunikat(this.komunikatListy);
 
-        umowy.forEach((umowa) => {
+        umowy.forEach((umowa, index) => {
             const karta = document.createElement("article");
             karta.className = "table-card contract-list-item";
-            karta.dataset.contractNumber = umowa.numerUmowy;
+            karta.dataset.contractId = index;
 
             const info = document.createElement("div");
             info.className = "info";
 
             info.innerHTML = `
                 <h3>${this.zabezpieczTekst(umowa.numerUmowy)}</h3>
-                <p>Klient: ${this.zabezpieczTekst(umowa.klient)}</p>
-                <p>Kontrahent: ${this.zabezpieczTekst(umowa.kontrahent)}</p>
-                <p>Data: ${this.formatujDate(umowa.data)}</p>
-                <p>Przedmiot: ${this.zabezpieczTekst(umowa.przedmiot)}</p>
+                <p>Klient: ${this.zabezpieczTekst(umowa.klient.imieNazwisko)}</p>
+                <p>Data: ${this.formatujDate(umowa.dataZawarcia)}</p>
+                <p>Przedmiot: ${this.zabezpieczTekst(umowa.zlecenie.przedmiot)}</p>
             `;
 
             karta.appendChild(info);
@@ -335,6 +375,80 @@ class WidokUmow {
         this.ukryjKomunikat(this.komunikatFormularza);
     }
 
+    pokazUmowe(id) {
+
+        const umowa = this.umowy[id];
+
+        if (!umowa) {
+            return;
+        }
+
+        const okno = window.open("", "_blank");
+
+        if (!okno) {
+            return;
+        }
+
+        const adresCss =
+            new URL("../style/umowyStyle.css", window.location.href).href;
+
+        okno.document.write(`
+        <!DOCTYPE html>
+        <html lang="pl">
+        <head>
+            <meta charset="UTF-8">
+            <title>${this.zabezpieczTekst(umowa.numerUmowy)}</title>
+            <link rel="stylesheet" href="${adresCss}">
+        </head>
+        <body class="print-page">
+            ${this.stworzHtmlUmowy(umowa)}
+        </body>
+        </html>
+    `);
+
+        okno.document.close();
+    }
+
+    zapiszUmowe() {
+
+        const umowa = Umowa.zFormularza(this.formularz);
+
+        const bledy = this.walidator.sprawdz(umowa);
+
+        if (bledy.length > 0) {
+            this.pokazKomunikat(
+                this.komunikatFormularza,
+                bledy.join(" ")
+            );
+            return;
+        }
+
+        const zapisaneUmowy =
+            JSON.parse(localStorage.getItem("umowy")) || [];
+
+        zapisaneUmowy.push(umowa.toJSON());
+
+        localStorage.setItem(
+            "umowy",
+            JSON.stringify(zapisaneUmowy)
+        );
+
+        this.pokazKomunikat(
+            this.komunikatFormularza,
+            "Umowa została zapisana."
+        );
+
+        this.umowy = this.pobierzUmowyZLocalStorage();
+
+        this.wyswietlListeUmow(this.umowy);
+    }
+
+    pobierzUmowyZLocalStorage() {
+        return JSON.parse(
+            localStorage.getItem("umowy")
+        ) || [];
+    }
+
     async importujOferte(plik) {
 
         try {
@@ -343,11 +457,11 @@ class WidokUmow {
 
             const oferta = JSON.parse(tekst);
 
-            if (oferta.typ !== "OFERTA") {
+            if (oferta.meta?.typ !== "OFERTA") {
                 throw new Error("Niepoprawny format pliku oferty.");
             }
 
-            if (!oferta.klient) {
+            if (!oferta.strony?.klient) {
                 throw new Error("Brak danych klienta w ofercie.");
             }
 
@@ -373,26 +487,51 @@ class WidokUmow {
 
     wypelnijFormularzZOfery(oferta) {
 
+        const klient = oferta.strony?.klient || {};
+        const warunki = oferta.warunki || {};
+        const parametry = warunki.parametry || {};
+
         this.formularz.elements.clientName.value =
-            `${oferta.klient.imie || ""} ${oferta.klient.nazwisko || ""}`.trim();
-
-        this.formularz.elements.clientAddress.value =
-            oferta.klient.adres || "";
-
-        this.formularz.elements.clientPhone.value =
-            oferta.klient.telefon || "";
+            `${klient.imie || ""} ${klient.nazwisko || ""}`.trim();
 
         this.formularz.elements.product.value =
-            oferta.produkt || "";
+            warunki.produkt || "";
 
         this.formularz.elements.material.value =
-            oferta.material || "";
+            warunki.material || "";
 
         this.formularz.elements.grossPrice.value =
-            oferta.cenaBrutto || 0;
+            oferta.wartosc?.cenaBrutto || 0;
 
         this.formularz.elements.notes.value =
-            oferta.notatki || "";
+            warunki.notatki || "";
+
+        let zakresPrac = "";
+
+        switch (warunki.produkt) {
+
+            case "Blat kuchenny":
+                zakresPrac =
+                    `Wykonanie i montaż blatu kuchennego.\n` +
+                    `Grubość: ${parametry.grubosc || "-"} mm\n` +
+                    `Powierzchnia: ${parametry.powierzchnia || "-"} m²`;
+                break;
+
+            case "Parapet":
+                zakresPrac =
+                    "Wykonanie i montaż parapetu.";
+                break;
+
+            case "Nagrobek":
+                zakresPrac =
+                    "Wykonanie i montaż nagrobka.";
+                break;
+
+            default:
+                zakresPrac = warunki.produkt || "";
+        }
+
+        this.formularz.elements.workScope.value = zakresPrac;
     }
 
     eksportujJson() {
@@ -435,7 +574,8 @@ class WidokUmow {
                 return;
             }
 
-            const adresCss = new URL("style/style.style", window.location.href).href;
+            const adresCss =
+                new URL("../style/umowyStyle.css", window.location.href).href;
 
             oknoDruku.document.write(`
                 <!DOCTYPE html>
@@ -490,14 +630,24 @@ class WidokUmow {
                         <h3>Wykonawca</h3>
                         <p><strong>${this.zabezpieczTekst(umowa.wykonawca.nazwa)}</strong></p>
                         <p>${this.zabezpieczTekst(umowa.wykonawca.adres)}</p>
-                        <p>NIP: ${this.zabezpieczTekst(umowa.wykonawca.nip)}</p>
+                    
+                        ${umowa.wykonawca.nip
+                                ? `<p>NIP: ${this.zabezpieczTekst(umowa.wykonawca.nip)}</p>`
+                                : ""}
+                    
+                        <p>E-mail: ${this.zabezpieczTekst(umowa.wykonawca.email)}</p>
                     </div>
-
+                    
                     <div>
                         <h3>Zamawiający</h3>
                         <p><strong>${this.zabezpieczTekst(umowa.klient.imieNazwisko)}</strong></p>
                         <p>${this.zabezpieczTekst(umowa.klient.adres)}</p>
                         <p>Telefon: ${this.zabezpieczTekst(umowa.klient.telefon)}</p>
+                        <p>E-mail: ${this.zabezpieczTekst(umowa.klient.email)}</p>
+                    
+                        ${umowa.klient.nip
+                                ? `<p>NIP: ${this.zabezpieczTekst(umowa.klient.nip)}</p>`
+                                : ""}
                     </div>
                 </section>
 
@@ -523,9 +673,18 @@ class WidokUmow {
                     <h3>§ 4. Ustalenia dodatkowe</h3>
                     <p>${this.zabezpieczTekst(zlecenie.dodatkoweUstalenia)}</p>
                 </section>
+                
+                <section>
+                    <h3>§ 5. Gwarancja</h3>
+                    <p>
+                        Wykonawca udziela gwarancji na wykonane prace
+                        na okres
+                        <strong>${zlecenie.gwarancja} miesięcy</strong>.
+                    </p>
+                </section>
 
                 <section>
-                    <h3>§ 5. Postanowienia końcowe</h3>
+                    <h3>§ 6. Postanowienia końcowe</h3>
                     <p>Umowę sporządzono w dwóch jednobrzmiących egzemplarzach, po jednym dla każdej ze stron.</p>
                 </section>
 

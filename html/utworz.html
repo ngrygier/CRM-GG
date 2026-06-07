@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Utwórz - CRM firmy kamieniarskiej</title>
-    <link rel="stylesheet" href="/style/utworzStyle.css">
+    <link rel="stylesheet" href="../style/utworzStyle.css">
 </head>
 <body>
 
@@ -124,6 +124,21 @@
                         </label>
 
                         <label>
+                            Ważność oferty do
+                            <input
+                                    type="date"
+                                    name="offerValidUntil">
+                        </label>
+
+                        <label>
+                            Numer oferty
+                            <input
+                                    name="offerNumber"
+                                    id="offerNumber"
+                                    readonly>
+                        </label>
+
+                        <label>
                             Typ produktu
                             <select id="productType" name="productType">
 
@@ -207,10 +222,6 @@
                                 <input type="number" name="windowSillWidth">
                             </label>
 
-                            <label>
-                                Ilość sztuk
-                                <input type="number" name="windowSillCount">
-                            </label>
 
                         </div>
 
@@ -245,12 +256,52 @@
 
                         </div>
 
+
+
+                    </section>
+
+                    <section class="offer-items-section">
+
+                        <h3>Pozycje wyceny</h3>
+
+                        <table id="offerItemsTable">
+
+                            <thead>
+                            <tr>
+                                <th>Nazwa</th>
+                                <th>Jednostka</th>
+                                <th>Ilość</th>
+                                <th>Cena netto</th>
+                                <th>VAT</th>
+                                <th>Netto</th>
+                                <th>Brutto</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+
+                            <tbody id="offerItemsBody"></tbody>
+
+                        </table>
+
                         <label>
-                            Dodatkowe elementy
-                            <textarea
-                                    name="tombstoneNotes"
-                                    rows="4"></textarea>
+
+                            Dodaj pozycję realizacji
+
+                            <select id="addOfferItemSelect">
+
+                                <option value="">
+                                    Wybierz pozycję...
+                                </option>
+
+                            </select>
+                            <input
+                                    type="text"
+                                    id="customOfferItem"
+                                    placeholder="Wpisz własną pozycję..."
+                                    hidden>
+
                         </label>
+
 
                     </section>
 
@@ -268,9 +319,23 @@
 
                         <button
                                 type="button"
-                                class="secondary-btn">
+                                class="secondary-btn"
+                                id="saveOfferButton">
                             Zapisz ofertę
                         </button>
+
+                        <button
+                                type="button"
+                                class="secondary-btn"
+                                id="importOfferButton">
+                            Wczytaj JSON
+                        </button>
+
+                        <input
+                                type="file"
+                                id="offerJsonFile"
+                                accept=".json"
+                                hidden>
 
                         <button
                                 type="button"
@@ -286,6 +351,7 @@
                         </button>
 
                     </div>
+                    <div id="jsonMessage"></div>
 
                 </form>
 
@@ -313,7 +379,7 @@
 
 </div>
 
-<script type="module" src="js/utworz.js"></script>
+<script type="module" src="../js/utworz.js"></script>
 
 </body>
 </html>

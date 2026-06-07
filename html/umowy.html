@@ -79,6 +79,7 @@
                 <p class="form-message" id="contractsMessage" hidden></p>
 
                 <div class="contracts-list" id="contractsList"></div>
+
             </section>
 
             <section class="contract-layout" id="contractGenerator" hidden>
@@ -93,84 +94,205 @@
                     <div class="form-grid">
                         <label>
                             Numer umowy
-                            <input name="contractNumber" value="UM/001/2026" required>
+                            <input
+                                    name="contractNumber"
+                                    placeholder="np. UM/001/2026"
+                                    required
+                            >
                         </label>
 
                         <label>
                             Data zawarcia
-                            <input name="contractDate" type="date" required>
+                            <input
+                                    name="contractDate"
+                                    type="date"
+                                    required
+                            >
                         </label>
 
                         <label>
                             Miejscowość
-                            <input name="city" value="Warszawa" required>
+                            <input
+                                    name="city"
+                                    placeholder="Nazwa miejscowości"
+                                    autocomplete="address-level2"
+                                    required
+                            >
                         </label>
 
                         <label>
                             Imię i nazwisko klienta
-                            <input name="clientName" value="Jan Kowalski" required>
+                            <input
+                                    name="clientName"
+                                    placeholder="Imię i nazwisko klienta"
+                                    autocomplete="name"
+                                    required
+                            >
                         </label>
 
                         <label>
                             Adres klienta
-                            <input name="clientAddress" value="ul. Granitowa 12, 00-001 Warszawa" required>
+                            <input
+                                    name="clientAddress"
+                                    placeholder="Ulica, nr budynku/lokalu, kod pocztowy, miejscowość"
+                                    autocomplete="street-address"
+                                    required
+                            >
+                        </label>
+
+                        <label>
+                            E-mail klienta
+                            <input
+                                    name="clientEmail"
+                                    type="email"
+                                    placeholder="adres e-mail klienta"
+                                    autocomplete="email"
+                                    required
+                            >
+                        </label>
+
+                        <label>
+                            NIP klienta
+                            <input
+                                    name="clientTaxId"
+                                    type="text"
+                                    inputmode="numeric"
+                                    pattern="[0-9]{10}"
+                                    placeholder="10 cyfr (opcjonalnie)"
+                            >
                         </label>
 
                         <label>
                             Telefon klienta
-                            <input name="clientPhone" value="500 100 200">
+                            <input
+                                    name="clientPhone"
+                                    type="tel"
+                                    placeholder="Numer telefonu kontaktowego"
+                                    autocomplete="tel"
+                            >
                         </label>
 
                         <label>
                             Nazwa wykonawcy
-                            <input name="companyName" value="Kamieniarstwo GRANIT Sp. z o.o." required>
+                            <input
+                                    name="companyName"
+                                    placeholder="Pełna nazwa firmy"
+                                    required
+                            >
                         </label>
 
                         <label>
                             Adres wykonawcy
-                            <input name="companyAddress" value="ul. Marmurowa 8, 00-002 Warszawa" required>
+                            <input
+                                    name="companyAddress"
+                                    placeholder="Adres siedziby firmy"
+                                    autocomplete="street-address"
+                                    required
+                            >
                         </label>
 
                         <label>
                             NIP wykonawcy
-                            <input name="companyTaxId" value="5250000000">
+                            <input
+                                    name="companyTaxId"
+                                    type="text"
+                                    inputmode="numeric"
+                                    pattern="[0-9]{10}"
+                                    placeholder="10 cyfr"
+                                    required
+                            >
+                        </label>
+
+                        <label>
+                            E-mail wykonawcy
+                            <input
+                                    name="companyEmail"
+                                    type="email"
+                                    placeholder="Adres e-mail firmy"
+                                    autocomplete="email"
+                                    required
+                            >
                         </label>
 
                         <label>
                             Przedmiot umowy
-                            <input name="product" value="blat kuchenny z kamienia naturalnego" required>
+                            <input
+                                    name="product"
+                                    placeholder="Przedmiot realizacji"
+                                    required
+                            >
                         </label>
 
                         <label>
                             Materiał
-                            <input name="material" value="granit Nero Zimbabwe" required>
+                            <input
+                                    name="material"
+                                    placeholder="Rodzaj materiału"
+                                    required
+                            >
                         </label>
 
                         <label>
                             Termin realizacji
-                            <input name="deadline" type="date" required>
+                            <input
+                                    name="deadline"
+                                    type="date"
+                                    required
+                            >
+                        </label>
+
+                        <label>
+                            Gwarancja (miesiące)
+                            <input
+                                    name="warrantyMonths"
+                                    type="number"
+                                    min="0"
+                                    placeholder="Liczba miesięcy"
+                                    required
+                            >
                         </label>
 
                         <label>
                             Cena brutto
-                            <input name="grossPrice" type="number" min="0" step="0.01" value="8500" required>
+                            <input
+                                    name="grossPrice"
+                                    type="number"
+                                    min="0"
+                                    step="0.01"
+                                    placeholder="Kwota brutto w PLN"
+                                    required
+                            >
                         </label>
 
                         <label>
                             Zaliczka
-                            <input name="deposit" type="number" min="0" step="0.01" value="2500">
+                            <input
+                                    name="deposit"
+                                    type="number"
+                                    min="0"
+                                    step="0.01"
+                                    placeholder="Kwota zaliczki w PLN"
+                            >
+                        </label>
+
+                        <label>
+                            Zakres prac
+                            <textarea
+                                    name="workScope"
+                                    rows="4"
+                                    placeholder="Szczegółowy opis zakresu prac objętych umową"
+                            ></textarea>
+                        </label>
+
+                        <label>
+                            Dodatkowe ustalenia
+                            <textarea
+                                    name="notes"
+                                    rows="4"
+                                    placeholder="Dodatkowe warunki i ustalenia stron"
+                            ></textarea>
                         </label>
                     </div>
-
-                    <label>
-                        Zakres prac
-                        <textarea name="workScope" rows="4">pomiar, wykonanie, transport oraz montaż elementów kamiennych zgodnie z zaakceptowaną ofertą</textarea>
-                    </label>
-
-                    <label>
-                        Dodatkowe ustalenia
-                        <textarea name="notes" rows="4">Klient akceptuje naturalne różnice w strukturze i odcieniu kamienia.</textarea>
-                    </label>
 
 <!--                    <div class="actions">-->
 <!--                        <button type="button" class="secondary-btn" id="downloadJson">Pobierz JSON</button>-->
@@ -196,6 +318,12 @@
                                 class="secondary-btn"
                                 id="downloadJson">
                             Pobierz JSON
+                        </button>
+
+                        <button type="button"
+                                class="secondary-btn"
+                                id="saveContract">
+                            Zapisz umowę
                         </button>
 
                         <button type="button"
