@@ -144,6 +144,11 @@ class WidokTworzenia {
             document.querySelector(
                 "#jsonMessage"
             );
+        this.projectForm =
+            document.querySelector("#projectForm");
+
+        this.projectClient =
+            document.querySelector("#projectClient");
 
     }
 
@@ -1194,7 +1199,6 @@ class WidokTworzenia {
             "success"
         );
     }
-
 
 
 }
