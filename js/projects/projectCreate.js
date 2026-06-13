@@ -66,6 +66,18 @@ export class ProjectCreate {
 
         this.importedDocument =
             null;
+
+        this.projectAttachmentsInput =
+            document.querySelector(
+                "#projectAttachmentsInput"
+            );
+
+        this.projectAttachmentsPreview =
+            document.querySelector(
+                "#projectAttachmentsPreview"
+            );
+
+        this.attachments = [];
     }
 
     start() {
@@ -117,6 +129,16 @@ export class ProjectCreate {
 
                 this.importujJson(
                     event.target.files[0]
+                );
+            }
+        );
+
+        this.projectAttachmentsInput?.addEventListener(
+            "change",
+            (event) => {
+
+                this.handleAttachments(
+                    event.target.files
                 );
             }
         );
@@ -184,7 +206,8 @@ export class ProjectCreate {
                     ? [this.importedDocument]
                     : [],
 
-            attachments: [],
+            attachments:
+            this.attachments,
 
             history: [{
                 type: "created",
@@ -291,6 +314,11 @@ export class ProjectCreate {
 
         this.projectSecondaryBtn.textContent =
             "Powrót";
+
+        this.attachments =
+            project.attachments || [];
+
+        this.renderAttachmentsPreview();
     }
 
     zapiszZmiany() {
@@ -324,6 +352,9 @@ export class ProjectCreate {
 
         project.notes =
             this.projectNotes.value;
+
+        project.attachments =
+            this.attachments;
 
         project.title =
             `${this.projectProductType.value} - ${this.projectNumber.value}`;
@@ -563,6 +594,170 @@ export class ProjectCreate {
 
         window.location.href =
             "projects/projectPanel.html";
+    }
+
+    async handleAttachments(files) {
+
+        const maxSize =
+            5 * 1024 * 1024;
+
+        for (const file of files) {
+
+            const allowedTypes = [
+
+                "image/jpeg",
+
+                "image/png",
+
+                "image/webp",
+
+                "application/pdf",
+
+                "application/json"
+            ];
+
+            if (
+                !allowedTypes.includes(
+                    file.type
+                )
+            ) {
+
+                alert(
+                    `${file.name} ma nieobsługiwany typ pliku`
+                );
+
+                continue;
+            }
+
+            if (
+                file.size > maxSize
+            ) {
+
+                alert(
+                    `${file.name} przekracza 5 MB`
+                );
+
+                continue;
+            }
+
+            const dataUrl =
+                await this.fileToDataUrl(
+                    file
+                );
+
+            this.attachments.push({
+
+                name:
+                file.name,
+
+                type:
+                file.type,
+
+                size:
+                file.size,
+
+                dataUrl
+            });
+        }
+
+        this.renderAttachmentsPreview();
+    }
+
+    fileToDataUrl(file) {
+
+        return new Promise(
+            (resolve, reject) => {
+
+                const reader =
+                    new FileReader();
+
+                reader.onload =
+                    () =>
+                        resolve(
+                            reader.result
+                        );
+
+                reader.onerror =
+                    reject;
+
+                reader.readAsDataURL(
+                    file
+                );
+            }
+        );
+    }
+
+    renderAttachmentsPreview() {
+
+        if (
+            !this.projectAttachmentsPreview
+        ) {
+            return;
+        }
+
+        this.projectAttachmentsPreview.innerHTML =
+            "";
+
+        this.attachments.forEach(
+            (attachment, index) => {
+
+                const item =
+                    document.createElement(
+                        "div"
+                    );
+
+                const fileName =
+                    document.createElement(
+                        "span"
+                    );
+
+                fileName.textContent =
+                    attachment.name;
+
+                const removeBtn =
+                    document.createElement(
+                        "button"
+                    );
+
+                removeBtn.type =
+                    "button";
+
+                removeBtn.textContent =
+                    "Usuń";
+
+                removeBtn.addEventListener(
+                    "click",
+                    () => {
+
+                        this.usunZalacznik(
+                            index
+                        );
+                    }
+                );
+
+                item.appendChild(
+                    fileName
+                );
+
+                item.appendChild(
+                    removeBtn
+                );
+
+                this.projectAttachmentsPreview.appendChild(
+                    item
+                );
+            }
+        );
+    }
+
+    usunZalacznik(index) {
+
+        this.attachments.splice(
+            index,
+            1
+        );
+
+        this.renderAttachmentsPreview();
     }
 }
 

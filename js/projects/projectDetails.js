@@ -61,6 +61,18 @@ class ProjectDetails {
             document.querySelector(
                 "#exportProjectBtn"
             );
+
+        this.currentProject = null;
+
+        this.projectDocuments =
+            document.querySelector(
+                "#projectDocuments"
+            );
+
+        this.projectAttachments =
+            document.querySelector(
+                "#projectAttachments"
+            );
     }
 
     start() {
@@ -108,11 +120,14 @@ class ProjectDetails {
                 "selectedProjectId"
             );
 
-        const project =
+        this.currentProject =
             loadProjects().find(
                 project =>
                     project.id === selectedId
             );
+
+        const project =
+            this.currentProject;
 
         if (!project) {
 
@@ -144,6 +159,10 @@ class ProjectDetails {
             this.getClientName(
                 project.clientId
             );
+
+        this.renderDocuments(project);
+
+        this.renderAttachments(project);
     }
 
     getClientName(clientId) {
@@ -214,16 +233,8 @@ class ProjectDetails {
 
     eksportujProjekt() {
 
-        const selectedId =
-            localStorage.getItem(
-                "selectedProjectId"
-            );
-
         const project =
-            loadProjects().find(
-                project =>
-                    project.id === selectedId
-            );
+            this.currentProject;
 
         if (!project) {
 
@@ -279,6 +290,171 @@ class ProjectDetails {
         URL.revokeObjectURL(
             url
         );
+    }
+
+    renderDocuments(project) {
+
+        const documents =
+            project.documents || [];
+
+        if (!documents.length) {
+
+            this.projectDocuments.textContent =
+                "Brak dokumentów";
+
+            return;
+        }
+
+        this.projectDocuments.innerHTML =
+            "";
+
+        documents.forEach(doc => {
+
+            const item =
+                document.createElement(
+                    "div"
+                );
+
+            item.className =
+                "document-item";
+
+            item.textContent =
+                doc.meta?.numer
+                ||
+                doc.meta?.id
+                ||
+                "Dokument";
+
+            this.projectDocuments.appendChild(
+                item
+            );
+        });
+    }
+
+    renderAttachments(project) {
+
+        const attachments =
+            project.attachments || [];
+
+        if (!attachments.length) {
+
+            this.projectAttachments.textContent =
+                "Brak załączników";
+
+            return;
+        }
+
+        this.projectAttachments.innerHTML =
+            "";
+
+        attachments.forEach(attachment => {
+
+            const item =
+                document.createElement(
+                    "div"
+                );
+
+            item.className =
+                "attachment-item";
+
+            item.style.cursor =
+                "pointer";
+
+            const sizeInKb =
+                (
+                    attachment.size / 1024
+                ).toFixed(1);
+
+            if (
+                attachment.type?.startsWith(
+                    "image/"
+                )
+            ) {
+
+                const image =
+                    document.createElement(
+                        "img"
+                    );
+
+                image.src =
+                    attachment.dataUrl;
+
+                image.alt =
+                    attachment.name;
+
+                image.style.width =
+                    "150px";
+
+                image.style.height =
+                    "150px";
+
+                image.style.objectFit =
+                    "cover";
+
+                const imageInfo =
+                    document.createElement(
+                        "div"
+                    );
+
+                imageInfo.innerHTML = `
+                <strong>${attachment.name}</strong>
+                <br>
+                ${attachment.type}
+                <br>
+                ${sizeInKb} KB
+            `;
+
+                item.appendChild(
+                    image
+                );
+
+                item.appendChild(
+                    imageInfo
+                );
+
+            } else {
+
+                const fileInfo =
+                    document.createElement(
+                        "div"
+                    );
+
+                fileInfo.innerHTML = `
+                <strong>📄 ${attachment.name}</strong>
+                <br>
+                ${attachment.type}
+                <br>
+                ${sizeInKb} KB
+            `;
+
+                item.appendChild(
+                    fileInfo
+                );
+            }
+
+            item.addEventListener(
+                "click",
+                () => {
+
+                    const link =
+                        document.createElement(
+                            "a"
+                        );
+
+                    link.href =
+                        attachment.dataUrl;
+
+                    link.download =
+                        attachment.name;
+
+                    link.click();
+                }
+            );
+
+            this.projectAttachments.appendChild(
+                item
+            );
+        });
     }
 }
 
