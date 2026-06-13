@@ -255,6 +255,22 @@ body {
     border-radius: 10px;
 }
 
+.status-red {
+    background: #d14a4a;
+}
+
+.status-orange {
+    background: #d8963b;
+}
+
+.status-yellow {
+    background: #d8d63b;
+}
+
+.status-green {
+    background: #6ed14a;
+}
+
 /* COLORS */
 .status-item.underline-red::after {
     background: #d14a4a;
@@ -295,7 +311,6 @@ body {
     width: 18px;
     height: 18px;
     border-radius: 50%;
-    background: #7ed957;
     margin-top: 5px;
 }
 
@@ -482,7 +497,7 @@ body {
     }
 }
 
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=projects.css.map */
 
 /* ------ANIA: UMOWY------------------------ */
 

@@ -9,7 +9,7 @@
     <title>Projekty</title>
 
 
-    <link rel="stylesheet" href="/style/style.css">
+    <link rel="stylesheet" href="/style/projects.css">
 </head>
 <body>
 
@@ -18,15 +18,15 @@
     <!-- SIDEBAR DESKTOP -->
     <nav class="side_list">
 
-        <button class="tab" onclick="window.location.href ='utworz.html'">
+        <button class="tab" onclick="window.location.href ='../utworz.html'">
             UTWÓRZ
         </button>
 
-        <button class="tab">
+        <button class="tab" onclick="window.location.href ='../klienci.html'">
             KLIENCI
         </button>
 
-        <button class="tab">
+        <button class="tab" onclick="window.location.href ='../oferty.html'">
             OFERTY
         </button>
 
@@ -34,11 +34,11 @@
             PROJEKTY
         </button>
 
-        <button class="tab" onclick="window.location.href='umowy.html'">
+        <button class="tab" onclick="window.location.href='../umowy.html'">
             UMOWY
         </button>
 
-        <button class="tab" onclick="window.location.href='kalendarz.html'">
+        <button class="tab" onclick="window.location.href='../kalendarz.html'">
             KALENDARZ
         </button>
 
@@ -67,30 +67,56 @@
 
             <!-- STATUS MENU -->
             <div class="status_menu_container">
-                <section class="status-menu">
+                <div class="form-heading">
 
-                    <button class="status-item active-status">
+                    <p class="eyebrow">
                         PROJEKTY
-                    </button>
+                    </p>
 
-                    <button class="status-item">
+                    <h1>
+                        Lista projektów
+                    </h1>
+
+                </div>
+                <section class="status-menu">
+                    <button
+                            class="status-item active-status"
+                            data-status="all">
+
                         WSZYSTKIE
+
                     </button>
 
-                    <button class="status-item underline-red">
+                    <button
+                            class="status-item underline-red"
+                            data-status="oczekujace">
+
                         OCZEKUJĄCE
+
                     </button>
 
-                    <button class="status-item underline-orange">
+                    <button
+                            class="status-item underline-orange"
+                            data-status="pomiar">
+
                         DO POMIARU
+
                     </button>
 
-                    <button class="status-item underline-yellow">
+                    <button
+                            class="status-item underline-yellow"
+                            data-status="produkcja">
+
                         PRODUKCJA
+
                     </button>
 
-                    <button class="status-item underline-green">
+                    <button
+                            class="status-item underline-green"
+                            data-status="zakonczone">
+
                         ZAKOŃCZONE
+
                     </button>
 
                 </section>
@@ -104,15 +130,10 @@
                     ☰
                 </button>
 
-                <input type="text" placeholder="wyszukaj">
-
-                <button class="filtruj-btn">
-                    ⚙
-                </button>
-
-                <button class="icon-btn green">
-                    ✔
-                </button>
+                <input
+                        type="text"
+                        id="projectSearch"
+                        placeholder="Wyszukaj projekt...">
 
             </section>
 

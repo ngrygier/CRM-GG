@@ -1,5 +1,7 @@
 import {
-    addProject
+    addProject,
+    getProjectById,
+    updateProject
 } from "./projectStore.js";
 
 export class ProjectCreate {
@@ -29,11 +31,35 @@ export class ProjectCreate {
 
         this.projectNotes =
             document.querySelector("#projectNotes");
+
+        this.editingProjectId = null;
+
+        this.submitButton =
+            this.projectForm?.querySelector(
+                'button[type="submit"]'
+            );
+
+        this.formTitle =
+            document.querySelector(
+                "#projectSection h1"
+            );
+
+        this.projectSubmitBtn =
+            document.querySelector(
+                "#projectSubmitBtn"
+            );
+
+        this.projectSecondaryBtn =
+            document.querySelector(
+                "#projectSecondaryBtn"
+            );
     }
 
     start() {
 
         this.zaladujKlientow();
+
+        this.sprawdzTrybEdycji();
 
         this.projectForm?.addEventListener(
             "submit",
@@ -44,6 +70,26 @@ export class ProjectCreate {
                 this.zapiszProjekt();
             }
         );
+
+        this.projectSecondaryBtn?.addEventListener(
+            "click",
+            () => {
+
+                if (
+                    this.editingProjectId
+                ) {
+
+                    this.powrotDoProjektu();
+
+                } else {
+
+                    this.projectForm.reset();
+
+                    this.zaladujKlientow();
+                }
+            }
+        );
+
     }
 
     zaladujKlientow() {
@@ -84,43 +130,33 @@ export class ProjectCreate {
 
             id: crypto.randomUUID(),
 
-            title:
-                `${this.projectProductType.value} - ${this.projectNumber.value}`,
+            title: `${this.projectProductType.value} - ${this.projectNumber.value}`,
 
-            projectNumber:
-            this.projectNumber.value,
+            projectNumber: this.projectNumber.value,
 
-            clientId:
-            this.projectClient.value,
+            clientId: this.projectClient.value,
 
-            status:
-            this.projectStatus.value,
+            status: this.projectStatus.value,
 
             tags: [],
 
-            productType:
-            this.projectProductType.value,
+            productType: this.projectProductType.value,
 
-            material:
-            this.projectMaterial.value,
+            material: this.projectMaterial.value,
 
-            deadline:
-            this.projectDeadline.value,
+            deadline: this.projectDeadline.value,
 
-            notes:
-            this.projectNotes.value,
+            notes: this.projectNotes.value,
 
             documents: [],
 
             attachments: [],
 
-            history: [
-                {
-                    type: "created",
-                    date: now,
-                    description: "Utworzono projekt"
-                }
-            ],
+            history: [{
+                type: "created",
+                date: now,
+                description: "Utworzono projekt"
+            }],
 
             createdAt: now,
 
@@ -139,6 +175,13 @@ export class ProjectCreate {
             return;
         }
 
+        if (this.editingProjectId) {
+
+            this.zapiszZmiany();
+
+            return;
+        }
+
         const project =
             this.utworzObiektProjektu();
 
@@ -151,6 +194,134 @@ export class ProjectCreate {
         this.projectForm.reset();
 
         this.zaladujKlientow();
+    }
+
+    sprawdzTrybEdycji() {
+
+        const editId =
+            new URLSearchParams(
+                window.location.search
+            ).get("edit");
+
+        if (!editId) {
+            return;
+        }
+
+        const project =
+            getProjectById(editId);
+
+        if (!project) {
+            return;
+        }
+
+        this.editingProjectId =
+            editId;
+
+        this.wypelnijFormularz(project);
+    }
+
+    wypelnijFormularz(project) {
+
+        this.projectClient.value =
+            project.clientId;
+
+        this.projectNumber.value =
+            project.projectNumber;
+
+        this.projectStatus.value =
+            project.status;
+
+        this.projectProductType.value =
+            project.productType;
+
+        this.projectMaterial.value =
+            project.material;
+
+        this.projectDeadline.value =
+            project.deadline;
+
+        this.projectNotes.value =
+            project.notes;
+
+        if (this.formTitle) {
+
+            this.formTitle.textContent =
+                "Edycja projektu";
+        }
+
+        if (this.submitButton) {
+
+            this.submitButton.textContent =
+                "Zapisz zmiany";
+        }
+
+        this.projectSecondaryBtn.textContent =
+            "Powrót";
+    }
+
+    zapiszZmiany() {
+
+        const project =
+            getProjectById(
+                this.editingProjectId
+            );
+
+        if (!project) {
+            return;
+        }
+
+        project.projectNumber =
+            this.projectNumber.value;
+
+        project.clientId =
+            this.projectClient.value;
+
+        project.status =
+            this.projectStatus.value;
+
+        project.productType =
+            this.projectProductType.value;
+
+        project.material =
+            this.projectMaterial.value;
+
+        project.deadline =
+            this.projectDeadline.value;
+
+        project.notes =
+            this.projectNotes.value;
+
+        project.title =
+            `${this.projectProductType.value} - ${this.projectNumber.value}`;
+
+        project.updatedAt =
+            new Date().toISOString();
+
+        project.history.push({
+            type: "updated",
+            date: new Date().toISOString(),
+            description: "Zaktualizowano projekt"
+        });
+
+        updateProject(project);
+
+        alert(
+            "Projekt został zaktualizowany"
+        );
+
+        localStorage.setItem(
+            "selectedProjectId",
+            project.id
+        );
+
+        window.location.href =
+            "projects/projectPanel.html";
+    }
+
+    powrotDoProjektu() {
+
+        window.location.href =
+            `projects/project.html?id=${this.editingProjectId}`;
     }
 }
 

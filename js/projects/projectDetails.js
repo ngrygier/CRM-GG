@@ -1,5 +1,6 @@
 import {
-    loadProjects
+    loadProjects,
+    deleteProject
 } from "./projectStore.js";
 
 class ProjectDetails {
@@ -40,11 +41,51 @@ class ProjectDetails {
             document.querySelector(
                 "#projectNotes"
             );
+
+        this.backBtn =
+            document.querySelector(
+                "#backBtn"
+            );
+
+        this.deleteProjectBtn =
+            document.querySelector(
+                "#deleteProjectBtn"
+            );
+
+        this.editProjectBtn =
+            document.querySelector(
+                "#editProjectBtn"
+            );
     }
 
     start() {
 
         this.renderProject();
+
+        this.backBtn?.addEventListener(
+            "click",
+            () => {
+
+                window.location.href =
+                    "projectPanel.html";
+            }
+        );
+
+        this.deleteProjectBtn?.addEventListener(
+            "click",
+            () => {
+
+                this.deleteCurrentProject();
+            }
+        );
+
+        this.editProjectBtn?.addEventListener(
+            "click",
+            () => {
+
+                this.editProject();
+            }
+        );
     }
 
     renderProject() {
@@ -104,8 +145,8 @@ class ProjectDetails {
         const client =
             clients.find(
                 client =>
-                    String(client.id)
-                    === String(clientId)
+                    String(client.id) ===
+                    String(clientId)
             );
 
         if (!client) {
@@ -117,6 +158,45 @@ class ProjectDetails {
             ${client.firstName}
             ${client.lastName}
         `;
+    }
+
+    deleteCurrentProject() {
+
+        const confirmed =
+            confirm(
+                "Czy na pewno usunąć projekt?"
+            );
+
+        if (!confirmed) {
+            return;
+        }
+
+        const selectedId =
+            localStorage.getItem(
+                "selectedProjectId"
+            );
+
+        deleteProject(
+            selectedId
+        );
+
+        localStorage.removeItem(
+            "selectedProjectId"
+        );
+
+        window.location.href =
+            "projectPanel.html";
+    }
+
+    editProject() {
+
+        const selectedId =
+            localStorage.getItem(
+                "selectedProjectId"
+            );
+
+        window.location.href =
+            `../utworz.html?view=project&edit=${selectedId}`;
     }
 }
 

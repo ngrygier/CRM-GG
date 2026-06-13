@@ -155,7 +155,11 @@ class WidokTworzenia {
     start() {
 
         this.podlaczZdarzenia();
+
+        this.sprawdzWidokStartowy();
+
         this.zmienTypProduktu();
+
         this.offerNumber.value =
             this.pobierzAktualnyNumerOferty();
 
@@ -1200,7 +1204,35 @@ class WidokTworzenia {
         );
     }
 
+    sprawdzWidokStartowy() {
 
+        const params =
+            new URLSearchParams(
+                window.location.search
+            );
+
+        const editId =
+            params.get("edit");
+
+        const view =
+            params.get("view");
+
+        if (editId) {
+
+            this.pokazZakladke(
+                "project"
+            );
+
+            return;
+        }
+
+        if (view) {
+
+            this.pokazZakladke(
+                view
+            );
+        }
+    }
 }
 
 const widokTworzenia =
