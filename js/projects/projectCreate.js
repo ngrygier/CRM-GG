@@ -53,6 +53,19 @@ export class ProjectCreate {
             document.querySelector(
                 "#projectSecondaryBtn"
             );
+
+        this.importProjectBtn =
+            document.querySelector(
+                "#importProjectBtn"
+            );
+
+        this.projectJsonFile =
+            document.querySelector(
+                "#projectJsonFile"
+            );
+
+        this.importedDocument =
+            null;
     }
 
     start() {
@@ -87,6 +100,24 @@ export class ProjectCreate {
 
                     this.zaladujKlientow();
                 }
+            }
+        );
+
+        this.importProjectBtn?.addEventListener(
+            "click",
+            () => {
+
+                this.projectJsonFile.click();
+            }
+        );
+
+        this.projectJsonFile?.addEventListener(
+            "change",
+            (event) => {
+
+                this.importujJson(
+                    event.target.files[0]
+                );
             }
         );
 
@@ -148,7 +179,10 @@ export class ProjectCreate {
 
             notes: this.projectNotes.value,
 
-            documents: [],
+            documents:
+                this.importedDocument
+                    ? [this.importedDocument]
+                    : [],
 
             attachments: [],
 
@@ -322,6 +356,213 @@ export class ProjectCreate {
 
         window.location.href =
             `projects/project.html?id=${this.editingProjectId}`;
+    }
+
+    async importujJson(file) {
+
+        if (!file) {
+            return;
+        }
+
+        try {
+
+            const text =
+                await file.text();
+
+            const data =
+                JSON.parse(text);
+
+            if (
+                typeof data !== "object" ||
+                !data.kind ||
+                !data.version
+            ) {
+
+                alert(
+                    "Niepoprawna struktura pliku"
+                );
+
+                return;
+            }
+
+            if (
+                data.version !== 1
+            ) {
+
+                alert(
+                    "Nieobsługiwana wersja pliku"
+                );
+
+                return;
+            }
+
+            switch (data.kind) {
+
+                case "document":
+
+                    this.obsluzImportDokumentu(
+                        data
+                    );
+
+                    break;
+
+                case "project":
+
+                    this.obsluzImportProjektu(
+                        data
+                    );
+
+                    break;
+
+                default:
+
+                    alert(
+                        "Nieobsługiwany typ pliku"
+                    );
+            }
+
+        } catch {
+
+            alert(
+                "Niepoprawny plik JSON"
+            );
+        }
+    }
+
+    wypelnijFormularzZJson(data) {
+
+        const warunki =
+            data.warunki || {};
+
+        const produkt =
+            (
+                warunki.produkt || ""
+            ).toLowerCase();
+
+        const typy = [
+            "nagrobek",
+            "blat",
+            "parapet"
+        ];
+
+        const znalezionyTyp =
+            typy.find(typ =>
+                produkt.includes(typ)
+            );
+
+        if (znalezionyTyp) {
+
+            this.projectProductType.value =
+                znalezionyTyp;
+        }
+
+        this.projectMaterial.value =
+            warunki.material || "";
+
+        this.projectNotes.value =
+            warunki.notatki || "";
+
+        const klient =
+            data.strony?.klient;
+
+        if (klient) {
+
+            const clients =
+                JSON.parse(
+                    localStorage.getItem(
+                        "clients"
+                    )
+                ) || [];
+
+            const znaleziony =
+                clients.find(client =>
+
+                    client.firstName
+                        .toLowerCase()
+                        .trim() ===
+                    klient.imie
+                        .toLowerCase()
+                        .trim()
+
+                    &&
+
+                    client.lastName
+                        .toLowerCase()
+                        .trim() ===
+                    klient.nazwisko
+                        .toLowerCase()
+                        .trim()
+                );
+
+            if (znaleziony) {
+
+                this.projectClient.value =
+                    znaleziony.id;
+            }
+        }
+
+        if (
+            data.meta?.numer
+        ) {
+
+            this.projectNumber.value =
+                data.meta.numer
+                    .replace(
+                        "OF/",
+                        "PR/"
+                    );
+        }
+    }
+
+    obsluzImportDokumentu(data) {
+
+        this.importedDocument =
+            data;
+
+        this.wypelnijFormularzZJson(
+            data
+        );
+
+        alert(
+            "Dokument zaimportowany"
+        );
+    }
+
+    obsluzImportProjektu(data) {
+
+        const project =
+            data.project;
+
+        if (!project) {
+
+            alert(
+                "Brak danych projektu"
+            );
+
+            return;
+        }
+
+        if (
+            getProjectById(
+                project.id
+            )
+        ) {
+
+            alert(
+                "Projekt już istnieje"
+            );
+
+            return;
+        }
+
+        addProject(project);
+
+        alert(
+            "Projekt został zaimportowany"
+        );
+
+        window.location.href =
+            "projects/projectPanel.html";
     }
 }
 

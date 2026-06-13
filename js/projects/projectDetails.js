@@ -56,6 +56,11 @@ class ProjectDetails {
             document.querySelector(
                 "#editProjectBtn"
             );
+
+        this.exportProjectBtn =
+            document.querySelector(
+                "#exportProjectBtn"
+            );
     }
 
     start() {
@@ -84,6 +89,14 @@ class ProjectDetails {
             () => {
 
                 this.editProject();
+            }
+        );
+
+        this.exportProjectBtn?.addEventListener(
+            "click",
+            () => {
+
+                this.eksportujProjekt();
             }
         );
     }
@@ -145,8 +158,8 @@ class ProjectDetails {
         const client =
             clients.find(
                 client =>
-                    String(client.id) ===
-                    String(clientId)
+                    String(client.id)
+                    === String(clientId)
             );
 
         if (!client) {
@@ -197,6 +210,75 @@ class ProjectDetails {
 
         window.location.href =
             `../utworz.html?view=project&edit=${selectedId}`;
+    }
+
+    eksportujProjekt() {
+
+        const selectedId =
+            localStorage.getItem(
+                "selectedProjectId"
+            );
+
+        const project =
+            loadProjects().find(
+                project =>
+                    project.id === selectedId
+            );
+
+        if (!project) {
+
+            alert(
+                "Nie znaleziono projektu"
+            );
+
+            return;
+        }
+
+        const exportData = {
+
+            version: 1,
+
+            kind: "project",
+
+            project
+        };
+
+        const blob =
+            new Blob(
+                [
+                    JSON.stringify(
+                        exportData,
+                        null,
+                        2
+                    )
+                ],
+                {
+                    type:
+                        "application/json"
+                }
+            );
+
+        const url =
+            URL.createObjectURL(
+                blob
+            );
+
+        const link =
+            document.createElement(
+                "a"
+            );
+
+        link.href =
+            url;
+
+        link.download =
+            `${project.projectNumber}.json`;
+
+        link.click();
+
+        URL.revokeObjectURL(
+            url
+        );
     }
 }
 

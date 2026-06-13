@@ -29,6 +29,14 @@ class ProjectList {
 
         this.searchTimeout =
             null;
+
+        this.sortSelect =
+            document.querySelector(
+                "#projectSort"
+            );
+
+        this.sortType =
+            "newest";
     }
 
     start() {
@@ -85,6 +93,55 @@ class ProjectList {
                         );
                     }
                 );
+        }
+
+        switch (this.sortType) {
+
+            case "newest":
+
+                projects.sort(
+                    (a, b) =>
+                        new Date(b.createdAt)
+                        -
+                        new Date(a.createdAt)
+                );
+
+                break;
+
+            case "oldest":
+
+                projects.sort(
+                    (a, b) =>
+                        new Date(a.createdAt)
+                        -
+                        new Date(b.createdAt)
+                );
+
+                break;
+
+            case "numberAsc":
+
+                projects.sort(
+                    (a, b) =>
+                        String(a.projectNumber)
+                            .localeCompare(
+                                String(b.projectNumber)
+                            )
+                );
+
+                break;
+
+            case "numberDesc":
+
+                projects.sort(
+                    (a, b) =>
+                        String(b.projectNumber)
+                            .localeCompare(
+                                String(a.projectNumber)
+                            )
+                );
+
+                break;
         }
 
         this.projectsContainer.innerHTML = "";
@@ -233,6 +290,17 @@ class ProjectList {
                         this.renderProjects();
 
                     }, 300);
+            }
+        );
+
+        this.sortSelect?.addEventListener(
+            "change",
+            () => {
+
+                this.sortType =
+                    this.sortSelect.value;
+
+                this.renderProjects();
             }
         );
     }
