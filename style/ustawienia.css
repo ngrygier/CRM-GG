@@ -1,0 +1,106 @@
+@charset "UTF-8";
+
+/* Karty ustawień */
+
+.settings-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 5px;
+}
+
+.settings-card {
+    background: #efefef;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.05);
+}
+
+.settings-card h3 {
+    margin-bottom: 12px;
+    font-size: 18px;
+}
+
+.settings-card p {
+    margin-bottom: 10px;
+    color: #555;
+    line-height: 1.5;
+}
+
+.settings-actions {
+    margin-top: 15px;
+}
+
+.settings-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* tryb ciemny */
+
+body.dark-theme .settings-card {
+    background: #333;
+    color: white;
+}
+
+body.dark-theme .settings-card p {
+    color: #ddd;
+}
+
+/* desktop */
+
+@media (min-width: 1200px) {
+
+    .settings-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .settings-card:first-child {
+        grid-column: 1 / -1;
+    }
+
+}
+
+body.dark-theme {
+    background: #1f1f1f;
+    color: white;
+}
+
+body.dark-theme .container {
+    background: #2a2a2a;
+}
+
+body.dark-theme .contract-form,
+body.dark-theme .contract-preview {
+    background: #333;
+    color: white;
+}
+
+body.dark-theme .contract-document {
+    background: #444;
+    color: white;
+    border-color: #666;
+}
+
+body.dark-theme input {
+    background: #555;
+    color: white;
+    border-color: #777;
+}
+
+body.dark-theme .status-item,
+body.dark-theme .tab {
+    background: #444;
+    color: white;
+}
+
+body.dark-theme .status_menu_container {
+    background: #2a2a2a;
+}
+
+body.dark-theme .eyebrow {
+    color: #ddd;
+}

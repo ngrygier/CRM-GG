@@ -458,3 +458,63 @@ body {
 
     padding: 12px;
 }
+
+
+/* TRYB CIEMNY */
+
+body.dark-theme {
+    background: #1f1f1f;
+    color: white;
+}
+
+body.dark-theme .container {
+    background: #2a2a2a;
+}
+
+body.dark-theme .table-card,
+body.dark-theme .offer-preview,
+body.dark-theme .offers-filters {
+    background: #333;
+    color: white;
+}
+
+body.dark-theme .preview-card {
+    background: #444;
+    color: white;
+}
+
+body.dark-theme #offersTable {
+    background: #333;
+    color: white;
+}
+
+body.dark-theme #offersTable th {
+    background: #444;
+    color: white;
+}
+
+body.dark-theme #offersTable td,
+body.dark-theme #offersTable th {
+    border-color: #666;
+}
+
+body.dark-theme input {
+    background: #555;
+    color: white;
+    border-color: #777;
+}
+
+body.dark-theme .status-item,
+body.dark-theme .tab {
+    background: #444;
+    color: white;
+}
+
+body.dark-theme .status_menu_container {
+    background: #2a2a2a;
+}
+
+body.dark-theme .info p,
+body.dark-theme .preview-card p {
+    color: #ddd;
+}

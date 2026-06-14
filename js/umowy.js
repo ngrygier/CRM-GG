@@ -1,4 +1,17 @@
+
+const motyw =
+    localStorage.getItem("theme");
+
+if (motyw === "dark") {
+
+    document.body.classList.add(
+        "dark-theme"
+    );
+
+}
+
 class Umowa {
+
     constructor(dane) {
         this.numerUmowy = dane.numerUmowy;
         this.dataZawarcia = dane.dataZawarcia;
@@ -187,25 +200,89 @@ class WidokUmow {
 
         this.walidator = new WalidatorUmowy();
         this.umowy = [];
+
+        this.timerPodgladu = null;
+        this.kluczSzkicu = "szkicUmowy";
     }
 
     async start() {
+
         try {
-            this.umowy = this.pobierzUmowyZLocalStorage();
+
+            this.umowy =
+                this.pobierzUmowyZLocalStorage();
+
             this.ustawDzisiejszaDate();
+
+            this.wczytajSzkic();
+
             this.podlaczZdarzenia();
-            this.wyswietlListeUmow(this.umowy);
+
+            window.addEventListener(
+                "hashchange",
+                () => {
+
+                    const widok =
+                        location.hash.replace(
+                            "#",
+                            ""
+                        );
+
+                    if (widok) {
+
+                        this.pokazZakladke(
+                            widok
+                        );
+
+                    }
+
+                }
+            );
+
+            const startowyWidok =
+                location.hash.replace(
+                    "#",
+                    ""
+                );
+
+            if (startowyWidok) {
+
+                this.pokazZakladke(
+                    startowyWidok
+                );
+
+            } else {
+
+                location.hash =
+                    "generator";
+
+            }
+
+            this.wyswietlListeUmow(
+                this.umowy
+            );
+
             this.odswiezPodglad();
+
         } catch (error) {
-            this.pokazKomunikat(this.komunikatListy, "Nie udało się wczytać umów.");
+
+            this.pokazKomunikat(
+                this.komunikatListy,
+                "Nie udało się wczytać umów."
+            );
+
         }
+
     }
 
 
     podlaczZdarzenia() {
         this.przyciskiZakladek.forEach((przycisk) => {
             przycisk.addEventListener("click", () => {
-                this.pokazZakladke(przycisk.dataset.contractView);
+
+                location.hash =
+                    przycisk.dataset.contractView;
+
             });
         });
 
@@ -239,7 +316,76 @@ class WidokUmow {
             }
         });
 
-        this.formularz.addEventListener("input", () => this.odswiezPodglad());
+        this.formularz.addEventListener(
+            "input",
+            () => {
+
+                this.ukryjKomunikat(
+                    this.komunikatFormularza
+                );
+
+
+                this.zapiszSzkic();
+
+                clearTimeout(
+                    this.timerPodgladu
+                );
+
+                this.timerPodgladu =
+                    setTimeout(
+                        () => {
+                            this.odswiezPodglad();
+                        },
+                        300
+                    );
+
+            }
+        );
+
+        document.addEventListener(
+            "keydown",
+            (event) => {
+
+                // Ctrl + S = zapisz umowę
+                if (
+                    event.ctrlKey &&
+                    event.key.toLowerCase() === "s"
+                ) {
+
+                    event.preventDefault();
+
+                    this.zapiszUmowe();
+                }
+
+                // Esc = zamknij komunikaty
+                if (
+                    event.key === "Escape"
+                ) {
+
+                    this.ukryjKomunikat(
+                        this.komunikatFormularza
+                    );
+
+                    this.ukryjKomunikat(
+                        this.komunikatListy
+                    );
+                }
+
+                // / = przejdź do wyszukiwarki
+                if (
+                    event.key === "/" &&
+                    document.activeElement.tagName !== "INPUT" &&
+                    document.activeElement.tagName !== "TEXTAREA"
+                ) {
+
+                    event.preventDefault();
+
+                    this.filtrKlienta.focus();
+                }
+
+            }
+        );
+
         this.przyciskJson.addEventListener("click", () => this.eksportujJson());
         this.przyciskPdf.addEventListener("click", () => this.eksportujPdf());
 
@@ -372,7 +518,6 @@ class WidokUmow {
     odswiezPodglad() {
         const umowa = Umowa.zFormularza(this.formularz);
         this.podgladUmowy.innerHTML = this.stworzHtmlUmowy(umowa);
-        this.ukryjKomunikat(this.komunikatFormularza);
     }
 
     pokazUmowe(id) {
@@ -476,10 +621,23 @@ class WidokUmow {
 
         } catch (error) {
 
-            this.pokazKomunikat(
-                this.komunikatFormularza,
-                error.message || "Nie udało się odczytać pliku oferty."
-            );
+            console.error(error);
+
+            if (error instanceof SyntaxError) {
+
+                this.pokazKomunikat(
+                    this.komunikatFormularza,
+                    "Wybrany plik JSON jest uszkodzony lub ma nieprawidłowy format."
+                );
+
+            } else {
+
+                this.pokazKomunikat(
+                    this.komunikatFormularza,
+                    error.message
+                );
+
+            }
 
         }
     }
@@ -735,7 +893,56 @@ class WidokUmow {
         element.textContent = "";
         element.hidden = true;
     }
+
+    zapiszSzkic() {
+
+        const dane =
+            Object.fromEntries(
+                new FormData(
+                    this.formularz
+                )
+            );
+
+        localStorage.setItem(
+            this.kluczSzkicu,
+            JSON.stringify(dane)
+        );
+    }
+
+    wczytajSzkic() {
+
+        const szkic =
+            JSON.parse(
+                localStorage.getItem(
+                    this.kluczSzkicu
+                )
+            );
+
+        if (!szkic) {
+            return;
+        }
+
+        Object.entries(szkic)
+            .forEach(
+                ([nazwa, wartosc]) => {
+
+                    const pole =
+                        this.formularz.elements[
+                            nazwa
+                            ];
+
+                    if (pole) {
+                        pole.value = wartosc;
+                    }
+
+                }
+            );
+
+        this.odswiezPodglad();
+    }
 }
+
+
 
 const widokUmow = new WidokUmow();
 widokUmow.start().catch(() => {

@@ -1,3 +1,15 @@
+
+const motyw =
+    localStorage.getItem("theme");
+
+if (motyw === "dark") {
+
+    document.body.classList.add(
+        "dark-theme"
+    );
+
+}
+
 class WidokOfert {
 
     constructor() {
@@ -303,3 +315,9 @@ hamburgerBtn?.addEventListener(
 
     }
 );
+
+document.querySelectorAll("[data-page]").forEach((przycisk) => {
+    przycisk.addEventListener("click", () => {
+        window.location.href = przycisk.dataset.page;
+    });
+});

@@ -150,7 +150,48 @@ class WidokTworzenia {
     start() {
 
         this.podlaczZdarzenia();
+
+        window.addEventListener(
+            "hashchange",
+            () => {
+
+                const widok =
+                    location.hash.replace(
+                        "#",
+                        ""
+                    );
+
+                if (widok) {
+
+                    this.pokazZakladke(
+                        widok
+                    );
+
+                }
+
+            }
+        );
+
+        const startowyWidok =
+            location.hash.replace(
+                "#",
+                ""
+            );
+
+        if (startowyWidok) {
+
+            this.pokazZakladke(
+                startowyWidok
+            );
+
+        } else {
+
+            location.hash = "client";
+
+        }
+
         this.zmienTypProduktu();
+
         this.offerNumber.value =
             this.pobierzAktualnyNumerOferty();
 
@@ -192,13 +233,15 @@ class WidokTworzenia {
 
         this.przyciskiZakladek.forEach((przycisk) => {
 
-            przycisk.addEventListener("click", () => {
+            przycisk.addEventListener(
+                "click",
+                () => {
 
-                this.pokazZakladke(
-                    przycisk.dataset.createView
-                );
+                    location.hash =
+                        przycisk.dataset.createView;
 
-            });
+                }
+            );
 
         });
 

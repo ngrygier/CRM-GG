@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ustawienia - CRM firmy kamieniarskiej</title>
+    <link rel="stylesheet" href="../style/umowyStyle.css">
+    <link rel="stylesheet" href="../style/ustawienia.css">
+
+</head>
+<body>
+
+<div class="container-wrapper">
+
+    <nav class="side_list">
+        <button class="tab" data-page="utworz.html">UTWÓRZ</button>
+        <button class="tab">KLIENCI</button>
+        <button class="tab">OFERTY</button>
+        <button class="tab" data-page="projekty.html">PROJEKTY</button>
+        <button class="tab" data-page="umowy.html">UMOWY</button>
+        <button class="tab" data-page="kalendarz.html">KALENDARZ</button>
+        <button class="tab">DOSTĘPY</button>
+        <button class="tab active-dark">USTAWIENIA</button>
+
+        <div class="logo">
+            <img src="../.idea/assets/Logo.png" alt="Logo">
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <main class="main">
+
+            <div class="status_menu_container">
+                <section class="status-menu">
+                    <button class="status-item active-status">
+                        USTAWIENIA SYSTEMU
+                    </button>
+                </section>
+            </div>
+
+            <button class="hamburger" id="hamburgerBtn">
+                ☰
+            </button>
+
+            <nav class="burger-menu">
+                <section class="tabs">
+                    <button class="tab" data-page="utworz.html">UTWÓRZ</button>
+                    <button class="tab">KLIENCI</button>
+                    <button class="tab">OFERTY</button>
+                    <button class="tab" data-page="projekty.html">PROJEKTY</button>
+                    <button class="tab" data-page="umowy.html">UMOWY</button>
+                    <button class="tab" data-page="kalendarz.html">KALENDARZ</button>
+                    <button class="tab">DOSTĘPY</button>
+                </section>
+            </nav>
+
+            <section class="contract-layout">
+
+                <div class="contract-form">
+
+                    <div class="form-heading">
+                        <p class="eyebrow">
+                            Ustawienia aplikacji
+                        </p>
+
+                        <h1>
+                            Personalizacja systemu
+                        </h1>
+                    </div>
+
+                    <div class="form-grid">
+
+                        <label>
+                            Motyw aplikacji
+
+                            <button
+                                    type="button"
+                                    id="themeToggle"
+                                    class="primary-btn">
+                                Przełącz jasny / ciemny
+                            </button>
+
+                        </label>
+
+                        <label>
+                            Informacje
+
+                            <input
+                                    type="text"
+                                    value="Motyw zapisywany w localStorage"
+                                    readonly>
+                        </label>
+
+                    </div>
+
+                </div>
+
+                <article class="contract-preview">
+
+                    <div class="contract-document">
+
+                        <div class="contract-header">
+
+                            <h2>
+                                Panel ustawień
+                            </h2>
+
+                            <span>
+                            Konfiguracja aplikacji CRM
+                        </span>
+
+                        </div>
+
+                        <section>
+
+                            <h3>
+                                Motyw aplikacji
+                            </h3>
+
+                            <p>
+                                Wybrany motyw jest zapisywany
+                                w localStorage i zostaje
+                                automatycznie przywrócony
+                                po ponownym uruchomieniu
+                                aplikacji.
+                            </p>
+
+                        </section>
+
+                        <section>
+
+                            <h3>
+                                Skróty klawiaturowe
+                            </h3>
+
+                            <p>
+                                Ctrl + S — zapis danych
+                            </p>
+
+                            <p>
+                                Esc — zamknięcie komunikatów
+                            </p>
+
+                            <p>
+                                / — wyszukiwanie
+                            </p>
+
+                        </section>
+
+                        <section>
+
+                            <h3>
+                                Promise.all()
+                            </h3>
+
+                            <p>
+                                Ustawienia użytkownika są
+                                ładowane równolegle przy
+                                użyciu Promise.all().
+                            </p>
+
+                        </section>
+
+                        <section>
+
+                            <h3>
+                                Informacje o systemie
+                            </h3>
+
+                            <p>
+                                CRM dla firmy kamieniarskiej.
+                            </p>
+
+                            <p>
+                                Wersja demonstracyjna projektu.
+                            </p>
+
+                        </section>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+        </main>
+
+    </div>
+
+</div>
+
+<script type="module" src="../js/ustawienia.js"></script>
+
+</body>
+</html>
