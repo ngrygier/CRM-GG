@@ -78,6 +78,19 @@ export class ProjectCreate {
             );
 
         this.attachments = [];
+
+        this.projectDropZone =
+            document.querySelector(
+                "#projectDropZone"
+            );
+
+        this.draggedAttachmentIndex =
+            null;
+
+        this.projectTags =
+            document.querySelector(
+                "#projectTags"
+            );
     }
 
     start() {
@@ -143,6 +156,8 @@ export class ProjectCreate {
             }
         );
 
+        this.initDragAndDrop();
+
     }
 
     zaladujKlientow() {
@@ -191,7 +206,11 @@ export class ProjectCreate {
 
             status: this.projectStatus.value,
 
-            tags: [],
+            tags:
+                this.projectTags.value
+                    .split(",")
+                    .map(tag => tag.trim())
+                    .filter(Boolean),
 
             productType: this.projectProductType.value,
 
@@ -297,6 +316,10 @@ export class ProjectCreate {
         this.projectDeadline.value =
             project.deadline;
 
+        this.projectTags.value =
+            (project.tags || [])
+                .join(", ");
+
         this.projectNotes.value =
             project.notes;
 
@@ -349,6 +372,12 @@ export class ProjectCreate {
 
         project.deadline =
             this.projectDeadline.value;
+
+        project.tags =
+            this.projectTags.value
+                .split(",")
+                .map(tag => tag.trim())
+                .filter(Boolean);
 
         project.notes =
             this.projectNotes.value;
@@ -706,6 +735,12 @@ export class ProjectCreate {
                         "div"
                     );
 
+                item.draggable =
+                    true;
+
+                item.dataset.index =
+                    index;
+
                 const fileName =
                     document.createElement(
                         "span"
@@ -735,6 +770,34 @@ export class ProjectCreate {
                     }
                 );
 
+                item.addEventListener(
+                    "dragstart",
+                    () => {
+
+                        this.draggedAttachmentIndex =
+                            index;
+                    }
+                );
+
+                item.addEventListener(
+                    "dragover",
+                    (event) => {
+
+                        event.preventDefault();
+                    }
+                );
+
+                item.addEventListener(
+                    "drop",
+                    () => {
+
+                        this.reorderAttachments(
+                            this.draggedAttachmentIndex,
+                            index
+                        );
+                    }
+                );
+
                 item.appendChild(
                     fileName
                 );
@@ -750,6 +813,32 @@ export class ProjectCreate {
         );
     }
 
+    reorderAttachments(
+        draggedIndex,
+        targetIndex
+    ) {
+
+        if (
+            draggedIndex === targetIndex
+        ) {
+            return;
+        }
+
+        const [attachment] =
+            this.attachments.splice(
+                draggedIndex,
+                1
+            );
+
+        this.attachments.splice(
+            targetIndex,
+            0,
+            attachment
+        );
+
+        this.renderAttachmentsPreview();
+    }
+
     usunZalacznik(index) {
 
         this.attachments.splice(
@@ -758,6 +847,51 @@ export class ProjectCreate {
         );
 
         this.renderAttachmentsPreview();
+    }
+
+    initDragAndDrop() {
+
+        if (!this.projectDropZone) {
+            return;
+        }
+
+        this.projectDropZone.addEventListener(
+            "dragover",
+            (event) => {
+
+                event.preventDefault();
+
+                this.projectDropZone.classList.add(
+                    "drag-over"
+                );
+            }
+        );
+
+        this.projectDropZone.addEventListener(
+            "dragleave",
+            () => {
+
+                this.projectDropZone.classList.remove(
+                    "drag-over"
+                );
+            }
+        );
+
+        this.projectDropZone.addEventListener(
+            "drop",
+            (event) => {
+
+                event.preventDefault();
+
+                this.projectDropZone.classList.remove(
+                    "drag-over"
+                );
+
+                this.handleAttachments(
+                    event.dataTransfer.files
+                );
+            }
+        );
     }
 }
 

@@ -54,6 +54,12 @@
             <img src="/.idea/assets/Logo.png" alt="Logo">
         </div>
 
+        <button
+                id="themeToggle"
+                class="theme-btn">
+            🌙
+        </button>
+
     </nav>
 
     <!-- CONTENT -->
@@ -135,6 +141,14 @@
                         id="projectSearch"
                         placeholder="Wyszukaj projekt...">
 
+                <select id="projectTagFilter">
+
+                    <option value="">
+                        Wszystkie tagi
+                    </option>
+
+                </select>
+
                 <select id="projectSort">
 
                     <option value="newest">
@@ -210,10 +224,8 @@
 </div>
 
 <script src="../../js/index.js"></script>
-<script
-        type="module"
-        src="../../js/projects/projectList.js">
-</script>
+<script type="module" src="../../js/projects/projectList.js"></script>
+<script src="../../js/theme.js"></script>
 
 </body>
 </html>

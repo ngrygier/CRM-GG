@@ -75,7 +75,12 @@ class ProjectDetails {
             );
     }
 
-    start() {
+    async start() {
+
+        await Promise.all([
+            this.loadProjectData(),
+            this.loadClientData()
+        ]);
 
         this.renderProject();
 
@@ -111,6 +116,20 @@ class ProjectDetails {
                 this.eksportujProjekt();
             }
         );
+    }
+
+    async loadProjectData() {
+
+        return loadProjects();
+    }
+
+    async loadClientData() {
+
+        return JSON.parse(
+            localStorage.getItem(
+                "clients"
+            )
+        ) || [];
     }
 
     renderProject() {

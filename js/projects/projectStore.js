@@ -52,8 +52,3 @@ export function updateProject(updatedProject) {
 
     saveProjects(projects);
 }
-
-export function reorderProjects(newOrder) {
-
-    saveProjects(newOrder);
-}

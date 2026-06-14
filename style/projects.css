@@ -496,7 +496,7 @@ body {
         line-height: 1.6;
     }
 
-    #projectSort {
+    #projectSort, #projectTagFilter {
         border: none;
         border-radius: 16px;
         background: #efefef;
@@ -509,7 +509,7 @@ body {
         transition: 0.2s;
     }
 
-    #projectSort:hover {
+    #projectSort:hover, #projectTagFilter:hover {
         background: #e4e4e4;
     }
 
@@ -525,6 +525,90 @@ body {
         }
 
     }
+}
+
+body[data-theme="dark"] {
+
+    background: #1f1f1f;
+}
+
+body[data-theme="dark"] .status_menu_container {
+
+    background: #2b2b2b;
+}
+
+body[data-theme="dark"] #projectTagFilter,
+body[data-theme="dark"] #projectSort {
+
+    background: #444;
+
+    color: white;
+
+    border-color: #666;
+}
+
+body[data-theme="dark"] .container {
+
+    background: #2b2b2b;
+}
+
+body[data-theme="dark"] .table-card {
+
+    background: #363636;
+
+    color: white;
+}
+
+body[data-theme="dark"] input,
+body[data-theme="dark"] select {
+
+    background: #444;
+
+    color: white;
+
+    border-color: #666;
+}
+
+body[data-theme="dark"] h1,
+body[data-theme="dark"] h2,
+body[data-theme="dark"] h3,
+body[data-theme="dark"] p {
+
+    color: white;
+}
+
+.theme-btn {
+
+    margin-top: auto;
+
+    margin-left: auto;
+
+    margin-right: auto;
+
+    margin-bottom: 20px;
+
+    width: fit-content;
+
+    padding: 10px 14px;
+
+    border: 1px solid #d5d5d5;
+
+    border-radius: 8px;
+
+    background: white;
+
+    cursor: pointer;
+
+    font-size: 18px;
+
+    transition: 0.2s;
+
+    display: block;
+}
+
+.theme-btn:hover {
+
+    transform: translateY(-1px);
 }
 
 /*# sourceMappingURL=projects.css.map */

@@ -437,5 +437,25 @@ body {
     color: #721c24;
 }
 
+.drop-zone {
+
+    margin-top: 10px;
+
+    padding: 30px;
+
+    border: 2px dashed #999;
+
+    border-radius: 8px;
+
+    text-align: center;
+
+    cursor: pointer;
+}
+
+.drop-zone.drag-over {
+
+    border-color: #1e88e5;
+}
+
 
 

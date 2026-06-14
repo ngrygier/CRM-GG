@@ -37,11 +37,22 @@ class ProjectList {
 
         this.sortType =
             "newest";
+
+        this.tagFilter =
+            document.querySelector(
+                "#projectTagFilter"
+            );
+
+        this.activeTag =
+            "";
+
     }
 
     start() {
 
         this.bindFilters();
+
+        this.renderTags();
 
         this.renderProjects();
     }
@@ -64,6 +75,19 @@ class ProjectList {
         }
 
         if (
+            this.activeTag
+        ) {
+
+            projects =
+                projects.filter(
+                    project =>
+                        project.tags?.includes(
+                            this.activeTag
+                        )
+                );
+        }
+
+        if (
             this.searchText
         ) {
 
@@ -82,9 +106,17 @@ class ProjectList {
                                 .includes(
                                     this.searchText
                                 ) ||
+
+                            project.title
+                                .toLowerCase()
+                                .includes(
+                                    this.searchText
+                                ) ||
+
                             clientName.includes(
                                 this.searchText
                             ) ||
+
                             project.productType
                                 .toLowerCase()
                                 .includes(
@@ -147,8 +179,6 @@ class ProjectList {
         this.projectsContainer.innerHTML = "";
 
         projects.forEach(project => {
-
-            console.log(project.status);
 
             const card =
                 document.createElement("div");
@@ -303,6 +333,17 @@ class ProjectList {
                 this.renderProjects();
             }
         );
+
+        this.tagFilter?.addEventListener(
+            "change",
+            () => {
+
+                this.activeTag =
+                    this.tagFilter.value;
+
+                this.renderProjects();
+            }
+        );
     }
 
     getStatusClass(status) {
@@ -325,6 +366,50 @@ class ProjectList {
                 return "";
         }
     }
+
+    renderTags() {
+
+        if (!this.tagFilter) {
+            return;
+        }
+
+        const projects =
+            loadProjects();
+
+        const tags =
+            [...new Set(
+                projects.flatMap(
+                    project =>
+                        project.tags || []
+                )
+            )];
+
+        this.tagFilter.innerHTML =
+            `
+        <option value="">
+            Wszystkie tagi
+        </option>
+        `;
+
+        tags.forEach(tag => {
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+            option.value =
+                tag;
+
+            option.textContent =
+                tag;
+
+            this.tagFilter.appendChild(
+                option
+            );
+        });
+    }
+
 }
 
 const projectList =
