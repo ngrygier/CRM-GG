@@ -1,25 +1,15 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Szczegóły klienta</title>
-
     <link rel="stylesheet" href="/style/clients.css">
     <link rel="stylesheet" href="/style/theme.css">
-
 </head>
-
 <body>
-
 <div class="container-wrapper">
     <nav class="side_list">
-
         <button class="tab" onclick="window.location.href ='../utworz.html'">UTWÓRZ</button>
         <button class="tab active-dark">KLIENCI</button>
         <button class="tab" onclick="window.location.href ='../oferty.html'">OFERTY</button>
@@ -28,131 +18,60 @@
         <button class="tab" onclick="window.location.href='../kalendarz.html'">KALENDARZ</button>
         <button class="tab">DOSTĘPY</button>
         <button class="tab">USTAWIENIA</button>
-
         <div class="logo">
             <img src="/.idea/assets/Logo.png" alt="Logo">
         </div>
-
-        <button
-                id="themeToggle"
-                class="theme-btn">
-            🌙
-        </button>
-
+        <button id="themeToggle" class="theme-btn"> 🌙 </button>
     </nav>
-
     <div class="container">
-
         <main class="main">
-
             <section id="clientDetailsSection">
-
                 <div class="client-details-card">
-
                     <div class="form-heading">
-
-                        <p class="eyebrow">
-                            KLIENCI
-                        </p>
-
-                        <h1>
-                            Szczegóły klienta
-                        </h1>
-
+                        <p class="eyebrow"> KLIENCI </p>
+                        <h1> Szczegóły klienta </h1>
                     </div>
-
-                    <h2 id="clientName">
-                        Klient
-                    </h2>
-
+                    <h2 id="clientName"> Klient </h2>
                     <div class="details-grid">
-
                         <div class="detail-item">
                             <span class="label">TELEFON</span>
                             <span class="value" id="clientPhone"></span>
                         </div>
-
                         <div class="detail-item">
                             <span class="label">EMAIL</span>
                             <span class="value" id="clientEmail"></span>
                         </div>
-
                         <div class="detail-item">
                             <span class="label">MIASTO</span>
                             <span class="value" id="clientCity"></span>
                         </div>
-
                         <div class="detail-item">
                             <span class="label">KOD POCZTOWY</span>
                             <span class="value" id="clientPostalCode"></span>
                         </div>
-
                         <div class="detail-item full-width">
                             <span class="label">ADRES</span>
                             <span class="value" id="clientAddress"></span>
                         </div>
-
                         <div class="detail-item full-width">
                             <span class="label">NOTATKI</span>
                             <span class="value" id="clientNotes"></span>
                         </div>
-
                     </div>
-
                     <hr>
-
-                    <h3>
-                        Powiązane projekty
-                    </h3>
-
-                    <div
-                            class="projects-placeholder"
-                            id="clientProjects">
-
-                        Brak projektów
-
-                    </div>
-
+                    <h3> Powiązane projekty </h3>
+                    <div class="projects-placeholder" id="clientProjects"> Brak projektów </div>
                     <div class="actions">
-
-                        <button
-                                id="backBtn"
-                                class="secondary-btn">
-
-                            Powrót
-
-                        </button>
-
-                        <button
-                                id="editClientBtn"
-                                class="secondary-btn">
-
-                            Edytuj
-
-                        </button>
-
-                        <button
-                                id="deleteClientBtn"
-                                class="primary-btn">
-
-                            Usuń
-
-                        </button>
-
+                        <button id="backBtn" class="secondary-btn"> Powrót </button>
+                        <button id="editClientBtn" class="secondary-btn"> Edytuj </button>
+                        <button id="deleteClientBtn" class="primary-btn"> Usuń </button>
                     </div>
-
                 </div>
-
             </section>
-
         </main>
-
     </div>
-
 </div>
-
 <script type="module" src="../../js/clients/clientDetails.js"></script>
 <script src="../../js/theme.js"></script>
-
 </body>
 </html>

@@ -2,22 +2,14 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-
-    <!-- POPRAWNY VIEWPORT -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Projekty</title>
-
     <link rel="stylesheet" href="/style/projects.css">
     <link rel="stylesheet" href="/style/theme.css">
 </head>
 <body>
-
 <div class="container-wrapper">
-
-    <!-- SIDEBAR DESKTOP -->
     <nav class="side_list">
-
         <button class="tab" onclick="window.location.href ='../utworz.html'">UTWÓRZ</button>
         <button class="tab" onclick="window.location.href ='../clients/clientPanel.html'">KLIENCI</button>
         <button class="tab" onclick="window.location.href ='../oferty.html'">OFERTY</button>
@@ -26,189 +18,57 @@
         <button class="tab" onclick="window.location.href='../kalendarz.html'">KALENDARZ</button>
         <button class="tab">DOSTĘPY</button>
         <button class="tab">USTAWIENIA</button>
-
         <div class="logo">
             <img src="/.idea/assets/Logo.png" alt="Logo">
         </div>
-
-        <button
-                id="themeToggle"
-                class="theme-btn">
-            🌙
-        </button>
-
+        <button id="themeToggle" class="theme-btn"> 🌙 </button>
     </nav>
-
-    <!-- CONTENT -->
     <div class="container">
-
         <main class="main">
-
-
-
-            </header>
-
-            <!-- GÓRA STRONY -->
-
             <div class="status_menu_container">
-
                 <div class="form-heading">
-
-                    <p class="eyebrow">
-                        PROJEKTY
-                    </p>
-
-                    <h1>
-                        Lista projektów
-                    </h1>
-
+                    <p class="eyebrow"> PROJEKTY </p>
+                    <h1> Lista projektów </h1>
                 </div>
-
             </div>
-
-            <!-- STATUSY -->
-
             <section class="status-menu">
-
-                <button
-                        class="status-item active-status"
-                        data-status="all">
-
-                    WSZYSTKIE
-
-                </button>
-
-                <button
-                        class="status-item underline-red"
-                        data-status="oczekujace">
-
-                    OCZEKUJĄCE
-
-                </button>
-
-                <button
-                        class="status-item underline-orange"
-                        data-status="pomiar">
-
-                    DO POMIARU
-
-                </button>
-
-                <button
-                        class="status-item underline-yellow"
-                        data-status="produkcja">
-
-                    PRODUKCJA
-
-                </button>
-
-                <button
-                        class="status-item underline-green"
-                        data-status="zakonczone">
-
-                    ZAKOŃCZONE
-
-                </button>
-
-                </section>
-
-            <!-- SEARCH -->
+                <button class="status-item active-status" data-status="all"> WSZYSTKIE </button>
+                <button class="status-item underline-red" data-status="oczekujace"> OCZEKUJĄCE </button>
+                <button class="status-item underline-orange" data-status="pomiar"> DO POMIARU </button>
+                <button class="status-item underline-yellow" data-status="produkcja"> PRODUKCJA </button>
+                <button class="status-item underline-green" data-status="zakonczone"> ZAKOŃCZONE </button>
+            </section>
             <section class="search-bar">
-
-                <button class="hamburger">
-                    ☰
-                </button>
-
-                <input
-                        type="text"
-                        id="projectSearch"
-                        placeholder="Wyszukaj projekt...">
-
+                <button class="hamburger"> ☰ </button>
+                <input type="text" id="projectSearch" placeholder="Wyszukaj projekt...">
                 <select id="projectTagFilter">
-
-                    <option value="">
-                        Wszystkie tagi
-                    </option>
-
+                    <option value=""> Wszystkie tagi </option>
                 </select>
-
                 <select id="projectSort">
-
-                    <option value="newest">
-                        Najnowsze
-                    </option>
-
-                    <option value="oldest">
-                        Najstarsze
-                    </option>
-
-                    <option value="numberAsc">
-                        Numer ↑
-                    </option>
-
-                    <option value="numberDesc">
-                        Numer ↓
-                    </option>
-
+                    <option value="newest"> Najnowsze </option>
+                    <option value="oldest"> Najstarsze </option>
+                    <option value="numberAsc"> Numer ↑ </option>
+                    <option value="numberDesc"> Numer ↓ </option>
                 </select>
-
             </section>
-
-            <!-- MOBILE MENU -->
             <nav class="burger-menu">
-
                 <section class="tabs">
-
-                    <button class="tab" onclick="window.location.href ='utworz.html'">
-                        UTWÓRZ
-                    </button>
-
-                    <button class="tab">
-                        KLIENCI
-                    </button>
-
-                    <button class="tab">
-                        OFERTY
-                    </button>
-
-                    <button class="tab active-dark">
-                        PROJEKTY
-                    </button>
-
-                    <button class="tab" onclick="window.location.href='umowy.html'">
-                        UMOWY
-                    </button>
-
-                    <button class="tab" onclick="window.location.href='kalendarz.html'">
-                        KALENDARZ
-                    </button>
-
-                    <button class="tab">
-                        DOSTĘPY
-                    </button>
-
-                    <button class="tab">
-                        USTAWIENIA
-                    </button>
-
+                    <button class="tab" onclick="window.location.href ='../utworz.html'">UTWÓRZ</button>
+                    <button class="tab" onclick="window.location.href ='../clients/clientPanel.html'">KLIENCI</button>
+                    <button class="tab" onclick="window.location.href ='../oferty.html'">OFERTY</button>
+                    <button class="tab active-dark">PROJEKTY</button>
+                    <button class="tab" onclick="window.location.href='../umowy.html'">UMOWY</button>
+                    <button class="tab" onclick="window.location.href='../kalendarz.html'">KALENDARZ</button>
+                    <button class="tab">DOSTĘPY</button>
+                    <button class="tab">USTAWIENIA</button>
                 </section>
-
             </nav>
-
-            <!-- TABLE -->
-            <section class="table-container" id="projectsContainer">
-
-            </section>
-
+            <section class="table-container" id="projectsContainer"></section>
         </main>
-
     </div>
-
 </div>
-
 <script src="../../js/index.js"></script>
 <script type="module" src="../../js/projects/projectList.js"></script>
 <script src="../../js/theme.js"></script>
-
 </body>
 </html>

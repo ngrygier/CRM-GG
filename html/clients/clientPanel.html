@@ -8,11 +8,7 @@
     <link rel="stylesheet" href="/style/theme.css">
 </head>
 <body>
-
 <div class="container-wrapper">
-
-    <!-- MENU BOCZNE -->
-
     <nav class="side_list">
         <button class="tab" onclick="window.location.href ='../utworz.html'">UTWÓRZ</button>
         <button class="tab active-dark">KLIENCI</button>
@@ -22,55 +18,23 @@
         <button class="tab" onclick="window.location.href='../kalendarz.html'">KALENDARZ</button>
         <button class="tab">DOSTĘPY</button>
         <button class="tab">USTAWIENIA</button>
-
         <div class="logo">
             <img src="/.idea/assets/Logo.png" alt="Logo">
         </div>
-
-        <button
-                id="themeToggle"
-                class="theme-btn">
-            🌙
-        </button>
+        <button id="themeToggle" class="theme-btn"> 🌙 </button>
     </nav>
-
     <div class="container">
-
         <main class="main">
-
-            <!-- GÓRNE MENU -->
-
             <div class="status_menu_container">
-
                 <div class="form-heading">
-
-                    <p class="eyebrow">
-                        KLIENCI
-                    </p>
-
-                    <h1>
-                        Lista klientów
-                    </h1>
-
+                    <p class="eyebrow"> KLIENCI </p>
+                    <h1> Lista klientów </h1>
                 </div>
-
             </div>
-
-            <!-- HAMBURGER -->
-
             <section class="search-bar">
-
-                <button class="hamburger">
-                    ☰
-                </button>
-
-                <input
-                        type="text"
-                        id="clientSearch"
-                        placeholder="Wyszukaj klienta...">
-
+                <button class="hamburger"> ☰ </button>
+                <input type="text" id="clientSearch" placeholder="Wyszukaj klienta...">
             </section>
-
             <nav class="burger-menu">
                 <section class="tabs">
                     <button class="tab" data-page="utworz.html">UTWÓRZ</button>
@@ -83,21 +47,11 @@
                     <button class="tab" data-page="">USTAWIENIA</button>
                 </section>
             </nav>
-
-            <!-- LISTA KLIENTÓW -->
-
-            <section
-                    class="table-container"
-                    id="clientsContainer">
-            </section>
+            <section class="table-container" id="clientsContainer"></section>
         </main>
-
     </div>
-
 </div>
-
 <script type="module" src="../../js/clients/clientList.js"></script>
 <script src="../../js/theme.js"></script>
-
 </body>
 </html>

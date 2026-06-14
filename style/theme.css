@@ -1,42 +1,31 @@
 body[data-theme="dark"] {
-
     background: #1f1f1f;
 }
 
 body[data-theme="dark"] .status_menu_container {
-
     background: #2b2b2b;
 }
 
 body[data-theme="dark"] #projectTagFilter,
 body[data-theme="dark"] #projectSort {
-
     background: #444;
-
     color: white;
-
     border-color: #666;
 }
 
 body[data-theme="dark"] .container {
-
     background: #2b2b2b;
 }
 
 body[data-theme="dark"] .table-card {
-
     background: #363636;
-
     color: white;
 }
 
 body[data-theme="dark"] input,
 body[data-theme="dark"] select {
-
     background: #444;
-
     color: white;
-
     border-color: #666;
 }
 
@@ -44,147 +33,111 @@ body[data-theme="dark"] h1,
 body[data-theme="dark"] h2,
 body[data-theme="dark"] h3,
 body[data-theme="dark"] p {
-
     color: white;
 }
 
 .theme-btn {
-
     margin-top: auto;
-
     margin-left: auto;
-
     margin-right: auto;
-
     margin-bottom: 20px;
-
     width: fit-content;
-
     padding: 10px 14px;
-
     border: 1px solid #d5d5d5;
-
     border-radius: 8px;
-
     background: white;
-
     cursor: pointer;
-
     font-size: 18px;
-
     transition: 0.2s;
-
     display: block;
 }
 
 .theme-btn:hover {
-
     transform: translateY(-1px);
 }
 
 /* SZCZEGÓŁY KLIENTA / PROJEKTU */
-
 body[data-theme="dark"] .client-details-card {
-
     background: #2b2b2b;
     color: white;
 }
 
 body[data-theme="dark"] .detail-item {
-
     background: #363636;
     border-color: #4a4a4a;
 }
 
 body[data-theme="dark"] .label {
-
     color: #bdbdbd;
 }
 
 body[data-theme="dark"] .value {
-
     color: white;
 }
 
 body[data-theme="dark"] .projects-placeholder {
-
     background: #363636;
     color: #d5d5d5;
     border-color: #4a4a4a;
 }
 
 body[data-theme="dark"] hr {
-
     border-color: #4a4a4a;
 }
 
 /* PRZYCISKI */
-
 body[data-theme="dark"] .secondary-btn {
-
     background: #444;
     color: white;
     border-color: #666;
 }
 
 body[data-theme="dark"] .secondary-btn:hover {
-
     background: #505050;
 }
 
 body[data-theme="dark"] .primary-btn {
-
     background: #c0392b;
     color: white;
     border-color: #c0392b;
 }
 
 body[data-theme="dark"] .primary-btn:hover {
-
     background: #a93226;
 }
 
 /* LINKI I SPANY */
-
 body[data-theme="dark"] span,
 body[data-theme="dark"] strong {
-
     color: white;
 }
 
 /* =========================
    KLIENCI - DARK MODE
 ========================= */
-
 body[data-theme="dark"] .clients-table {
-
     background: #363636;
     color: white;
 }
 
 body[data-theme="dark"] .clients-table td {
-
     color: white;
     border-bottom: 1px solid #4a4a4a;
 }
 
 body[data-theme="dark"] .clients-table tr {
-
     background: #363636;
 }
 
 body[data-theme="dark"] .clients-table tr:hover {
-
     background: #424242;
 }
 
 body[data-theme="dark"] #clientSearch {
-
     background: #363636;
     color: white;
 }
 
 body[data-theme="dark"] #clientSearch::placeholder {
-
     color: #9f9f9f;
 }
