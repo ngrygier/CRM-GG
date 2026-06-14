@@ -54,24 +54,128 @@
     font-size: 13px;
 }
 
+/* CHAT*/
 
+.notes-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.messages {
+    background: #fff;
+    border-radius: 14px;
+    padding: 15px;
+    min-height: 250px;
+    max-height: 450px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.messages div {
+    background: #f7f7f7;
+    padding: 12px;
+    border-radius: 12px;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+.messages img {
+    display: block;
+    width: 100%;
+    max-width: 350px;
+    border-radius: 12px;
+    margin-top: 10px;
+}
+
+.notes-input {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.notes-input input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    border-radius: 14px;
+    padding: 14px;
+    background: #fff;
+}
+
+.notes-input button,
+#export-json,
+#fileUploadForm button {
+    border: none;
+    border-radius: 14px;
+    padding: 14px 18px;
+    background: #5b5347;
+    color: #d7b16b;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.notes-input button:hover,
+#export-json:hover,
+#fileUploadForm button:hover {
+    opacity: .9;
+}
+
+#fileUploadForm {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+#attachment {
+    flex: 1;
+    min-width: 200px;
+    background: #fff;
+    border-radius: 12px;
+    padding: 10px;
+}
 
 @media (min-width: 768px) {
+
     .client-card {
-        padding: 30px;
+        padding: 35px;
+    }
+
+    .messages {
+        min-height: 350px;
+    }
+
+    .notes-input {
+        flex-wrap: nowrap;
+    }
+
+    #fileUploadForm {
+        flex-wrap: nowrap;
+    }
+}
+
+@media (min-width: 1200px) {
+
+    .client-card {
+        max-width: 1400px;
     }
 
     .client-card h2 {
-        font-size: 28px;
+        font-size: 30px;
     }
 
-    .client-card h3 {
-        font-size: 18px;
-    }
-
-    .client-card ul li,
     .client-card p {
         font-size: 15px;
+        line-height: 1.8;
+    }
+
+    .messages {
+        min-height: 450px;
+        max-height: 600px;
     }
 }
 
