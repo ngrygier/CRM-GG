@@ -78,9 +78,9 @@ joinBtn.addEventListener("click", (e) => {
 
             ws.send(JSON.stringify(
                 {
-                type: "join",
-                nickname
-            }));
+                    type: "join",
+                    nickname
+                }));
 
             document.querySelector(".formularzDolaczenia").style.display = "none";
             document.getElementById("client-card").style.display = "block";
@@ -111,19 +111,34 @@ joinBtn.addEventListener("click", (e) => {
 
                 return;
             }
+            if(data.type === "attachment"){
+                const div =
+                    document.createElement("div");
+
+                if(data.fileName.match(/\.(jpg|jpeg|png|gif)$/i)){
+
+                    div.innerHTML = `
+                <strong>${data.nickname}</strong><br>
+
+                <img
+                    src="http://localhost:8080/uploads/${data.fileName}"
+                    style="max-width:300px">
+            `;
+                }
+                messages.appendChild(div);
+
+            }
 
             if(data.type !== "note"){
                 console.log("dołączył użytkownik o nicku " + data.nickname)
                 return;
-
             }
-
 
             const div = document.createElement("div");
 
             // drukowanie danych (konsola w przeglądarce)
             console.log("uzytkownik o nicku " + data.nickname + " napisal: "+ data.content +
-            ". Godz: "+ data.dateTime);
+                ". Godz: "+ data.dateTime);
 
             // zapis do localStorage
             saveMessage(data);
@@ -168,6 +183,7 @@ joinBtn.addEventListener("click", (e) => {
                     nickname,
                     dateTime: new Date().toLocaleString("pl-PL")
                 }));
+                document.getElementById("messageInput").value = "";
 
             } else {
 
@@ -195,7 +211,7 @@ joinBtn.addEventListener("click", (e) => {
 
         const blob = new Blob([jsonString], {
             type: "application/json"
-    });
+        });
 
         const url = URL.createObjectURL(blob);
 
@@ -226,6 +242,7 @@ joinBtn.addEventListener("click", (e) => {
                 .toLowerCase()
                 .includes(phrase)
         );
+        document.getElementById("search-notes").value = "";
 
         displayNotes(filteredNotes);
     });
@@ -248,6 +265,62 @@ joinBtn.addEventListener("click", (e) => {
         });
     }
 
+    // dołączanie plików i załączników
+
+    const fileUploadForm =
+        document.getElementById("fileUploadForm");
+
+    fileUploadForm.addEventListener(
+        "submit",
+        async (event) => {
+
+            event.preventDefault();
+
+            const file =
+                document.getElementById("attachment")
+                    .files[0];
+
+            const formData =
+                new FormData();
+
+            formData.append(
+                "attachment",
+                file
+            );
+
+            const response =
+                await fetch(
+                    "http://localhost:8080/upload",
+                    {
+                        method: "POST",
+                        body: formData
+                    }
+                );
+
+            const result =
+                await response.json();
+
+            if (!result.success) {
+
+                alert(result.message);
+                return;
+            }
+
+            // dodawanie zalacznika
+            ws.send(JSON.stringify({
+
+                type: "attachment",
+
+                nickname,
+
+                fileName: result.fileName,
+
+                dateTime: new Date().toLocaleString("pl-PL")
+            }));
+            document.getElementById("attachment").value = "";
+        }
+    );
+
     // reconnect
     function connectWebSocket() {
 
@@ -266,7 +339,7 @@ joinBtn.addEventListener("click", (e) => {
         };
 
         ws.onmessage = (event) => {
-            // cały Twój obecny kod onmessage
+
         };
 
         ws.onclose = () => {
@@ -303,4 +376,3 @@ joinBtn.addEventListener("click", (e) => {
     }
 
 });
-

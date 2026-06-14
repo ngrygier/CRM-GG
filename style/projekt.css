@@ -54,6 +54,8 @@
     font-size: 13px;
 }
 
+
+
 @media (min-width: 768px) {
     .client-card {
         padding: 30px;
@@ -72,3 +74,4 @@
         font-size: 15px;
     }
 }
+
