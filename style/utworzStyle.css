@@ -269,6 +269,8 @@ body {
     display: none !important;
 }
 
+
+
 .placeholder-section,
 .offer-form {
     background: #efefef;
@@ -436,7 +438,7 @@ body {
 
     color: #721c24;
 }
-
+/*drop pliku z projektach*/
 .drop-zone {
 
     margin-top: 10px;
@@ -456,6 +458,7 @@ body {
 
     border-color: #1e88e5;
 }
+
 
 
 

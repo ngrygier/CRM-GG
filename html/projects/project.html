@@ -10,9 +10,8 @@
 
     <title>Szczegóły projektu</title>
 
-    <link
-            rel="stylesheet"
-            href="/style/klienci.css">
+    <link rel="stylesheet" href="/style/clients.css">
+    <link rel="stylesheet" href="/style/theme.css">
 
 </head>
 
@@ -21,41 +20,24 @@
 <div class="container-wrapper">
     <nav class="side_list">
 
-        <button class="tab" data-page="../utworz.html">
-            UTWÓRZ
-        </button>
-
-        <button class="tab" data-page="../klienci.html">
-            KLIENCI
-        </button>
-
-        <button class="tab" data-page="../oferty.html">
-            OFERTY
-        </button>
-
-        <button class="tab active-dark">
-            PROJEKTY
-        </button>
-
-        <button class="tab" data-page="../umowy.html">
-            UMOWY
-        </button>
-
-        <button class="tab" data-page="../kalendarz.html">
-            KALENDARZ
-        </button>
-
-        <button class="tab">
-            DOSTĘPY
-        </button>
-
-        <button class="tab">
-            USTAWIENIA
-        </button>
+        <button class="tab" onclick="window.location.href ='../utworz.html'">UTWÓRZ</button>
+        <button class="tab" onclick="window.location.href ='../clients/clientPanel.html'">KLIENCI</button>
+        <button class="tab" onclick="window.location.href ='../oferty.html'">OFERTY</button>
+        <button class="tab active-dark">PROJEKTY</button>
+        <button class="tab" onclick="window.location.href='../umowy.html'">UMOWY</button>
+        <button class="tab" onclick="window.location.href='../kalendarz.html'">KALENDARZ</button>
+        <button class="tab">DOSTĘPY</button>
+        <button class="tab">USTAWIENIA</button>
 
         <div class="logo">
             <img src="/.idea/assets/Logo.png" alt="Logo">
         </div>
+
+        <button
+                id="themeToggle"
+                class="theme-btn">
+            🌙
+        </button>
 
     </nav>
 
@@ -245,10 +227,8 @@
 
 </div>
 
-<script
-        type="module"
-        src="../../js/projects/projectDetails.js">
-</script>
+<script type="module" src="../../js/projects/projectDetails.js"></script>
+<script src="../../js/theme.js"></script>
 
 </body>
 </html>

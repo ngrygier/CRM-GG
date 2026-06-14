@@ -81,14 +81,76 @@
 
             <section id="clientSection">
 
-                <div class="placeholder-section">
+                <form id="clientForm" class="offer-form">
 
                     <div class="form-heading">
-                        <p class="eyebrow">Profil klienta</p>
-                        <h1>Moduł w budowie</h1>
+                        <p class="eyebrow">Klienci</p>
+                        <h1 id="formTitle">Nowy klient</h1>
                     </div>
 
-                </div>
+                    <div class="form-grid">
+
+                        <label>
+                            Imię
+                            <input type="text" name="firstName" required>
+                        </label>
+
+                        <label>
+                            Nazwisko
+                            <input type="text" name="lastName" required>
+                        </label>
+
+                        <label>
+                            Telefon
+                            <input type="tel" name="phone" required pattern="^\d{3}\s?\d{3}\s?\d{3}$">
+                        </label>
+
+                        <label>
+                            E-mail
+                            <input type="email" name="email" required pattern="[^@\s]+@[^@\s]+\.[^@\s]+">
+                        </label>
+
+                        <label>
+                            Miasto
+                            <input type="text" name="city">
+                        </label>
+
+                        <label>
+                            Kod pocztowy
+                            <input type="text" name="postalCode">
+                        </label>
+
+                    </div>
+
+                    <label class="full-width">
+                        Adres
+                        <textarea rows="3" name="address"></textarea>
+                    </label>
+
+                    <label class="full-width">
+                        Notatki
+                        <textarea rows="5" name="notes"></textarea>
+                    </label>
+
+                    <div class="actions">
+
+                        <button
+                                type="button"
+                                class="secondary-btn"
+                                id="secondaryActionBtn">
+                            Wyczyść
+                        </button>
+
+                        <button
+                                type="submit"
+                                class="primary-btn"
+                                id="submitBtn">
+                            Zapisz klienta
+                        </button>
+
+                    </div>
+
+                </form>
 
             </section>
 
@@ -540,6 +602,7 @@
 
 <script type="module" src="../js/utworz.js"></script>
 <script type="module" src="../js/projects/projectCreate.js"></script>
+<script type="module" src="../js/clients/clientCreate.js"></script>
 
 </body>
 </html>

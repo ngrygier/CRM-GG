@@ -1211,20 +1211,9 @@ class WidokTworzenia {
                 window.location.search
             );
 
-        const editId =
-            params.get("edit");
-
         const view =
             params.get("view");
 
-        if (editId) {
-
-            this.pokazZakladke(
-                "project"
-            );
-
-            return;
-        }
 
         if (view) {
 

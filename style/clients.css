@@ -576,3 +576,41 @@ body {
     gap: 7px;
 }
 
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#clientSearch {
+    flex: 1;
+    height: 48px;
+
+    border: none;
+    border-radius: 14px;
+
+    background: #bfbfbf;
+
+    padding: 0 18px;
+
+    font-size: 14px;
+
+    outline: none;
+
+    box-shadow:
+            0 2px 8px rgba(0,0,0,.05);
+
+    transition: .2s;
+}
+
+#clientSearch:focus {
+    box-shadow:
+            0 0 0 2px #d7b16b;
+}
+
+#clientSearch::placeholder {
+    color: #999;
+}
+
