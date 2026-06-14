@@ -81,3 +81,110 @@ body[data-theme="dark"] p {
 
     transform: translateY(-1px);
 }
+
+/* SZCZEGÓŁY KLIENTA / PROJEKTU */
+
+body[data-theme="dark"] .client-details-card {
+
+    background: #2b2b2b;
+    color: white;
+}
+
+body[data-theme="dark"] .detail-item {
+
+    background: #363636;
+    border-color: #4a4a4a;
+}
+
+body[data-theme="dark"] .label {
+
+    color: #bdbdbd;
+}
+
+body[data-theme="dark"] .value {
+
+    color: white;
+}
+
+body[data-theme="dark"] .projects-placeholder {
+
+    background: #363636;
+    color: #d5d5d5;
+    border-color: #4a4a4a;
+}
+
+body[data-theme="dark"] hr {
+
+    border-color: #4a4a4a;
+}
+
+/* PRZYCISKI */
+
+body[data-theme="dark"] .secondary-btn {
+
+    background: #444;
+    color: white;
+    border-color: #666;
+}
+
+body[data-theme="dark"] .secondary-btn:hover {
+
+    background: #505050;
+}
+
+body[data-theme="dark"] .primary-btn {
+
+    background: #c0392b;
+    color: white;
+    border-color: #c0392b;
+}
+
+body[data-theme="dark"] .primary-btn:hover {
+
+    background: #a93226;
+}
+
+/* LINKI I SPANY */
+
+body[data-theme="dark"] span,
+body[data-theme="dark"] strong {
+
+    color: white;
+}
+
+/* =========================
+   KLIENCI - DARK MODE
+========================= */
+
+body[data-theme="dark"] .clients-table {
+
+    background: #363636;
+    color: white;
+}
+
+body[data-theme="dark"] .clients-table td {
+
+    color: white;
+    border-bottom: 1px solid #4a4a4a;
+}
+
+body[data-theme="dark"] .clients-table tr {
+
+    background: #363636;
+}
+
+body[data-theme="dark"] .clients-table tr:hover {
+
+    background: #424242;
+}
+
+body[data-theme="dark"] #clientSearch {
+
+    background: #363636;
+    color: white;
+}
+
+body[data-theme="dark"] #clientSearch::placeholder {
+
+    color: #9f9f9f;
+}
