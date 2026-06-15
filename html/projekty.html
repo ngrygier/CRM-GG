@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- POPRAWNY VIEWPORT -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Panel Projektów Mobile</title>
+
+
+    <link rel="stylesheet" href="/style/style.css">
+</head>
+<body>
+
+<div class="container-wrapper">
+
+    <!-- SIDEBAR DESKTOP -->
+    <nav class="side_list">
+
+        <button class="tab" onclick="window.location.href ='utworz.html'">
+            UTWÓRZ
+        </button>
+
+        <button class="tab">
+            KLIENCI
+        </button>
+
+        <button class="tab">
+            OFERTY
+        </button>
+
+        <button class="tab active-dark">
+            PROJEKTY
+        </button>
+
+        <button class="tab" onclick="window.location.href='umowy.html'">
+            UMOWY
+        </button>
+
+        <button class="tab" onclick="window.location.href='kalendarz.html'">
+            KALENDARZ
+        </button>
+
+        <button class="tab">
+            DOSTĘPY
+        </button>
+
+        <button class="tab">
+            USTAWIENIA
+        </button>
+
+        <div class="logo">
+            <img src="/.idea/assets/Logo.png" alt="Logo">
+        </div>
+
+    </nav>
+
+    <!-- CONTENT -->
+    <div class="container">
+
+        <main class="main">
+            <!-- STATUS MENU -->
+            <div class="status_menu_container">
+                <section class="status-menu">
+
+                    <button class="status-item active-status">
+                        PROJEKTY
+                    </button>
+
+                    <button class="status-item">
+                        WSZYSTKIE
+                    </button>
+
+                    <button class="status-item underline-red">
+                        OCZEKUJĄCE
+                    </button>
+
+                    <button class="status-item underline-orange">
+                        DO POMIARU
+                    </button>
+
+                    <button class="status-item underline-yellow">
+                        PRODUKCJA
+                    </button>
+
+                    <button class="status-item underline-green">
+                        ZAKOŃCZONE
+                    </button>
+
+                </section>
+            </div>
+
+
+            <!-- SEARCH -->
+            <section class="search-bar">
+
+                <button class="hamburger">
+                    ☰
+                </button>
+
+                <input type="text" placeholder="wyszukaj">
+
+                <button class="filtruj-btn">
+                    ⚙
+                </button>
+
+                <button class="icon-btn green">
+                    ✔
+                </button>
+
+            </section>
+
+            <!-- MOBILE MENU -->
+            <nav class="burger-menu">
+
+                <section class="tabs">
+
+                    <button class="tab" onclick="window.location.href ='utworz.html'">
+                        UTWÓRZ
+                    </button>
+
+                    <button class="tab">
+                        KLIENCI
+                    </button>
+
+                    <button class="tab">
+                        OFERTY
+                    </button>
+
+                    <button class="tab active-dark">
+                        PROJEKTY
+                    </button>
+
+                    <button class="tab" onclick="window.location.href='umowy.html'">
+                        UMOWY
+                    </button>
+
+                    <button class="tab" onclick="window.location.href='kalendarz.html'">
+                        KALENDARZ
+                    </button>
+
+                    <button class="tab">
+                        DOSTĘPY
+                    </button>
+
+                    <button class="tab">
+                        USTAWIENIA
+                    </button>
+
+                </section>
+
+            </nav>
+
+            <!-- TABLE -->
+            <section class="table-container">
+
+                <div class="table-card">
+
+                    <div class="status"></div>
+
+                    <div class="info">
+                        <h3>Jan Kowalski</h3>
+
+                        <p>Numer: 123/2026</p>
+
+                        <p>Produkt: Blat</p>
+
+                        <p>Termin: 20.06.2026</p>
+
+                        <p>Materiał: Granit Czarny</p>
+                    </div>
+
+                </div>
+
+                <div class="table-card">
+
+                    <div class="status orange"></div>
+
+                    <div class="info">
+                        <h3>Anna Nowak</h3>
+
+                        <p>Numer: 456/2026</p>
+
+                        <p>Produkt: Schody</p>
+
+                        <p>Termin: 25.06.2026</p>
+
+                        <p>Materiał: Marmur</p>
+                    </div>
+
+                </div>
+                <div class="table-card">
+
+                    <div class="status orange"></div>
+
+                    <div class="info">
+                        <h3>Anna Nowak</h3>
+
+                        <p>Numer: 456/2026</p>
+
+                        <p>Produkt: Schody</p>
+
+                        <p>Termin: 25.06.2026</p>
+
+                        <p>Materiał: Marmur</p>
+                    </div>
+
+                </div>
+                <div class="table-card">
+
+                    <div class="status orange"></div>
+
+                    <div class="info">
+                        <h3>Anna Nowak</h3>
+
+                        <p>Numer: 456/2026</p>
+
+                        <p>Produkt: Schody</p>
+
+                        <p>Termin: 25.06.2026</p>
+
+                        <p>Materiał: Marmur</p>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+</div>
+
+<script src="../js/projekty.js"></script>
+
+</body>
+</html>

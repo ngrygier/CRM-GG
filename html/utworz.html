@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Utwórz - CRM firmy kamieniarskiej</title>
     <link rel="stylesheet" href="../style/utworzStyle.css">
-    <link rel="stylesheet" href="../style/trybCiemny.css">
 </head>
 <body>
 
@@ -14,16 +13,16 @@
 
     <nav class="side_list">
         <button class="tab active-dark">UTWÓRZ</button>
-        <button class="tab" data-page="clients/clientPanel.html">KLIENCI</button>
-        <button class="tab" data-page="oferty.html">OFERTY</button>
-        <button class="tab" data-page="projects/projectPanel.html">PROJEKTY</button>
+        <button class="tab">KLIENCI</button>
+        <button class="tab">OFERTY</button>
+        <button class="tab" data-page="projekty.html">PROJEKTY</button>
         <button class="tab" data-page="umowy.html">UMOWY</button>
         <button class="tab" data-page="kalendarz.html">KALENDARZ</button>
         <button class="tab">DOSTĘPY</button>
-        <button class="tab" data-page="ustawienia.html">USTAWIENIA</button>
+        <button class="tab">USTAWIENIA</button>
 
         <div class="logo">
-            <img src="/.idea/assets/Logo.png" alt="Logo">
+            <img src="../.idea/assets/Logo.png" alt="Logo">
         </div>
     </nav>
 
@@ -62,13 +61,13 @@
             <nav class="burger-menu">
                 <section class="tabs">
                     <button class="tab active-dark">UTWÓRZ</button>
-                    <button class="tab" data-page="../clients/clientPanel.html">KLIENCI</button>
-                    <button class="tab" data-page="oferty.html">OFERTY</button>
-                    <button class="tab" data-page="../projects/projectPanel.html">PROJEKTY</button>
+                    <button class="tab">KLIENCI</button>
+                    <button class="tab">OFERTY</button>
+                    <button class="tab" data-page="projekty.html"> PROJEKTY</button>
                     <button class="tab" data-page="umowy.html">UMOWY</button>
                     <button class="tab" data-page="kalendarz.html">KALENDARZ</button>
                     <button class="tab">DOSTĘPY</button>
-                    <button class="tab" data-page="ustawienia.html">USTAWIENIA</button>
+                    <button class="tab">USTAWIENIA</button>
                 </section>
             </nav>
 
@@ -76,76 +75,14 @@
 
             <section id="clientSection">
 
-                <form id="clientForm" class="offer-form">
+                <div class="placeholder-section">
 
                     <div class="form-heading">
-                        <p class="eyebrow">Klienci</p>
-                        <h1 id="formTitle">Nowy klient</h1>
+                        <p class="eyebrow">Profil klienta</p>
+                        <h1>Moduł w budowie</h1>
                     </div>
 
-                    <div class="form-grid">
-
-                        <label>
-                            Imię
-                            <input type="text" name="firstName" required>
-                        </label>
-
-                        <label>
-                            Nazwisko
-                            <input type="text" name="lastName" required>
-                        </label>
-
-                        <label>
-                            Telefon
-                            <input type="tel" name="phone" required pattern="^\d{3}\s?\d{3}\s?\d{3}$">
-                        </label>
-
-                        <label>
-                            E-mail
-                            <input type="email" name="email" required pattern="[^@\s]+@[^@\s]+\.[^@\s]+">
-                        </label>
-
-                        <label>
-                            Miasto
-                            <input type="text" name="city">
-                        </label>
-
-                        <label>
-                            Kod pocztowy
-                            <input type="text" name="postalCode">
-                        </label>
-
-                    </div>
-
-                    <label class="full-width">
-                        Adres
-                        <textarea rows="3" name="address"></textarea>
-                    </label>
-
-                    <label class="full-width">
-                        Notatki
-                        <textarea rows="5" name="notes"></textarea>
-                    </label>
-
-                    <div class="actions">
-
-                        <button
-                                type="button"
-                                class="secondary-btn"
-                                id="secondaryActionBtn">
-                            Wyczyść
-                        </button>
-
-                        <button
-                                type="submit"
-                                class="primary-btn"
-                                id="submitBtn">
-                            Zapisz klienta
-                        </button>
-
-                    </div>
-
-                </form>
+                </div>
 
             </section>
 
@@ -178,21 +115,6 @@
                                 <option>Klient indywidualny</option>
                                 <option>Kontrahent</option>
                             </select>
-                        </label>
-
-                        <label>
-                            Ważność oferty do
-                            <input
-                                    type="date"
-                                    name="offerValidUntil">
-                        </label>
-
-                        <label>
-                            Numer oferty
-                            <input
-                                    name="offerNumber"
-                                    id="offerNumber"
-                                    readonly>
                         </label>
 
                         <label>
@@ -279,6 +201,10 @@
                                 <input type="number" name="windowSillWidth">
                             </label>
 
+                            <label>
+                                Ilość sztuk
+                                <input type="number" name="windowSillCount">
+                            </label>
 
                         </div>
 
@@ -313,51 +239,12 @@
 
                         </div>
 
-
-                    </section>
-
-                    <section class="offer-items-section">
-
-                        <h3>Pozycje wyceny</h3>
-
-                        <table id="offerItemsTable">
-
-                            <thead>
-                            <tr>
-                                <th>Nazwa</th>
-                                <th>Jednostka</th>
-                                <th>Ilość</th>
-                                <th>Cena netto</th>
-                                <th>VAT</th>
-                                <th>Netto</th>
-                                <th>Brutto</th>
-                                <th></th>
-                            </tr>
-                            </thead>
-
-                            <tbody id="offerItemsBody"></tbody>
-
-                        </table>
-
                         <label>
-
-                            Dodaj pozycję realizacji
-
-                            <select id="addOfferItemSelect">
-
-                                <option value="">
-                                    Wybierz pozycję...
-                                </option>
-
-                            </select>
-                            <input
-                                    type="text"
-                                    id="customOfferItem"
-                                    placeholder="Wpisz własną pozycję..."
-                                    hidden>
-
+                            Dodatkowe elementy
+                            <textarea
+                                    name="tombstoneNotes"
+                                    rows="4"></textarea>
                         </label>
-
 
                     </section>
 
@@ -366,28 +253,18 @@
                         <textarea name="notes" rows="6"></textarea>
                     </label>
 
+                    <label>
+                        Załączniki
+                        <input type="file" multiple>
+                    </label>
 
                     <div class="actions">
 
                         <button
                                 type="button"
-                                class="secondary-btn"
-                                id="saveOfferButton">
+                                class="secondary-btn">
                             Zapisz ofertę
                         </button>
-
-                        <button
-                                type="button"
-                                class="secondary-btn"
-                                id="importOfferButton">
-                            Wczytaj JSON
-                        </button>
-
-                        <input
-                                type="file"
-                                id="offerJsonFile"
-                                accept=".json"
-                                hidden>
 
                         <button
                                 type="button"
@@ -396,8 +273,13 @@
                             Pobierz JSON
                         </button>
 
+                        <button
+                                type="button"
+                                class="primary-btn">
+                            Utwórz projekt
+                        </button>
+
                     </div>
-                    <div id="jsonMessage"></div>
 
                 </form>
 
@@ -408,173 +290,89 @@
 
             <section id="projectSection" hidden>
 
-                <form id="projectForm" class="offer-form">
+                <div class="form-heading">
+                    <p class="eyebrow">Projekt</p>
+                    <h1>Nowy projekt</h1>
+                </div>
 
-                    <div class="form-heading">
-                        <p class="eyebrow">Projekt</p>
-                        <h1>Nowy projekt</h1>
-                    </div>
+                <label>
+                    Sposób utworzenia projektu
+                    <select id="projectCreationType">
 
-                    <div class="form-grid">
+                        <option value="">
+                            Wybierz opcję
+                        </option>
 
-                        <label>
-                            Klient
-                            <select id="projectClient" required>
-                                <option value="">
-                                    Wybierz klienta
-                                </option>
-                            </select>
-                        </label>
+                        <option value="new">
+                            Utwórz od nowa
+                        </option>
 
-                        <label>
-                            Numer projektu
-                            <input
-                                    type="text"
-                                    id="projectNumber"
-                                    required>
-                        </label>
+                        <option value="offer">
+                            Utwórz na podstawie oferty
+                        </option>
 
-                        <label>
-                            Status
-                            <select id="projectStatus">
+                    </select>
+                </label>
 
-                                <option value="oczekujace">
-                                    Oczekujące
-                                </option>
+                <!-- PROJEKT OD NOWA -->
 
-                                <option value="do_pomiaru">
-                                    Do pomiaru
-                                </option>
+                <section id="newProjectFields" hidden>
 
-                                <option value="produkcja">
-                                    Produkcja
-                                </option>
+                    <form id="projectForm">
 
-                                <option value="zakonczone">
-                                    Zakończone
-                                </option>
+                        <h3>Dane projektu</h3>
 
-                            </select>
-                        </label>
+                        <div class="form-grid">
 
-                        <label>
-                            Typ produktu
+                            <label>
+                                Nazwa projektu
+                                <input id="nazwaProjektu" name="nazwaProjektu">
+                            </label>
 
-                            <select id="projectProductType">
+                            <label>
+                                Klient
+                                <input id="klient" name="klientName">
+                                <!-- tu bedzie konkretny klient jak michalina zrobi modul -->
+                            </label>
 
-                                <option value="blat">
-                                    Blat
-                                </option>
+                            <label>
+                                Termin realizacji
+                                <input type="date" name="deadline" id="deadline">
+                            </label>
 
-                                <option value="parapet">
-                                    Parapet
-                                </option>
-
-                                <option value="nagrobek">
-                                    Nagrobek
-                                </option>
-
-                            </select>
-
-                        </label>
+                        </div>
 
                         <label>
-                            Materiał
-                            <input
-                                    type="text"
-                                    id="projectMaterial">
+                            Opis
+                            <textarea rows="5" id="opis"></textarea>
                         </label>
 
-                        <label>
+                        <input type="submit" value="Stwórz projekt">
 
-                            Tagi
+                    </form>
 
-                            <input
-                                    type="text"
-                                    id="projectTags"
-                                    placeholder="np. granit, VIP, pilne">
 
-                        </label>
 
-                        <label>
-                            Termin realizacji
-                            <input
-                                    type="date"
-                                    id="projectDeadline">
-                        </label>
+                </section>
 
-                    </div>
+                <!-- PROJEKT Z OFERTY -->
+
+                <section id="offerProjectFields" hidden>
+
+                    <h3>Projekt z oferty</h3>
 
                     <label>
-
-                        Notatki
-
-                        <textarea
-                                id="projectNotes"
-                                rows="5"></textarea>
-
+                        Wybierz ofertę
+                        <select id="offerSelector">
+                            <option value="">
+                                Wybierz ofertę
+                            </option>
+                        </select>
                     </label>
 
-                    <label>
+                    <div id="offerPreview"></div>
 
-                        Załączniki
-
-                        <input
-                                type="file"
-                                id="projectAttachmentsInput"
-                                multiple>
-
-                    </label>
-
-                    <div id="projectAttachmentsPreview">
-
-                    </div>
-
-                    <div id="projectDropZone" class="drop-zone">
-
-                        Przeciągnij pliki tutaj
-                        lub kliknij "Wybierz pliki"
-
-                    </div>
-
-                    <div class="actions">
-
-                        <button
-                                type="button"
-                                class="secondary-btn"
-                                id="importProjectBtn">
-
-                            Importuj JSON
-
-                        </button>
-
-                        <input
-                                type="file"
-                                id="projectJsonFile"
-                                accept=".json"
-                                hidden>
-
-                        <button
-                                type="button"
-                                class="secondary-btn"
-                                id="projectSecondaryBtn">
-
-                            Wyczyść
-
-                        </button>
-
-                        <button
-                                type="submit"
-                                class="primary-btn"
-                                id="projectSubmitBtn">
-
-                            Utwórz projekt
-
-                        </button>
-
-                    </div>
-
-                </form>
+                </section>
 
             </section>
 
@@ -585,9 +383,6 @@
 </div>
 
 <script type="module" src="../js/utworz.js"></script>
-<script type="module" src="../js/projects/projectCreate.js"></script>
-<script type="module" src="../js/clients/clientCreate.js"></script>
 
-<script src="../js/tryb.js"></script>
 </body>
 </html>
