@@ -10,6 +10,10 @@ const MAX_DELAY = 30000;
 
 // stałe
 
+const projectId = localStorage.getItem("selectedProjectId");
+
+const notesStorageKey = `notesData_${projectId}`;
+
 const hamburger = document.querySelector(".hamburger");
 const tabs = document.querySelector(".tabs");
 
@@ -94,7 +98,7 @@ joinBtn.addEventListener("click", (e) => {
             window.projectDetails.start();
 
             // ładowanie historii
-            const history = JSON.parse(localStorage.getItem("notesData") || "[]");
+            const history = JSON.parse(localStorage.getItem(notesStorageKey) || "[]");
 
             history.forEach(data => {
                 const div = document.createElement("div");
@@ -204,16 +208,24 @@ joinBtn.addEventListener("click", (e) => {
 
     // funkcja zapisywania wiadomości za pomocą localStorage
     function saveMessage(noteData){
-        const notes = JSON.parse(localStorage.getItem("notesData") || "[]");
+
+        const notes =
+            JSON.parse(
+                localStorage.getItem(notesStorageKey) || "[]"
+            );
+
         notes.push(noteData);
 
-        localStorage.setItem("notesData", JSON.stringify(notes));
+        localStorage.setItem(
+            notesStorageKey,
+            JSON.stringify(notes)
+        );
     }
 
 
     // eksport historii notatek do JSON
     exportButton.addEventListener("click", (e) => {
-        const notes = JSON.parse(localStorage.getItem("notesData") || "[]");
+        const notes = JSON.parse(localStorage.getItem(notesStorageKey) || "[]");
 
         const jsonString = JSON.stringify(notes, null, 2);
 
@@ -241,9 +253,7 @@ joinBtn.addEventListener("click", (e) => {
         e.preventDefault();
         const phrase = searchInput.value.toLowerCase();
 
-        const notes = JSON.parse(
-            localStorage.getItem("notesData") || "[]"
-        );
+        const notes = JSON.parse(localStorage.getItem(notesStorageKey) || "[]");
 
         const filteredNotes = notes.filter(note =>
             `${note.nickname} ${note.content} ${note.dateTime}`
