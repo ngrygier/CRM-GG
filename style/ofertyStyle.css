@@ -25,9 +25,10 @@ body {
 }
 
 .logo {
-
+    font-size: 18px;
+    font-weight: bold;
     text-align: right;
-
+    line-height: 1.2;
 }
 
 .tabs {
@@ -139,10 +140,9 @@ body {
     line-height: 1.4;
 }
 
+
 @media (min-width: 768px) {
-    body {
-        padding: 20px;
-    }
+    body { padding: 20px; }
 
     .container {
         max-width: 1100px;
@@ -150,18 +150,15 @@ body {
         gap: 25px;
     }
 
+    .logo { font-size: 26px; }
+
     .table-card {
         padding: 24px;
         border-radius: 24px;
     }
 
-    .info h3 {
-        font-size: 22px;
-    }
-
-    .info p {
-        font-size: 15px;
-    }
+    .info h3 { font-size: 22px; }
+    .info p { font-size: 15px; }
 }
 
 @media (min-width: 1200px) {
@@ -169,6 +166,17 @@ body {
         background: #4a4a4a;
         margin: 0;
         padding: 0;
+    }
+
+    .burger-menu,
+    .hamburger {
+
+        display: none;
+    }
+
+    .tabs {
+
+        display: none !important;
     }
 
     .container-wrapper {
@@ -195,8 +203,24 @@ body {
         width: auto;
     }
 
-    .logo {
-        text-align: center;
+    .logo { text-align: center; }
+
+    .side_list a {
+        text-decoration: none;
+        color: white;
+        padding: 14px 18px;
+        border-radius: 16px;
+        transition: 0.2s;
+        font-size: 15px;
+    }
+
+    .side_list a:hover {
+        background: #5c5c5c;
+    }
+
+    .side_list .active {
+        background: #5b5347;
+        color: #d7b16b;
     }
 
     .container {
@@ -209,20 +233,6 @@ body {
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
     }
 
-    .status-menu {
-        grid-template-columns: repeat(6, 1fr);
-        gap: 15px;
-    }
-
-    .status_menu_container {
-        background-color: #ececec;
-    }
-
-    .status-item {
-        padding: 18px 14px 20px;
-        border-radius: 18px;
-        font-size: 14px;
-    }
 
     .table-card {
         padding: 28px;
@@ -240,209 +250,180 @@ body {
     }
 }
 
-/*utworz*/
-/* UTWÓRZ */
+/* OFERTY */
 
-.side_list .active-dark {
-    background: #5b5347;
-    color: #d7b16b;
-}
-
-.create-top-menu {
-    grid-template-columns: 1fr 1fr 1fr;
-}
-
-#clientSection[hidden],
-#offerSection[hidden],
-#projectSection[hidden] {
-    display: none !important;
-}
-
-
-
-.placeholder-section,
-.offer-form {
-    background: #efefef;
-    border-radius: 20px;
-    padding: 18px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, .05);
-}
-
-.offer-form label {
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
-    color: #444;
-    font-size: 13px;
-    font-weight: 700;
-}
-
-.offer-form input,
-.offer-form textarea,
-.offer-form select {
-    width: 100%;
-    border: 1px solid #d1d1d1;
-    border-radius: 12px;
-    background: white;
-    color: #333;
-    padding: 12px 14px;
-    font-size: 14px;
-    outline: none;
-}
-
-.form-heading {
-    margin-bottom: 20px;
-}
-
-.eyebrow {
-    color: #777;
-    font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.form-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-}
-
-.actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 20px;
-}
-
-.primary-btn,
-.secondary-btn {
-    border: none;
-    border-radius: 14px;
-    padding: 14px 18px;
-    font-size: 14px;
-    font-weight: 700;
-    cursor: pointer;
-}
-
-.primary-btn {
-    background: #5b5347;
-    color: #d7b16b;
-}
-
-.secondary-btn {
-    background: #d6d6d6;
-    color: #333;
-}
-
-.burger-menu {
-    display: block;
-}
-
-.hamburger {
-    display: flex;
-}
-
-@media (min-width: 768px) {
-
-    .form-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 14px;
-    }
-}
-
-@media (min-width: 1200px) {
-
-    .burger-menu,
-    .hamburger {
-        display: none;
-    }
-}
-
-
-.offer-items-section {
-    margin-top: 20px;
-}
-
-#offerItemsTable {
+#offersTable {
     width: 100%;
     border-collapse: collapse;
 }
 
-#offerItemsTable th,
-#offerItemsTable td {
+#offersTable th,
+#offersTable td {
+
     border: 1px solid #ddd;
-    padding: 8px;
-}
-
-#offerItemsTable input,
-#offerItemsTable select {
-    width: 100%;
-}
-
-.remove-item {
-    border: none;
-    background: #c94f4f;
-    color: white;
-    padding: 6px 10px;
-    cursor: pointer;
-    border-radius: 6px;
-}
-
-#jsonMessage {
-
-    margin-top: 15px;
 
     padding: 12px;
+}
+
+
+.preview-grid {
+
+    display: grid;
+
+    grid-template-columns:
+            repeat(
+                    auto-fit,
+                    minmax(250px,1fr)
+            );
+
+    gap: 15px;
+}
+
+.preview-card {
+
+    background: white;
+
+    border-radius: 14px;
+
+    padding: 15px;
+}
+
+.preview-card h3 {
+
+    margin-bottom: 10px;
+}
+
+.show-offer-btn {
+
+    border: none;
 
     border-radius: 10px;
 
-    font-weight: bold;
-
-    display: none;
-}
-
-#jsonMessage.success {
-
-    display: block;
-
-    background: #d4edda;
-
-    color: #155724;
-}
-
-#jsonMessage.error {
-
-    display: block;
-
-    background: #f8d7da;
-
-    color: #721c24;
-}
-/*drop pliku z projektach*/
-.drop-zone {
-
-    margin-top: 10px;
-
-    padding: 30px;
-
-    border: 2px dashed #999;
-
-    border-radius: 8px;
-
-    text-align: center;
+    padding: 8px 14px;
 
     cursor: pointer;
+
+    background: #5b5347;
+
+    color: #d7b16b;
 }
 
-.drop-zone.drag-over {
 
-    border-color: #1e88e5;
+.delete-offer-btn {
+
+    border: none;
+
+    border-radius: 10px;
+
+    padding: 8px 14px;
+
+    cursor: pointer;
+
+    margin-left: 5px;
 }
 
 
+.delete-offer-btn {
 
-/* TRYB CIEMNY */
+    background: #c94f4f;
+
+    color: white;
+}
+
+/* OFERTY - FILTRY */
+
+.offers-filters {
+
+    display: grid;
+
+    gap: 14px;
+
+    background: #efefef;
+
+    border-radius: 20px;
+
+    padding: 18px;
+
+    box-shadow:
+            0 2px 8px rgba(0,0,0,.05);
+
+    margin-bottom: 20px;
+}
+
+.offers-filters input {
+
+    width: 100%;
+
+    border: 1px solid #d1d1d1;
+
+    border-radius: 12px;
+
+    background: white;
+
+    color: #333;
+
+    padding: 12px 14px;
+
+    font-size: 14px;
+
+    outline: none;
+}
+
+.offers-filters input:focus {
+
+    border-color: #5b5347;
+}
+
+@media (min-width: 768px) {
+
+    .offers-filters {
+
+        grid-template-columns:
+                2fr
+                1fr
+                1fr;
+
+        align-items: end;
+    }
+}
+
+#offersTable {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    background: #efefef;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+#offersTable th {
+
+    background: #efefef;
+
+    color: #444;
+
+    font-weight: 700;
+}
+
+#offersTable th,
+#offersTable td {
+
+    border: 1px solid #ddd;
+
+    padding: 12px;
+}
+
+body.dark-theme .container {
+    background: #2f2f2f;
+    border-radius: 30px;
+
+}
+
+/*!* TRYB CIEMNY *!*/
 
 /*body.dark-theme {*/
 /*    background: #1f1f1f;*/
@@ -454,15 +435,34 @@ body {
 /*    border-radius: 30px;*/
 /*}*/
 
-/*body.dark-theme .offer-form,*/
-/*body.dark-theme .placeholder-section {*/
+/*body.dark-theme .table-card,*/
+/*body.dark-theme .offer-preview,*/
+/*body.dark-theme .offers-filters {*/
 /*    background: #333;*/
 /*    color: white;*/
 /*}*/
 
-/*body.dark-theme input,*/
-/*body.dark-theme textarea,*/
-/*body.dark-theme select {*/
+/*body.dark-theme .preview-card {*/
+/*    background: #444;*/
+/*    color: white;*/
+/*}*/
+
+/*body.dark-theme #offersTable {*/
+/*    background: #333;*/
+/*    color: white;*/
+/*}*/
+
+/*body.dark-theme #offersTable th {*/
+/*    background: #444;*/
+/*    color: white;*/
+/*}*/
+
+/*body.dark-theme #offersTable td,*/
+/*body.dark-theme #offersTable th {*/
+/*    border-color: #666;*/
+/*}*/
+
+/*body.dark-theme input {*/
 /*    background: #555;*/
 /*    color: white;*/
 /*    border-color: #777;*/
@@ -478,21 +478,11 @@ body {
 /*    background: #2a2a2a;*/
 /*}*/
 
-/*body.dark-theme .eyebrow {*/
+/*body.dark-theme .info p,*/
+/*body.dark-theme .preview-card p {*/
 /*    color: #ddd;*/
-/*}*/
-
-/*body.dark-theme #offerItemsTable th,*/
-/*body.dark-theme #offerItemsTable td {*/
-/*    border-color: #666;*/
-/*}*/
-
-/*body.dark-theme .remove-item {*/
-/*    background: #a33;*/
 /*}*/
 
 /*body.dark-theme .offer-form label {*/
 /*    color: #ddd;*/
 /*}*/
-
-

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ustawienia - CRM firmy kamieniarskiej</title>
+    <link rel="stylesheet" href="../style/umowyStyle.css">
+    <link rel="stylesheet" href="../style/ustawienia.css">
+    <link rel="stylesheet" href="../style/trybCiemny.css">
+
+</head>
+<body>
+
+<div class="container-wrapper">
+
+    <nav class="side_list">
+        <button class="tab" data-page="utworz.html">UTWÓRZ</button>
+        <button class="tab" data-page="klienci.html">KLIENCI</button>
+        <button class="tab" data-page="oferty.html">OFERTY</button>
+        <button class="tab" data-page="projekty.html">PROJEKTY</button>
+        <button class="tab" data-page="umowy.html">UMOWY</button>
+        <button class="tab" data-page="kalendarz.html">KALENDARZ</button>
+        <button class="tab">DOSTĘPY</button>
+        <button class="tab active-dark">USTAWIENIA</button>
+
+        <div class="logo">
+            <img src="../.idea/assets/Logo.png" alt="Logo">
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <main class="main">
+
+            <div class="status_menu_container">
+                <section class="status-menu">
+                    <button class="status-item active-status">
+                        USTAWIENIA SYSTEMU
+                    </button>
+                </section>
+            </div>
+
+            <button class="hamburger" id="hamburgerBtn">
+                ☰
+            </button>
+
+            <nav class="burger-menu">
+                <section class="tabs">
+                    <button class="tab" data-page="utworz.html">UTWÓRZ</button>
+                    <button class="tab" data-page="klienci.html">KLIENCI</button>
+                    <button class="tab" data-page="oferty.html">OFERTY</button>
+                    <button class="tab" data-page="projekty.html">PROJEKTY</button>
+                    <button class="tab" data-page="umowy.html">UMOWY</button>
+                    <button class="tab" data-page="kalendarz.html">KALENDARZ</button>
+                    <button class="tab">DOSTĘPY</button>
+                    <button class="tab active-dark">USTAWIENIA</button>
+                </section>
+            </nav>
+
+            <section class="contract-layout">
+
+                <div class="contract-form">
+
+                    <div class="form-heading">
+                        <p class="eyebrow">
+                            Ustawienia aplikacji
+                        </p>
+
+                        <h1>
+                            Personalizacja systemu
+                        </h1>
+                    </div>
+
+                    <div class="form-grid">
+
+                        <label>
+                            Motyw aplikacji
+
+                            <button
+                                    type="button"
+                                    id="themeToggle"
+                                    class="primary-btn">
+                                Przełącz jasny / ciemny
+                            </button>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+            </section>
+
+        </main>
+
+    </div>
+
+</div>
+
+<script type="module" src="../js/ustawienia.js"></script>
+<script src="../js/tryb.js"></script>
+</body>
+</html>

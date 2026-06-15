@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klienci</title>
+    <link rel="stylesheet" href="/style/clients.css">
+    <link rel="stylesheet" href="/style/theme.css">
+</head>
+<body>
+<div class="container-wrapper">
+    <nav class="side_list">
+        <button class="tab" onclick="window.location.href ='../utworz.html'">UTWÓRZ</button>
+        <button class="tab active-dark">KLIENCI</button>
+        <button class="tab" onclick="window.location.href ='../oferty.html'">OFERTY</button>
+        <button class="tab" onclick="window.location.href ='../projects/projectPanel.html'">PROJEKTY</button>
+        <button class="tab" onclick="window.location.href='../umowy.html'">UMOWY</button>
+        <button class="tab" onclick="window.location.href='../kalendarz.html'">KALENDARZ</button>
+        <button class="tab">DOSTĘPY</button>
+        <button class="tab">USTAWIENIA</button>
+        <div class="logo">
+            <img src="/.idea/assets/Logo.png" alt="Logo">
+        </div>
+        <button id="themeToggle" class="theme-btn"> 🌙 </button>
+    </nav>
+    <div class="container">
+        <main class="main">
+            <div class="status_menu_container">
+                <div class="form-heading">
+                    <p class="eyebrow"> KLIENCI </p>
+                    <h1> Lista klientów </h1>
+                </div>
+            </div>
+            <section class="search-bar">
+                <button class="hamburger"> ☰ </button>
+                <input type="text" id="clientSearch" placeholder="Wyszukaj klienta...">
+            </section>
+            <nav class="burger-menu">
+                <section class="tabs">
+                    <button class="tab" data-page="utworz.html">UTWÓRZ</button>
+                    <button class="tab active-dark" data-page="clients/clientPanel.html">KLIENCI</button>
+                    <button class="tab" data-page="oferty.html">OFERTY</button>
+                    <button class="tab" data-page="projects/projectPanel.html">PROJEKTY</button>
+                    <button class="tab" data-page="umowy.html">UMOWY</button>
+                    <button class="tab" data-page="kalendarz.html">KALENDARZ</button>
+                    <button class="tab" data-page="">DOSTĘPY</button>
+                    <button class="tab" data-page="">USTAWIENIA</button>
+                </section>
+            </nav>
+            <section class="table-container" id="clientsContainer"></section>
+        </main>
+    </div>
+</div>
+<script type="module" src="../../js/clients/clientList.js"></script>
+<script src="../../js/theme.js"></script>
+</body>
+</html>

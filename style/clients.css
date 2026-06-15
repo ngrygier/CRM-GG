@@ -1,6 +1,7 @@
 @charset "UTF-8";
+
 * {
-    margin: 5px;
+    margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, sans-serif;
@@ -25,9 +26,10 @@ body {
 }
 
 .logo {
-
+    font-size: 18px;
+    font-weight: bold;
     text-align: right;
-
+    line-height: 1.2;
 }
 
 .tabs {
@@ -145,9 +147,13 @@ body {
     }
 
     .container {
-        max-width: 1100px;
+        /*max-width: 1100px;*/
         margin: auto;
         gap: 25px;
+    }
+
+    .logo {
+        font-size: 26px;
     }
 
     .table-card {
@@ -162,6 +168,16 @@ body {
     .info p {
         font-size: 15px;
     }
+
+    .burger-menu {
+        display: block;
+    }
+
+    .hamburger {
+        display: flex;
+        padding: 5px;
+        margin: 10px;
+    }
 }
 
 @media (min-width: 1200px) {
@@ -174,7 +190,7 @@ body {
     .container-wrapper {
         display: flex;
         align-items: flex-start;
-        max-width: 1600px;
+        /*max-width: 1600px;*/
         margin: 0;
     }
 
@@ -184,7 +200,7 @@ body {
         width: 260px;
         background: #4a4a4a;
         padding: 25px 20px;
-        gap: 18px;
+        gap: 25px;
         height: 100vh;
         position: sticky;
         top: 0;
@@ -199,14 +215,30 @@ body {
         text-align: center;
     }
 
+    .side_list a {
+        text-decoration: none;
+        color: white;
+        padding: 14px 18px;
+        border-radius: 16px;
+        transition: 0.2s;
+        font-size: 15px;
+    }
+
+    .side_list a:hover {
+        background: #5c5c5c;
+    }
+
+    .side_list .active {
+        background: #5b5347;
+        color: #d7b16b;
+    }
+
     .container {
         flex: 1;
-        max-width: none;
+        margin: 20px 20px 20px 0;
         background: #ececec;
         border-radius: 30px;
-        padding: 30px;
-        gap: 28px;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+        padding: 20px 30px 30px 30px;
     }
 
     .status-menu {
@@ -242,7 +274,6 @@ body {
 
 /*utworz*/
 /* UTWÓRZ */
-
 .side_list .active-dark {
     background: #5b5347;
     color: #d7b16b;
@@ -257,8 +288,6 @@ body {
 #projectSection[hidden] {
     display: none !important;
 }
-
-
 
 .placeholder-section,
 .offer-form {
@@ -334,16 +363,11 @@ body {
     color: #333;
 }
 
-.burger-menu {
-    display: block;
-}
-
 .hamburger {
     display: flex;
 }
 
 @media (min-width: 768px) {
-
     .form-grid {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -359,140 +383,239 @@ body {
     }
 }
 
+@media print {
 
-.offer-items-section {
+    .side_list,
+    .status_menu_container,
+    .burger-menu,
+    .contract-form {
+        display: none;
+    }
+}
+
+/* =========================
+   KLIENCI
+========================= */
+.clients-top-menu {
+    grid-template-columns: 1fr 1fr;
+}
+
+#createClientSection[hidden],
+#clientsListSection[hidden],
+#clientDetailsSection[hidden] {
+    display: none !important;
+}
+
+.client-form {
+    background: #efefef;
+    border-radius: 20px;
+    padding: 18px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .05);
+}
+
+.client-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    color: #444;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.client-form input,
+.client-form textarea {
+    width: 100%;
+    border: 1px solid #d1d1d1;
+    border-radius: 12px;
+    background: white;
+    color: #333;
+    padding: 12px 14px;
+    font-size: 14px;
+    outline: none;
+}
+
+#clientsListSection,
+#clientDetailsSection,
+#createClientSection {
+    margin: 0;
+}
+
+.clients-table-wrapper {
+    overflow-x: auto;
+}
+
+.clients-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #efefef;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.clients-table th {
+    background: #5b5347;
+    color: #d7b16b;
+    text-align: center;
+    padding: 16px;
+}
+
+.clients-table td {
+    padding: 16px;
+    border-bottom: 1px solid #d8d8d8;
+    text-align: center;
+}
+
+.clients-table tr:hover {
+    background: #e8e8e8;
+}
+
+#clientDetailsSection {
+    display: flex;
+    flex-direction: column;
+}
+
+.client-details-card {
+    padding: 0;
+}
+
+.client-details-card h2 {
+    margin-bottom: 20px;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.client-details-card hr {
+    margin: 20px 0;
+}
+
+.client-details-card {
+    background: #efefef;
+    border-radius: 20px;
+    padding: 24px;
+}
+
+.client-details-card h2 {
+    margin-bottom: 20px;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.detail-item {
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+.label {
+    font-size: 12px;
+    color: #777;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+}
+
+.value {
+    font-size: 15px;
+    color: #333;
+    word-break: break-word;
+}
+
+.projects-placeholder {
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    margin-top: 10px;
+}
+
+.clients-table,
+.clients-table * {
+    margin: 0;
+}
+
+.main {
+    width: 100%;
+}
+
+#createClientSection,
+#clientsListSection,
+#clientDetailsSection {
+    width: 100%;
+}
+
+.client-form,
+.clients-table-wrapper,
+.client-details-card {
+    width: 100%;
+    max-width: 100%;
+}
+
+.status_menu_container,
+#createClientSection,
+#clientsListSection,
+#clientDetailsSection {
     margin-top: 20px;
 }
 
-#offerItemsTable {
-    width: 100%;
-    border-collapse: collapse;
+.client-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
-#offerItemsTable th,
-#offerItemsTable td {
-    border: 1px solid #ddd;
-    padding: 8px;
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
 }
 
-#offerItemsTable input,
-#offerItemsTable select {
-    width: 100%;
+.client-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
 }
 
-.remove-item {
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#clientSearch {
+    flex: 1;
+    height: 48px;
     border: none;
-    background: #c94f4f;
-    color: white;
-    padding: 6px 10px;
-    cursor: pointer;
-    border-radius: 6px;
+    border-radius: 14px;
+    background: #bfbfbf;
+    padding: 0 18px;
+    font-size: 14px;
+    outline: none;
+    box-shadow:
+            0 2px 8px rgba(0, 0, 0, .05);
+    transition: .2s;
 }
 
-#jsonMessage {
-
-    margin-top: 15px;
-
-    padding: 12px;
-
-    border-radius: 10px;
-
-    font-weight: bold;
-
-    display: none;
+#clientSearch:focus {
+    box-shadow:
+            0 0 0 2px #d7b16b;
 }
 
-#jsonMessage.success {
-
-    display: block;
-
-    background: #d4edda;
-
-    color: #155724;
+#clientSearch::placeholder {
+    color: #999;
 }
-
-#jsonMessage.error {
-
-    display: block;
-
-    background: #f8d7da;
-
-    color: #721c24;
-}
-/*drop pliku z projektach*/
-.drop-zone {
-
-    margin-top: 10px;
-
-    padding: 30px;
-
-    border: 2px dashed #999;
-
-    border-radius: 8px;
-
-    text-align: center;
-
-    cursor: pointer;
-}
-
-.drop-zone.drag-over {
-
-    border-color: #1e88e5;
-}
-
-
-
-/* TRYB CIEMNY */
-
-/*body.dark-theme {*/
-/*    background: #1f1f1f;*/
-/*    color: white;*/
-/*}*/
-
-/*body.dark-theme .container {*/
-/*    background: #2a2a2a;*/
-/*    border-radius: 30px;*/
-/*}*/
-
-/*body.dark-theme .offer-form,*/
-/*body.dark-theme .placeholder-section {*/
-/*    background: #333;*/
-/*    color: white;*/
-/*}*/
-
-/*body.dark-theme input,*/
-/*body.dark-theme textarea,*/
-/*body.dark-theme select {*/
-/*    background: #555;*/
-/*    color: white;*/
-/*    border-color: #777;*/
-/*}*/
-
-/*body.dark-theme .status-item,*/
-/*body.dark-theme .tab {*/
-/*    background: #444;*/
-/*    color: white;*/
-/*}*/
-
-/*body.dark-theme .status_menu_container {*/
-/*    background: #2a2a2a;*/
-/*}*/
-
-/*body.dark-theme .eyebrow {*/
-/*    color: #ddd;*/
-/*}*/
-
-/*body.dark-theme #offerItemsTable th,*/
-/*body.dark-theme #offerItemsTable td {*/
-/*    border-color: #666;*/
-/*}*/
-
-/*body.dark-theme .remove-item {*/
-/*    background: #a33;*/
-/*}*/
-
-/*body.dark-theme .offer-form label {*/
-/*    color: #ddd;*/
-/*}*/
-
-
