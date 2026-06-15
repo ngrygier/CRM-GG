@@ -25,10 +25,9 @@ body {
 }
 
 .logo {
-    font-size: 18px;
-    font-weight: bold;
+
     text-align: right;
-    line-height: 1.2;
+
 }
 
 .tabs {
@@ -141,7 +140,9 @@ body {
 }
 
 @media (min-width: 768px) {
-    body { padding: 20px; }
+    body {
+        padding: 20px;
+    }
 
     .container {
         max-width: 1100px;
@@ -149,15 +150,18 @@ body {
         gap: 25px;
     }
 
-    .logo { font-size: 26px; }
-
     .table-card {
         padding: 24px;
         border-radius: 24px;
     }
 
-    .info h3 { font-size: 22px; }
-    .info p { font-size: 15px; }
+    .info h3 {
+        font-size: 22px;
+    }
+
+    .info p {
+        font-size: 15px;
+    }
 }
 
 @media (min-width: 1200px) {
@@ -191,24 +195,8 @@ body {
         width: auto;
     }
 
-    .logo { text-align: center; }
-
-    .side_list a {
-        text-decoration: none;
-        color: white;
-        padding: 14px 18px;
-        border-radius: 16px;
-        transition: 0.2s;
-        font-size: 15px;
-    }
-
-    .side_list a:hover {
-        background: #5c5c5c;
-    }
-
-    .side_list .active {
-        background: #5b5347;
-        color: #d7b16b;
+    .logo {
+        text-align: center;
     }
 
     .container {
@@ -252,11 +240,8 @@ body {
     }
 }
 
+/*utworz*/
 /* UTWÓRZ */
-
-/* =========================
-   UTWÓRZ
-========================= */
 
 .side_list .active-dark {
     background: #5b5347;
@@ -264,7 +249,7 @@ body {
 }
 
 .create-top-menu {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 #clientSection[hidden],
@@ -273,39 +258,17 @@ body {
     display: none !important;
 }
 
-/* WSPÓLNY WYGLĄD SEKCJI */
+
 
 .placeholder-section,
-.offer-form,
-#projectSection {
+.offer-form {
     background: #efefef;
     border-radius: 20px;
     padding: 18px;
-    box-shadow: 0 2px 8px rgba(0,0,0,.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .05);
 }
 
-/* NAGŁÓWKI */
-
-.form-heading {
-    margin-bottom: 20px;
-}
-
-.form-heading h1 {
-    margin-top: 5px;
-    color: #333;
-}
-
-.eyebrow {
-    color: #777;
-    font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-/* FORMULARZE */
-
-.offer-form label,
-#projectSection label {
+.offer-form label {
     display: flex;
     flex-direction: column;
     gap: 7px;
@@ -316,33 +279,26 @@ body {
 
 .offer-form input,
 .offer-form textarea,
-.offer-form select,
-#projectSection input,
-#projectSection textarea,
-#projectSection select {
+.offer-form select {
     width: 100%;
     border: 1px solid #d1d1d1;
     border-radius: 12px;
-    background: #fff;
+    background: white;
     color: #333;
     padding: 12px 14px;
     font-size: 14px;
     outline: none;
-    transition: border-color .2s ease;
 }
 
-.offer-form input:focus,
-.offer-form textarea:focus,
-.offer-form select:focus,
-#projectSection input:focus,
-#projectSection textarea:focus,
-#projectSection select:focus {
-    border-color: #5b5347;
+.form-heading {
+    margin-bottom: 20px;
 }
 
-.offer-form textarea,
-#projectSection textarea {
-    resize: vertical;
+.eyebrow {
+    color: #777;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .form-grid {
@@ -350,39 +306,6 @@ body {
     flex-direction: column;
     gap: 14px;
 }
-
-/* SEKCJE PRODUKTÓW */
-
-#countertopFields,
-#windowSillFields,
-#tombstoneFields,
-#newProjectFields,
-#offerProjectFields {
-    margin-top: 20px;
-    padding-top: 15px;
-}
-
-#countertopFields h3,
-#windowSillFields h3,
-#tombstoneFields h3,
-#newProjectFields h3,
-#offerProjectFields h3 {
-    margin-bottom: 15px;
-    color: #333;
-}
-
-/* PODGLĄD OFERTY */
-
-#offerPreview {
-    margin-top: 15px;
-    padding: 15px;
-    background: white;
-    border: 1px solid #d1d1d1;
-    border-radius: 12px;
-    min-height: 80px;
-}
-
-/* PRZYCISKI */
 
 .actions {
     display: flex;
@@ -399,12 +322,6 @@ body {
     font-size: 14px;
     font-weight: 700;
     cursor: pointer;
-    transition: .2s;
-}
-
-.primary-btn:hover,
-.secondary-btn:hover {
-    transform: translateY(-1px);
 }
 
 .primary-btn {
@@ -417,8 +334,6 @@ body {
     color: #333;
 }
 
-/* MOBILE MENU */
-
 .burger-menu {
     display: block;
 }
@@ -426,8 +341,6 @@ body {
 .hamburger {
     display: flex;
 }
-
-/* TABLET */
 
 @media (min-width: 768px) {
 
@@ -438,36 +351,147 @@ body {
     }
 }
 
-/* DESKTOP */
-
 @media (min-width: 1200px) {
 
     .burger-menu,
     .hamburger {
         display: none;
     }
-
-    .placeholder-section,
-    .offer-form,
-    #projectSection {
-        padding: 28px;
-        border-radius: 28px;
-    }
-
-    .form-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 18px;
-    }
 }
 
-/* WYDRUK */
 
-@media print {
-
-    .side_list,
-    .status_menu_container,
-    .burger-menu,
-    .hamburger {
-        display: none !important;
-    }
+.offer-items-section {
+    margin-top: 20px;
 }
+
+#offerItemsTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#offerItemsTable th,
+#offerItemsTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#offerItemsTable input,
+#offerItemsTable select {
+    width: 100%;
+}
+
+.remove-item {
+    border: none;
+    background: #c94f4f;
+    color: white;
+    padding: 6px 10px;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+#jsonMessage {
+
+    margin-top: 15px;
+
+    padding: 12px;
+
+    border-radius: 10px;
+
+    font-weight: bold;
+
+    display: none;
+}
+
+#jsonMessage.success {
+
+    display: block;
+
+    background: #d4edda;
+
+    color: #155724;
+}
+
+#jsonMessage.error {
+
+    display: block;
+
+    background: #f8d7da;
+
+    color: #721c24;
+}
+/*drop pliku z projektach*/
+.drop-zone {
+
+    margin-top: 10px;
+
+    padding: 30px;
+
+    border: 2px dashed #999;
+
+    border-radius: 8px;
+
+    text-align: center;
+
+    cursor: pointer;
+}
+
+.drop-zone.drag-over {
+
+    border-color: #1e88e5;
+}
+
+
+
+/* TRYB CIEMNY */
+
+/*body.dark-theme {*/
+/*    background: #1f1f1f;*/
+/*    color: white;*/
+/*}*/
+
+/*body.dark-theme .container {*/
+/*    background: #2a2a2a;*/
+/*    border-radius: 30px;*/
+/*}*/
+
+/*body.dark-theme .offer-form,*/
+/*body.dark-theme .placeholder-section {*/
+/*    background: #333;*/
+/*    color: white;*/
+/*}*/
+
+/*body.dark-theme input,*/
+/*body.dark-theme textarea,*/
+/*body.dark-theme select {*/
+/*    background: #555;*/
+/*    color: white;*/
+/*    border-color: #777;*/
+/*}*/
+
+/*body.dark-theme .status-item,*/
+/*body.dark-theme .tab {*/
+/*    background: #444;*/
+/*    color: white;*/
+/*}*/
+
+/*body.dark-theme .status_menu_container {*/
+/*    background: #2a2a2a;*/
+/*}*/
+
+/*body.dark-theme .eyebrow {*/
+/*    color: #ddd;*/
+/*}*/
+
+/*body.dark-theme #offerItemsTable th,*/
+/*body.dark-theme #offerItemsTable td {*/
+/*    border-color: #666;*/
+/*}*/
+
+/*body.dark-theme .remove-item {*/
+/*    background: #a33;*/
+/*}*/
+
+/*body.dark-theme .offer-form label {*/
+/*    color: #ddd;*/
+/*}*/
+
