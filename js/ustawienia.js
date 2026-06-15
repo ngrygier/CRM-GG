@@ -1,17 +1,16 @@
 class Ustawienia {
 
-constructor() {
 
+constructor() {
     this.przyciskMotywu =
         document.querySelector("#themeToggle");
-
 }
 
 async start() {
 
     try {
 
-        await this.wczytajUstawienia();
+        this.wczytajUstawienia();
 
         this.podlaczZdarzenia();
 
@@ -26,24 +25,10 @@ async start() {
 
 }
 
-async wczytajUstawienia() {
+wczytajUstawienia() {
 
-    const [
-        motyw,
-        skroty
-    ] = await Promise.all([
-
-        Promise.resolve(
-            localStorage.getItem("theme") || "light"
-        ),
-
-        Promise.resolve({
-            ctrlS: true,
-            escape: true,
-            search: true
-        })
-
-    ]);
+    const motyw =
+        localStorage.getItem("theme") || "light";
 
     if (motyw === "dark") {
 
@@ -64,7 +49,8 @@ podlaczZdarzenia() {
         () => this.przelaczMotyw()
     );
 
-    document.querySelectorAll("[data-page]")
+    document
+        .querySelectorAll("[data-page]")
         .forEach((przycisk) => {
 
             przycisk.addEventListener(
@@ -141,6 +127,7 @@ przelaczMotyw() {
     this.aktualizujTekstPrzycisku();
 
 }
+
 
 }
 
