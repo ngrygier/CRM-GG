@@ -1,15 +1,3 @@
-
-const motyw =
-    localStorage.getItem("theme");
-
-if (motyw === "dark") {
-
-    document.body.classList.add(
-        "dark-theme"
-    );
-
-}
-
 class Umowa {
 
     constructor(dane) {
@@ -254,7 +242,7 @@ class WidokUmow {
             } else {
 
                 location.hash =
-                    "generator";
+                    "browse";
 
             }
 
@@ -761,7 +749,7 @@ class WidokUmow {
     }
 
     pobierzPlik(nazwaPliku, typPliku, zawartosc) {
-        const plik = new Blob([zawartosc], { type: typPliku });
+        const plik = new Blob([zawartosc], {type: typPliku});
         const adresPliku = URL.createObjectURL(plik);
         const link = document.createElement("a");
 
@@ -790,8 +778,8 @@ class WidokUmow {
                         <p>${this.zabezpieczTekst(umowa.wykonawca.adres)}</p>
                     
                         ${umowa.wykonawca.nip
-                                ? `<p>NIP: ${this.zabezpieczTekst(umowa.wykonawca.nip)}</p>`
-                                : ""}
+            ? `<p>NIP: ${this.zabezpieczTekst(umowa.wykonawca.nip)}</p>`
+            : ""}
                     
                         <p>E-mail: ${this.zabezpieczTekst(umowa.wykonawca.email)}</p>
                     </div>
@@ -804,8 +792,8 @@ class WidokUmow {
                         <p>E-mail: ${this.zabezpieczTekst(umowa.klient.email)}</p>
                     
                         ${umowa.klient.nip
-                                ? `<p>NIP: ${this.zabezpieczTekst(umowa.klient.nip)}</p>`
-                                : ""}
+            ? `<p>NIP: ${this.zabezpieczTekst(umowa.klient.nip)}</p>`
+            : ""}
                     </div>
                 </section>
 
@@ -941,7 +929,6 @@ class WidokUmow {
         this.odswiezPodglad();
     }
 }
-
 
 
 const widokUmow = new WidokUmow();

@@ -1,15 +1,3 @@
-
-const motyw =
-    localStorage.getItem("theme");
-
-if (motyw === "dark") {
-
-    document.body.classList.add(
-        "dark-theme"
-    );
-
-}
-
 class WidokOfert {
 
     constructor() {
@@ -17,11 +5,6 @@ class WidokOfert {
         this.offersBody =
             document.querySelector(
                 "#offersBody"
-            );
-
-        this.offerDetails =
-            document.querySelector(
-                "#offerDetails"
             );
 
         this.searchClient =
@@ -283,8 +266,6 @@ class WidokOfert {
 
         this.wyswietlOferty();
 
-        this.offerDetails.hidden =
-            true;
     }
 
 

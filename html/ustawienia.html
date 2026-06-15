@@ -7,6 +7,7 @@
     <title>Ustawienia - CRM firmy kamieniarskiej</title>
     <link rel="stylesheet" href="../style/umowyStyle.css">
     <link rel="stylesheet" href="../style/ustawienia.css">
+    <link rel="stylesheet" href="../style/trybCiemny.css">
 
 </head>
 <body>
@@ -15,8 +16,8 @@
 
     <nav class="side_list">
         <button class="tab" data-page="utworz.html">UTWÓRZ</button>
-        <button class="tab">KLIENCI</button>
-        <button class="tab">OFERTY</button>
+        <button class="tab" data-page="klienci.html">KLIENCI</button>
+        <button class="tab" data-page="oferty.html">OFERTY</button>
         <button class="tab" data-page="projekty.html">PROJEKTY</button>
         <button class="tab" data-page="umowy.html">UMOWY</button>
         <button class="tab" data-page="kalendarz.html">KALENDARZ</button>
@@ -47,12 +48,13 @@
             <nav class="burger-menu">
                 <section class="tabs">
                     <button class="tab" data-page="utworz.html">UTWÓRZ</button>
-                    <button class="tab">KLIENCI</button>
-                    <button class="tab">OFERTY</button>
+                    <button class="tab" data-page="klienci.html">KLIENCI</button>
+                    <button class="tab" data-page="oferty.html">OFERTY</button>
                     <button class="tab" data-page="projekty.html">PROJEKTY</button>
                     <button class="tab" data-page="umowy.html">UMOWY</button>
                     <button class="tab" data-page="kalendarz.html">KALENDARZ</button>
                     <button class="tab">DOSTĘPY</button>
+                    <button class="tab active-dark">USTAWIENIA</button>
                 </section>
             </nav>
 
@@ -84,104 +86,10 @@
 
                         </label>
 
-                        <label>
-                            Informacje
-
-                            <input
-                                    type="text"
-                                    value="Motyw zapisywany w localStorage"
-                                    readonly>
-                        </label>
-
                     </div>
 
                 </div>
 
-                <article class="contract-preview">
-
-                    <div class="contract-document">
-
-                        <div class="contract-header">
-
-                            <h2>
-                                Panel ustawień
-                            </h2>
-
-                            <span>
-                            Konfiguracja aplikacji CRM
-                        </span>
-
-                        </div>
-
-                        <section>
-
-                            <h3>
-                                Motyw aplikacji
-                            </h3>
-
-                            <p>
-                                Wybrany motyw jest zapisywany
-                                w localStorage i zostaje
-                                automatycznie przywrócony
-                                po ponownym uruchomieniu
-                                aplikacji.
-                            </p>
-
-                        </section>
-
-                        <section>
-
-                            <h3>
-                                Skróty klawiaturowe
-                            </h3>
-
-                            <p>
-                                Ctrl + S — zapis danych
-                            </p>
-
-                            <p>
-                                Esc — zamknięcie komunikatów
-                            </p>
-
-                            <p>
-                                / — wyszukiwanie
-                            </p>
-
-                        </section>
-
-                        <section>
-
-                            <h3>
-                                Promise.all()
-                            </h3>
-
-                            <p>
-                                Ustawienia użytkownika są
-                                ładowane równolegle przy
-                                użyciu Promise.all().
-                            </p>
-
-                        </section>
-
-                        <section>
-
-                            <h3>
-                                Informacje o systemie
-                            </h3>
-
-                            <p>
-                                CRM dla firmy kamieniarskiej.
-                            </p>
-
-                            <p>
-                                Wersja demonstracyjna projektu.
-                            </p>
-
-                        </section>
-
-                    </div>
-
-                </article>
 
             </section>
 
@@ -192,6 +100,6 @@
 </div>
 
 <script type="module" src="../js/ustawienia.js"></script>
-
+<script src="../js/tryb.js"></script>
 </body>
 </html>

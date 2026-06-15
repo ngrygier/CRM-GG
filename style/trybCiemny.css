@@ -1,0 +1,113 @@
+/*body.dark-theme {*/
+/*    background: #1f1f1f;*/
+/*    color: white;*/
+/*}*/
+
+body.dark-theme {
+    background: #2a2a2a;
+    color: white;
+}
+
+body.dark-theme .container {
+    background: #2a2a2a;
+}
+
+body.dark-theme .contract-form,
+body.dark-theme .contract-preview,
+body.dark-theme .contract-filters,
+body.dark-theme .table-card {
+    background: #333;
+    color: white;
+}
+
+body.dark-theme .contract-document {
+    background: #444;
+    color: white;
+    border-color: #666;
+}
+
+body.dark-theme input,
+body.dark-theme textarea {
+    background: #555;
+    color: white;
+    border-color: #777;
+}
+
+body.dark-theme .status-item,
+body.dark-theme .tab {
+    background: #444;
+    color: white;
+}
+
+body.dark-theme .status_menu_container {
+    background: #2a2a2a;
+}
+
+body.dark-theme .info p,
+body.dark-theme label {
+    color: #ddd;
+}
+
+body.dark-theme .offer-form label {
+    color: #ddd;
+}
+
+/* OFERTY */
+
+body.dark-theme .offer-preview,
+body.dark-theme .offers-filters {
+    background: #333;
+    color: #fff;
+}
+
+body.dark-theme .preview-card {
+    background: #444;
+    color: #fff;
+}
+
+body.dark-theme .preview-card p {
+    color: #ddd;
+}
+
+body.dark-theme #offersTable {
+    background: #333;
+    color: #fff;
+}
+
+body.dark-theme #offersTable th {
+    background: #444;
+    color: #fff;
+}
+
+body.dark-theme #offersTable th,
+body.dark-theme #offersTable td {
+    border-color: #666;
+}
+
+/* UTWÓRZ */
+
+body.dark-theme .placeholder-section {
+    background: #333;
+    color: #fff;
+}
+
+body.dark-theme #offerItemsTable th,
+body.dark-theme #offerItemsTable td {
+    border-color: #666;
+}
+
+body.dark-theme .remove-item {
+    background: #a33;
+}
+
+body.dark-theme .offer-form,
+body.dark-theme .placeholder-section {
+    background: #333;
+    color: #fff;
+}
+
+body.dark-theme select {
+    background: #555;
+    color: #fff;
+    border-color: #777;
+}

@@ -6,6 +6,7 @@
     <title>Oferty - CRM firmy kamieniarskiej</title>
 
     <link rel="stylesheet" href="../style/ofertyStyle.css">
+    <link rel="stylesheet" href="../style/trybCiemny.css">
 </head>
 <body>
 
@@ -13,10 +14,7 @@
 
     <nav class="side_list">
 
-        <button class="tab"
-                data-page="utworz.html">
-            UTWÓRZ
-        </button>
+        <button class="tab" data-page="utworz.html">UTWÓRZ</button>
 
         <button class="tab"
                 data-page="klienci.html">
@@ -48,7 +46,7 @@
             DOSTĘPY
         </button>
 
-        <button class="tab">
+        <button class="tab" data-page="ustawienia.html">
             USTAWIENIA
         </button>
 
@@ -66,11 +64,12 @@
         <section class="tabs">
             <button class="tab" data-page="utworz.html">UTWÓRZ</button>
             <button class="tab" data-page="klienci.html">KLIENCI</button>
-            <button class="tab" data-page="oferty.html">OFERTY</button>
+            <button class="tab active-dark" data-page="oferty.html">OFERTY</button>
             <button class="tab" data-page="projekty.html">PROJEKTY</button>
+            <button class="tab" data-page="umowy.html">UMOWY</button>
             <button class="tab" data-page="kalendarz.html">KALENDARZ</button>
             <button class="tab">DOSTĘPY</button>
-            <button class="tab">USTAWIENIA</button>
+            <button class="tab" data-page="ustawienia.html">USTAWIENIA</button>
         </section>
     </nav>
 
@@ -112,23 +111,23 @@
 
                 <table id="offersTable">
 
-                <thead>
+                    <thead>
 
-                <tr>
-                    <th>Numer</th>
-                    <th>Klient</th>
-                    <th>Produkt</th>
-                    <th>Data</th>
-                    <th></th>
-                </tr>
+                    <tr>
+                        <th>Numer</th>
+                        <th>Klient</th>
+                        <th>Produkt</th>
+                        <th>Data</th>
+                        <th></th>
+                    </tr>
 
-                </thead>
+                    </thead>
 
-                <tbody id="offersBody">
+                    <tbody id="offersBody">
 
-                </tbody>
+                    </tbody>
 
-            </table>
+                </table>
             </div>
 
         </div>
@@ -139,6 +138,7 @@
 </div>
 
 <script src="../js/oferty.js"></script>
+<script src="../js/tryb.js"></script>
 
 </body>
 </html>

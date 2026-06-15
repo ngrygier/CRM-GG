@@ -140,15 +140,6 @@ body {
     line-height: 1.4;
 }
 
-.tabs {
-    display: none;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.tabs.active {
-    display: flex;
-}
 
 @media (min-width: 768px) {
     body { padding: 20px; }
@@ -242,20 +233,6 @@ body {
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
     }
 
-    .status-menu {
-        grid-template-columns: repeat(6, 1fr);
-        gap: 15px;
-    }
-
-    .status_menu_container {
-        background-color: #ececec;
-    }
-
-    .status-item {
-        padding: 18px 14px 20px;
-        border-radius: 18px;
-        font-size: 14px;
-    }
 
     .table-card {
         padding: 28px;
@@ -288,19 +265,6 @@ body {
     padding: 12px;
 }
 
-.offer-preview {
-
-    margin-top: 20px;
-
-    background: #efefef;
-
-    border-radius: 20px;
-
-    padding: 20px;
-
-    box-shadow:
-            0 2px 8px rgba(0,0,0,.05);
-}
 
 .preview-grid {
 
@@ -344,7 +308,7 @@ body {
     color: #d7b16b;
 }
 
-.edit-offer-btn,
+
 .delete-offer-btn {
 
     border: none;
@@ -358,12 +322,6 @@ body {
     margin-left: 5px;
 }
 
-.edit-offer-btn {
-
-    background: #d6d6d6;
-
-    color: #333;
-}
 
 .delete-offer-btn {
 
@@ -459,62 +417,72 @@ body {
     padding: 12px;
 }
 
-
-/* TRYB CIEMNY */
-
-body.dark-theme {
-    background: #1f1f1f;
-    color: white;
-}
-
 body.dark-theme .container {
-    background: #2a2a2a;
+    background: #2f2f2f;
+    border-radius: 30px;
+
 }
 
-body.dark-theme .table-card,
-body.dark-theme .offer-preview,
-body.dark-theme .offers-filters {
-    background: #333;
-    color: white;
-}
+/*!* TRYB CIEMNY *!*/
 
-body.dark-theme .preview-card {
-    background: #444;
-    color: white;
-}
+/*body.dark-theme {*/
+/*    background: #1f1f1f;*/
+/*    color: white;*/
+/*}*/
 
-body.dark-theme #offersTable {
-    background: #333;
-    color: white;
-}
+/*body.dark-theme .container {*/
+/*    background: #2a2a2a;*/
+/*    border-radius: 30px;*/
+/*}*/
 
-body.dark-theme #offersTable th {
-    background: #444;
-    color: white;
-}
+/*body.dark-theme .table-card,*/
+/*body.dark-theme .offer-preview,*/
+/*body.dark-theme .offers-filters {*/
+/*    background: #333;*/
+/*    color: white;*/
+/*}*/
 
-body.dark-theme #offersTable td,
-body.dark-theme #offersTable th {
-    border-color: #666;
-}
+/*body.dark-theme .preview-card {*/
+/*    background: #444;*/
+/*    color: white;*/
+/*}*/
 
-body.dark-theme input {
-    background: #555;
-    color: white;
-    border-color: #777;
-}
+/*body.dark-theme #offersTable {*/
+/*    background: #333;*/
+/*    color: white;*/
+/*}*/
 
-body.dark-theme .status-item,
-body.dark-theme .tab {
-    background: #444;
-    color: white;
-}
+/*body.dark-theme #offersTable th {*/
+/*    background: #444;*/
+/*    color: white;*/
+/*}*/
 
-body.dark-theme .status_menu_container {
-    background: #2a2a2a;
-}
+/*body.dark-theme #offersTable td,*/
+/*body.dark-theme #offersTable th {*/
+/*    border-color: #666;*/
+/*}*/
 
-body.dark-theme .info p,
-body.dark-theme .preview-card p {
-    color: #ddd;
-}
+/*body.dark-theme input {*/
+/*    background: #555;*/
+/*    color: white;*/
+/*    border-color: #777;*/
+/*}*/
+
+/*body.dark-theme .status-item,*/
+/*body.dark-theme .tab {*/
+/*    background: #444;*/
+/*    color: white;*/
+/*}*/
+
+/*body.dark-theme .status_menu_container {*/
+/*    background: #2a2a2a;*/
+/*}*/
+
+/*body.dark-theme .info p,*/
+/*body.dark-theme .preview-card p {*/
+/*    color: #ddd;*/
+/*}*/
+
+/*body.dark-theme .offer-form label {*/
+/*    color: #ddd;*/
+/*}*/

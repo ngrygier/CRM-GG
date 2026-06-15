@@ -5,8 +5,6 @@ constructor() {
     this.przyciskMotywu =
         document.querySelector("#themeToggle");
 
-    this.ustawienia = {};
-
 }
 
 async start() {
@@ -46,11 +44,6 @@ async wczytajUstawienia() {
         })
 
     ]);
-
-    this.ustawienia = {
-        motyw,
-        skroty
-    };
 
     if (motyw === "dark") {
 

@@ -149,6 +149,18 @@ class WidokTworzenia {
 
     start() {
 
+        const motyw =
+            localStorage.getItem("theme");
+
+        if (motyw === "dark") {
+
+            document.body.classList.add(
+                "dark-theme"
+            );
+
+        }
+
+
         this.podlaczZdarzenia();
 
         window.addEventListener(
@@ -284,6 +296,7 @@ class WidokTworzenia {
 
             });
     }
+
     zmienTypProduktu() {
 
         this.blatFields.hidden = true;
@@ -1237,7 +1250,6 @@ class WidokTworzenia {
             "success"
         );
     }
-
 
 
 }

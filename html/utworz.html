@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Utwórz - CRM firmy kamieniarskiej</title>
     <link rel="stylesheet" href="../style/utworzStyle.css">
+    <link rel="stylesheet" href="../style/trybCiemny.css">
 </head>
 <body>
 
@@ -19,7 +20,7 @@
         <button class="tab" data-page="umowy.html">UMOWY</button>
         <button class="tab" data-page="kalendarz.html">KALENDARZ</button>
         <button class="tab">DOSTĘPY</button>
-        <button class="tab">USTAWIENIA</button>
+        <button class="tab" data-page="ustawienia.html">USTAWIENIA</button>
 
         <div class="logo">
             <img src="/.idea/assets/Logo.png" alt="Logo">
@@ -63,17 +64,11 @@
                     <button class="tab active-dark">UTWÓRZ</button>
                     <button class="tab" data-page="klienci.html">KLIENCI</button>
                     <button class="tab" data-page="oferty.html">OFERTY</button>
-                    <button class="tab" data-page="projekty.html">
-                        PROJEKTY
-                    </button>
-                    <button class="tab" data-page="umowy.html">
-                        UMOWY
-                    </button>
-                    <button class="tab" data-page="kalendarz.html">
-                        KALENDARZ
-                    </button>
+                    <button class="tab" data-page="projekty.html">PROJEKTY</button>
+                    <button class="tab" data-page="umowy.html">UMOWY</button>
+                    <button class="tab" data-page="kalendarz.html">KALENDARZ</button>
                     <button class="tab">DOSTĘPY</button>
-                    <button class="tab">USTAWIENIA</button>
+                    <button class="tab" data-page="ustawienia.html">USTAWIENIA</button>
                 </section>
             </nav>
 
@@ -257,7 +252,6 @@
                         </div>
 
 
-
                     </section>
 
                     <section class="offer-items-section">
@@ -340,12 +334,6 @@
                             Pobierz JSON
                         </button>
 
-                        <button
-                                type="button"
-                                class="primary-btn">
-                            Utwórz projekt
-                        </button>
-
                     </div>
                     <div id="jsonMessage"></div>
 
@@ -376,6 +364,6 @@
 </div>
 
 <script type="module" src="../js/utworz.js"></script>
-
+<script src="../js/tryb.js"></script>
 </body>
 </html>
