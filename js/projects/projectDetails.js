@@ -84,7 +84,7 @@ class ProjectDetails {
         window.location.href = "projectPanel.html";
     }
     editProject() {
-        window.location.href = `../utworz.html?view=project&edit=${this.currentProject.id}`;
+        window.location.href = `../utworz.html?edit=${this.currentProject.id}#project`;
     }
     eksportujProjekt() {
         const project = this.currentProject;

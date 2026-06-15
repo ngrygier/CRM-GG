@@ -195,9 +195,6 @@ class WidokTworzenia {
 
         }
 
-
-        this.sprawdzWidokStartowy();
-
         this.zmienTypProduktu();
 
         this.offerNumber.value =
@@ -1247,24 +1244,6 @@ class WidokTworzenia {
         );
     }
 
-    sprawdzWidokStartowy() {
-
-        const params =
-            new URLSearchParams(
-                window.location.search
-            );
-
-        const view =
-            params.get("view");
-
-
-        if (view) {
-
-            this.pokazZakladke(
-                view
-            );
-        }
-    }
 }
 
 const widokTworzenia =

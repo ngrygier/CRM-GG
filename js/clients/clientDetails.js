@@ -70,7 +70,7 @@ class ClientDetails {
         return phone.replace(/(\d{3})(\d{3})(\d{3})/, "$1 $2 $3");
     }
     editClient() {
-        window.location.href = `../utworz.html?view=client&edit=${this.currentClient.id}`;
+        window.location.href = `../utworz.html?edit=${this.currentClient.id}#client`;
     }
     deleteCurrentClient() {
         const confirmed = confirm("Czy na pewno usunąć klienta?");
