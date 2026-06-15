@@ -394,7 +394,7 @@ joinBtn.addEventListener("click", (e) => {
 
         notes.forEach(note => {
             const div = document.createElement("div");
-            div.dataset.noteId = data.id;
+            div.dataset.noteId = note.id;
 
             //przycisk usuniecia dla autora
             if(note.nickname === nickname || nickname.toLowerCase() === "admin"){
@@ -408,7 +408,7 @@ joinBtn.addEventListener("click", (e) => {
 
                     ws.send(JSON.stringify({
                         type: "deleteNote",
-                        noteId: data.id
+                        noteId: note.id
                     }));
 
                 });
