@@ -109,6 +109,38 @@ joinBtn.addEventListener("click", (e) => {
 
                 messages.appendChild(div);
             });
+            const attachmentHistory = JSON.parse(
+                localStorage.getItem(`attachments_${projectId}`) || "[]"
+            );
+
+            attachmentHistory.forEach(data => {
+
+                const div = document.createElement("div");
+
+                if(data.fileName.match(/\.(jpg|jpeg|png|gif)$/i)){
+
+                    div.innerHTML = `
+            <strong>${data.nickname}</strong><br>
+
+            <img
+                src="http://localhost:8080/uploads/${data.fileName}"
+                style="max-width:300px">
+        `;
+                } else {
+
+                    div.innerHTML = `
+            <strong>${data.nickname}</strong><br>
+
+            <a
+                href="http://localhost:8080/uploads/${data.fileName}"
+                target="_blank">
+                ${data.fileName}
+            </a>
+        `;
+                }
+
+                messages.appendChild(div);
+            });
         };
 
         ws.onmessage = (event) => {
@@ -138,6 +170,7 @@ joinBtn.addEventListener("click", (e) => {
             `;
                 }
                 messages.appendChild(div);
+                saveAttachment(data);
 
             }
 
@@ -213,6 +246,7 @@ joinBtn.addEventListener("click", (e) => {
             JSON.parse(
                 localStorage.getItem(notesStorageKey) || "[]"
             );
+
 
         notes.push(noteData);
 
@@ -338,6 +372,22 @@ joinBtn.addEventListener("click", (e) => {
             document.getElementById("attachment").value = "";
         }
     );
+    function saveAttachment(data){
+
+        const attachments =
+            JSON.parse(
+                localStorage.getItem(
+                    `attachments_${projectId}`
+                ) || "[]"
+            );
+
+        attachments.push(data);
+
+        localStorage.setItem(
+            `attachments_${projectId}`,
+            JSON.stringify(attachments)
+        );
+    }
 
     // reconnect
     function connectWebSocket() {

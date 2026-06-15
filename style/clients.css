@@ -140,6 +140,9 @@ body {
     color: #555;
     line-height: 1.4;
 }
+.burger-menu{
+    display: block;
+}
 
 /* =========================
    PROJEKT - CHAT I NOTATKI
@@ -358,6 +361,10 @@ body {
         background: #4a4a4a;
         margin: 0;
         padding: 0;
+    }
+
+    .burger-menu {
+        display: none;
     }
 
     .container-wrapper {
