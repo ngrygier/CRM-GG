@@ -13,11 +13,11 @@
         <button class="tab" onclick="window.location.href ='../utworz.html'">UTWÓRZ</button>
         <button class="tab" onclick="window.location.href ='../clients/clientPanel.html'">KLIENCI</button>
         <button class="tab" onclick="window.location.href ='../oferty.html'">OFERTY</button>
-        <button class="tab active-dark">PROJEKTY</button>
+        <button class="tab active-dark" onclick="window.location.href='projectPanel.html'">PROJEKTY</button>
         <button class="tab" onclick="window.location.href='../umowy.html'">UMOWY</button>
         <button class="tab" onclick="window.location.href='../kalendarz.html'">KALENDARZ</button>
         <button class="tab">DOSTĘPY</button>
-        <button class="tab">USTAWIENIA</button>
+        <button class="tab" onclick="window.location.href='../ustawienia.html'">USTAWIENIA</button>
         <div class="logo">
             <img src="/.idea/assets/Logo.png" alt="Logo">
         </div>
@@ -39,7 +39,9 @@
                 <button class="status-item underline-green" data-status="zakonczone"> ZAKOŃCZONE </button>
             </section>
             <section class="search-bar">
-                <button class="hamburger"> ☰ </button>
+                <button class="hamburger" id="hamburgerBtn">
+                    ☰
+                </button>
                 <input type="text" id="projectSearch" placeholder="Wyszukaj projekt...">
                 <select id="projectTagFilter">
                     <option value=""> Wszystkie tagi </option>
@@ -56,19 +58,19 @@
                     <button class="tab" onclick="window.location.href ='../utworz.html'">UTWÓRZ</button>
                     <button class="tab" onclick="window.location.href ='../clients/clientPanel.html'">KLIENCI</button>
                     <button class="tab" onclick="window.location.href ='../oferty.html'">OFERTY</button>
-                    <button class="tab active-dark">PROJEKTY</button>
+                    <button class="tab active-dark" onclick="window.location.href='projectPanel.html'">PROJEKTY</button>
                     <button class="tab" onclick="window.location.href='../umowy.html'">UMOWY</button>
                     <button class="tab" onclick="window.location.href='../kalendarz.html'">KALENDARZ</button>
                     <button class="tab">DOSTĘPY</button>
-                    <button class="tab">USTAWIENIA</button>
+                    <button class="tab" onclick="window.location.href='../ustawienia.html'">USTAWIENIA</button>
                 </section>
             </nav>
             <section class="table-container" id="projectsContainer"></section>
         </main>
     </div>
 </div>
-<script src="../../js/index.js"></script>
 <script type="module" src="../../js/projects/projectList.js"></script>
+<script src = "../../js/projekt.js"></script>
 <script src="../../js/theme.js"></script>
 </body>
 </html>

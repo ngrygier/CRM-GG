@@ -141,3 +141,158 @@ body[data-theme="dark"] #clientSearch {
 body[data-theme="dark"] #clientSearch::placeholder {
     color: #9f9f9f;
 }
+
+/* =========================
+   PROJEKTY - CHAT / NOTATKI
+========================= */
+
+body[data-theme="dark"] .formularzDolaczenia,
+body[data-theme="dark"] .notes-container,
+body[data-theme="dark"] #search-form,
+body[data-theme="dark"] #fileUploadForm {
+    color: white;
+}
+
+body[data-theme="dark"] .messages {
+    background: #363636;
+    border: 1px solid #4a4a4a;
+    color: white;
+}
+
+body[data-theme="dark"] .messages div {
+    background: #444;
+    color: white;
+}
+
+body[data-theme="dark"] .messages strong {
+    color: #d7b16b;
+}
+
+body[data-theme="dark"] .attachment-item,
+body[data-theme="dark"] .document-item {
+    background: #363636;
+    color: white;
+    border: 1px solid #4a4a4a;
+}
+
+body[data-theme="dark"] #export-json,
+body[data-theme="dark"] #search-form button,
+body[data-theme="dark"] #fileUploadForm button,
+body[data-theme="dark"] .notes-input button {
+    background: #5b5347;
+    color: #d7b16b;
+}
+
+body[data-theme="dark"] #messageInput,
+body[data-theme="dark"] #search-notes,
+body[data-theme="dark"] #nickname {
+    background: #444;
+    color: white;
+    border: 1px solid #666;
+}
+
+body[data-theme="dark"] #messageInput::placeholder,
+body[data-theme="dark"] #search-notes::placeholder,
+body[data-theme="dark"] #nickname::placeholder {
+    color: #bdbdbd;
+}
+
+body[data-theme="dark"] input[type="file"] {
+    color: white;
+}
+
+/* =========================
+   LISTA PROJEKTÓW
+========================= */
+
+body[data-theme="dark"] .status-item {
+    background: #363636;
+    color: white;
+}
+
+body[data-theme="dark"] .status-item:hover {
+    background: #444;
+}
+
+body[data-theme="dark"] .active-status {
+    background: #555;
+    color: #d7b16b;
+}
+
+body[data-theme="dark"] .search-bar {
+    background: transparent;
+}
+
+body[data-theme="dark"] #projectSearch {
+    background: #444;
+    color: white;
+    border: 1px solid #666;
+}
+
+body[data-theme="dark"] #projectSearch::placeholder {
+    color: #bdbdbd;
+}
+
+/* =========================
+   MENU I HAMBURGER
+========================= */
+
+body[data-theme="dark"] .tab {
+    background: #363636;
+    color: white;
+}
+
+body[data-theme="dark"] .tab:hover {
+    background: #444;
+}
+
+body[data-theme="dark"] .active-dark {
+    background: #5b5347;
+    color: #d7b16b;
+}
+
+body[data-theme="dark"] .burger-menu {
+    background: #2b2b2b;
+}
+
+body[data-theme="dark"] .hamburger {
+    background: #444;
+    color: white;
+}
+
+/* =========================
+   FORMULARZE KLIENTÓW
+========================= */
+
+body[data-theme="dark"] .client-form {
+    background: #2b2b2b;
+    color: white;
+}
+
+body[data-theme="dark"] .client-form label {
+    color: white;
+}
+
+body[data-theme="dark"] .client-form input,
+body[data-theme="dark"] .client-form textarea {
+    background: #444;
+    color: white;
+    border: 1px solid #666;
+}
+
+/* =========================
+   SCROLLBAR NOTATEK
+========================= */
+
+body[data-theme="dark"] .messages::-webkit-scrollbar {
+    width: 8px;
+}
+
+body[data-theme="dark"] .messages::-webkit-scrollbar-track {
+    background: #2b2b2b;
+}
+
+body[data-theme="dark"] .messages::-webkit-scrollbar-thumb {
+    background: #666;
+    border-radius: 10px;
+}

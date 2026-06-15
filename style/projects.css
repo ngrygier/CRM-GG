@@ -343,6 +343,8 @@ body {
         padding: 20px;
     }
 
+
+
     /*psulo wyglad na desktop*/
     /*.container {*/
     /*    max-width: 1100px;*/
@@ -373,13 +375,20 @@ body {
         padding: 16px 20px;
     }
 
-    .hamburger,
     .filtruj-btn,
     .green {
         width: 55px;
         height: 55px;
         font-size: 18px;
     }
+
+    .hamburger {
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+        border-radius: 16px;
+    }
+
 
     /* TABLE */
     .table-container {
@@ -528,20 +537,6 @@ body {
         line-height: 1.6;
     }
 
-    #projectSort,
-    #projectTagFilter {
-        border: none;
-        border-radius: 16px;
-        background: #efefef;
-        color: #555;
-        padding: 14px 18px;
-        font-size: 14px;
-        cursor: pointer;
-        outline: none;
-        min-width: 180px;
-        transition: 0.2s;
-    }
-
     #projectSort:hover,
     #projectTagFilter:hover {
         background: #e4e4e4;
@@ -557,6 +552,41 @@ body {
             padding: 16px 20px;
         }
     }
+}
+
+@media (max-width: 1023px) {
+
+    .status-menu {
+        display: flex;
+        gap: 10px;
+        overflow-x: auto;
+        padding-bottom: 5px;
+        margin-bottom: 20px;
+    }
+
+    .status-menu::-webkit-scrollbar {
+        display: none;
+    }
+
+    .status-item {
+        flex: 0 0 auto;
+        min-width: 140px;
+        padding: 14px 16px;
+    }
+}
+
+#projectSort,
+#projectTagFilter {
+    border: none;
+    border-radius: 16px;
+    background: #efefef;
+    color: #555;
+    padding: 14px 18px;
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+    min-width: 180px;
+    transition: 0.2s;
 }
 
 /*# sourceMappingURL=projects.css.map */
