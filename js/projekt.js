@@ -101,11 +101,38 @@ joinBtn.addEventListener("click", (e) => {
             const history = JSON.parse(localStorage.getItem(notesStorageKey) || "[]");
 
             history.forEach(data => {
+
                 const div = document.createElement("div");
 
+                div.dataset.noteId = data.id;
+
                 div.innerHTML = `
-        <strong>${data.nickname}</strong>: ${data.content}, ${data.dateTime}
+        <strong>${data.nickname}</strong>:
+        ${data.content},
+        ${data.dateTime}
     `;
+
+                if(
+                    data.nickname === nickname ||
+                    nickname.toLowerCase() === "admin"
+                ){
+
+                    const deleteBtn =
+                        document.createElement("button");
+
+                    deleteBtn.textContent = "Usuń";
+
+                    deleteBtn.addEventListener("click", () => {
+
+                        ws.send(JSON.stringify({
+                            type: "deleteNote",
+                            noteId: data.id
+                        }));
+
+                    });
+
+                    div.appendChild(deleteBtn);
+                }
 
                 messages.appendChild(div);
             });
@@ -173,6 +200,21 @@ joinBtn.addEventListener("click", (e) => {
                 saveAttachment(data);
 
             }
+            if(data.type === "deleteNote"){
+
+                deleteNoteFromStorage(data.noteId);
+
+                const noteElement =
+                    document.querySelector(
+                        `[data-note-id="${data.noteId}"]`
+                    );
+
+                if(noteElement){
+                    noteElement.remove();
+                }
+
+                return;
+            }
 
             if(data.type !== "note"){
                 console.log("dołączył użytkownik o nicku " + data.nickname)
@@ -181,17 +223,47 @@ joinBtn.addEventListener("click", (e) => {
 
             const div = document.createElement("div");
 
+            div.dataset.noteId = data.id;
+
             // drukowanie danych (konsola w przeglądarce)
-            console.log("uzytkownik o nicku " + data.nickname + " napisal: "+ data.content +
-                ". Godz: "+ data.dateTime);
+            console.log(
+                "uzytkownik o nicku " +
+                data.nickname +
+                " napisal: " +
+                data.content +
+                ". Godz: " +
+                data.dateTime
+            );
 
             // zapis do localStorage
             saveMessage(data);
 
             // pokazywanie w html
             div.innerHTML = `
-            <strong>${data.nickname}</strong>: ${data.content}, ${data.dateTime}
+            <strong>${data.nickname}</strong>:
+           ${data.content},
+           ${data.dateTime}
             `;
+
+            if(data.nickname === nickname || nickname.toLowerCase() === "admin"){
+
+                const deleteBtn =
+                    document.createElement("button");
+
+                deleteBtn.textContent = "Usuń";
+
+                deleteBtn.addEventListener("click", () => {
+
+                    ws.send(JSON.stringify({
+                        type: "deleteNote",
+                        noteId: data.id
+                    }));
+
+                });
+
+                div.appendChild(deleteBtn);
+            }
+
             messages.appendChild(div);
         };
 
@@ -223,6 +295,7 @@ joinBtn.addEventListener("click", (e) => {
             if (ws.readyState === WebSocket.OPEN) {
 
                 ws.send(JSON.stringify({
+                    id: crypto.randomUUID(),
                     type: "note",
                     content: messageInput.value,
                     nickname,
@@ -253,6 +326,21 @@ joinBtn.addEventListener("click", (e) => {
         localStorage.setItem(
             notesStorageKey,
             JSON.stringify(notes)
+        );
+    }
+
+    function deleteNoteFromStorage(noteId){
+
+        const notes = JSON.parse(
+            localStorage.getItem(notesStorageKey) || "[]"
+        );
+
+        const updatedNotes =
+            notes.filter(note => note.id !== noteId);
+
+        localStorage.setItem(
+            notesStorageKey,
+            JSON.stringify(updatedNotes)
         );
     }
 
@@ -306,6 +394,27 @@ joinBtn.addEventListener("click", (e) => {
 
         notes.forEach(note => {
             const div = document.createElement("div");
+            div.dataset.noteId = data.id;
+
+            //przycisk usuniecia dla autora
+            if(note.nickname === nickname || nickname.toLowerCase() === "admin"){
+
+                const deleteBtn =
+                    document.createElement("button");
+
+                deleteBtn.textContent = "Usuń";
+
+                deleteBtn.addEventListener("click", () => {
+
+                    ws.send(JSON.stringify({
+                        type: "deleteNote",
+                        noteId: data.id
+                    }));
+
+                });
+
+                div.appendChild(deleteBtn);
+            }
 
             div.innerHTML = `
             <strong>${note.nickname}</strong>: 
