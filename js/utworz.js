@@ -144,22 +144,15 @@ class WidokTworzenia {
             document.querySelector(
                 "#jsonMessage"
             );
+        this.projectForm =
+            document.querySelector("#projectForm");
+
+        this.projectClient =
+            document.querySelector("#projectClient");
 
     }
 
     start() {
-
-        const motyw =
-            localStorage.getItem("theme");
-
-        if (motyw === "dark") {
-
-            document.body.classList.add(
-                "dark-theme"
-            );
-
-        }
-
 
         this.podlaczZdarzenia();
 
@@ -201,6 +194,9 @@ class WidokTworzenia {
             location.hash = "client";
 
         }
+
+
+        this.sprawdzWidokStartowy();
 
         this.zmienTypProduktu();
 
@@ -1251,7 +1247,24 @@ class WidokTworzenia {
         );
     }
 
+    sprawdzWidokStartowy() {
 
+        const params =
+            new URLSearchParams(
+                window.location.search
+            );
+
+        const view =
+            params.get("view");
+
+
+        if (view) {
+
+            this.pokazZakladke(
+                view
+            );
+        }
+    }
 }
 
 const widokTworzenia =
