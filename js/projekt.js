@@ -109,7 +109,7 @@ joinBtn.addEventListener("click", (e) => {
                 div.innerHTML = `
         <strong>${data.nickname}</strong>:
         ${data.content},
-        ${data.dateTime}
+        <small>${data.dateTime}</small> 
     `;
 
                 if(
@@ -144,19 +144,23 @@ joinBtn.addEventListener("click", (e) => {
 
                 const div = document.createElement("div");
 
+                div.dataset.attachmentId = data.id;
+
                 if(data.fileName.match(/\.(jpg|jpeg|png|gif)$/i)){
 
                     div.innerHTML = `
-            <strong>${data.nickname}</strong><br>
+                     <strong>${data.nickname}</strong>
+                     <small>${data.dateTime}</small><br><br>
 
-            <img
-                src="http://localhost:8080/uploads/${data.fileName}"
-                style="max-width:300px">
-        `;
+                     <img
+                     src="http://localhost:8080/uploads/${data.fileName}"
+                     style="max-width:300px">
+                     `;
                 } else {
 
                     div.innerHTML = `
-            <strong>${data.nickname}</strong><br>
+            <strong>${data.nickname}</strong>
+            <small>${data.dateTime}</small><br><br>
 
             <a
                 href="http://localhost:8080/uploads/${data.fileName}"
@@ -164,6 +168,32 @@ joinBtn.addEventListener("click", (e) => {
                 ${data.fileName}
             </a>
         `;
+                }
+
+                if(
+                    data.nickname === nickname ||
+                    nickname.toLowerCase() === "admin"
+                ){
+
+                    const deleteBtn =
+                        document.createElement("button");
+
+                    deleteBtn.textContent =
+                        "Usuń załącznik";
+
+                    deleteBtn.addEventListener(
+                        "click",
+                        () => {
+
+                            ws.send(JSON.stringify({
+                                type: "deleteAttachment",
+                                attachmentId: data.id
+                            }));
+
+                        }
+                    );
+
+                    div.appendChild(deleteBtn);
                 }
 
                 messages.appendChild(div);
@@ -183,23 +213,64 @@ joinBtn.addEventListener("click", (e) => {
                 return;
             }
             if(data.type === "attachment"){
-                const div =
-                    document.createElement("div");
+                const div = document.createElement("div");
+                div.dataset.attachmentId = data.id;
 
                 if(data.fileName.match(/\.(jpg|jpeg|png|gif)$/i)){
 
                     div.innerHTML = `
-                <strong>${data.nickname}</strong><br>
+                <strong>${data.nickname}</strong>
+                <small>${data.dateTime}</small><br><br>
 
                 <img
                     src="http://localhost:8080/uploads/${data.fileName}"
                     style="max-width:300px">
-            `;
+                    `;
+                }
+                if(
+                    data.nickname === nickname ||
+                    nickname.toLowerCase() === "admin"
+                ){
+
+                    const deleteBtn =
+                        document.createElement("button");
+
+                    deleteBtn.textContent = "Usuń załącznik";
+
+                    deleteBtn.addEventListener("click", () => {
+
+                        ws.send(JSON.stringify({
+                            type: "deleteAttachment",
+                            attachmentId: data.id
+                        }));
+
+                    });
+
+                    div.appendChild(deleteBtn);
                 }
                 messages.appendChild(div);
                 saveAttachment(data);
 
             }
+
+            if(data.type === "deleteAttachment"){
+
+                deleteAttachmentFromStorage(
+                    data.attachmentId
+                );
+
+                const attachmentElement =
+                    document.querySelector(
+                        `[data-attachment-id="${data.attachmentId}"]`
+                    );
+
+                if(attachmentElement){
+                    attachmentElement.remove();
+                }
+
+                return;
+            }
+
             if(data.type === "deleteNote"){
 
                 deleteNoteFromStorage(data.noteId);
@@ -242,7 +313,7 @@ joinBtn.addEventListener("click", (e) => {
             div.innerHTML = `
             <strong>${data.nickname}</strong>:
            ${data.content},
-           ${data.dateTime}
+           <small>${data.dateTime}</small> 
             `;
 
             if(data.nickname === nickname || nickname.toLowerCase() === "admin"){
@@ -414,7 +485,7 @@ joinBtn.addEventListener("click", (e) => {
                 });
 
                 div.appendChild(deleteBtn);
-            }
+            }d
 
             div.innerHTML = `
             <strong>${note.nickname}</strong>: 
@@ -470,6 +541,8 @@ joinBtn.addEventListener("click", (e) => {
             // dodawanie zalacznika
             ws.send(JSON.stringify({
 
+                id: crypto.randomUUID(),
+
                 type: "attachment",
 
                 nickname,
@@ -495,6 +568,27 @@ joinBtn.addEventListener("click", (e) => {
         localStorage.setItem(
             `attachments_${projectId}`,
             JSON.stringify(attachments)
+        );
+    }
+
+    function deleteAttachmentFromStorage(attachmentId){
+
+        const attachments =
+            JSON.parse(
+                localStorage.getItem(
+                    `attachments_${projectId}`
+                ) || "[]"
+            );
+
+        const updatedAttachments =
+            attachments.filter(
+                attachment =>
+                    attachment.id !== attachmentId
+            );
+
+        localStorage.setItem(
+            `attachments_${projectId}`,
+            JSON.stringify(updatedAttachments)
         );
     }
 
