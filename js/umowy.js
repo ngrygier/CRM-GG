@@ -166,6 +166,9 @@ class WidokUmow {
         this.przyciskZapisu =
             document.querySelector("#saveContract");
 
+        this.przyciskWyczysc =
+            document.querySelector("#clearContractForm");
+
         this.przyciskImportu =
             document.querySelector("#importOfferButton");
 
@@ -197,12 +200,30 @@ class WidokUmow {
 
         try {
 
-            this.umowy =
-                this.pobierzUmowyZLocalStorage();
+            const [
+                umowy,
+                szkic
+            ] = await Promise.all([
+
+                Promise.resolve(
+                    this.pobierzUmowyZLocalStorage()
+                ),
+
+                Promise.resolve(
+                    localStorage.getItem(
+                        this.kluczSzkicu
+                    )
+                )
+
+            ]);
+
+            this.umowy = umowy;
 
             this.ustawDzisiejszaDate();
 
-            this.wczytajSzkic();
+            if (szkic) {
+                this.wczytajSzkic();
+            }
 
             this.podlaczZdarzenia();
 
@@ -277,6 +298,11 @@ class WidokUmow {
         this.przyciskZapisu.addEventListener(
             "click",
             () => this.zapiszUmowe()
+        );
+
+        this.przyciskWyczysc?.addEventListener(
+            "click",
+            () => this.wyczyscFormularz()
         );
 
         document.querySelectorAll("[data-page]").forEach((przycisk) => {
@@ -927,6 +953,33 @@ class WidokUmow {
             );
 
         this.odswiezPodglad();
+    }
+
+    wyczyscFormularz() {
+
+        if (
+            !confirm(
+                "Czy na pewno wyczyścić formularz?"
+            )
+        ) {
+            return;
+        }
+
+        this.formularz.reset();
+
+        localStorage.removeItem(
+            this.kluczSzkicu
+        );
+
+        this.ustawDzisiejszaDate();
+
+        this.odswiezPodglad();
+
+        this.pokazKomunikat(
+            this.komunikatFormularza,
+            "Formularz został wyczyszczony."
+        );
+
     }
 }
 
