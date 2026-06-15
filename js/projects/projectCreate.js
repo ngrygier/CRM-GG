@@ -111,6 +111,15 @@ export class ProjectCreate {
         alert("Projekt został zapisany");
         this.projectForm.reset();
         this.zaladujKlientow();
+        this.attachments = [];
+        this.importedDocument = null;
+        this.renderAttachmentsPreview();
+        if (this.projectJsonFile) {
+            this.projectJsonFile.value = "";
+        }
+        if (this.projectAttachmentsInput) {
+            this.projectAttachmentsInput.value = "";
+        }
     }
     sprawdzTrybEdycji() {
         const editId = new URLSearchParams(window.location.search).get("edit");

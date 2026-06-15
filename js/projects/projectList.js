@@ -136,7 +136,7 @@ class ProjectList {
         switch (status) {
             case "oczekujace":
                 return "status-red";
-            case "pomiar":
+            case "do_pomiaru":
                 return "status-orange";
             case "produkcja":
                 return "status-yellow";
