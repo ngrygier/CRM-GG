@@ -25,7 +25,15 @@
     </nav>
     <div class="container">
         <main class="main">
-            <section id="projectDetailsSection">
+
+            <!-- dołączenie do czatu-->
+            <form id="formularzDoDolaczenia" class="formularzDolaczenia">
+                <input type="text" id="nickname" class="tab" placeholder="Twój nick">
+                <button type="submit" id="join" class="primary-btn">Dołącz</button>
+            </form>
+
+            <!-- detale projeku -->
+            <section id="projectDetailsSection" style="display:none">
                 <div class="client-details-card">
                     <div class="form-heading">
                         <p class="eyebrow"> PROJEKTY </p>
@@ -68,6 +76,58 @@
                     <hr>
                     <h3> Załączniki </h3>
                     <div class="projects-placeholder" id="projectAttachments"> Brak załączników </div>
+                    <hr>
+
+                    <h3>Notatki projektu</h3>
+
+                    <div class="notes-container">
+
+                        <div id="messages" class="messages"></div>
+
+                        <form class="notes-input" id="notes-input">
+
+                            <input
+                                    type="text"
+                                    id="messageInput"
+                                    placeholder="Napisz wiadomość...">
+
+                            <button id="sendBtn">
+                                Wyślij
+                            </button>
+
+                        </form>
+
+                        <button id="export-json">
+                            Eksportuj historię notatek do JSON
+                        </button>
+
+                        <form class="notes-input" id="search-form">
+
+                            <input
+                                    id="search-notes"
+                                    type="text"
+                                    placeholder="Szukaj w notatkach...">
+
+                            <button type="submit">
+                                Szukaj
+                            </button>
+
+                        </form>
+
+                        <form id="fileUploadForm">
+
+                            <input
+                                    type="file"
+                                    id="attachment"
+                                    name="attachment">
+
+                            <button type="submit">
+                                Dodaj załącznik
+                            </button>
+
+                        </form>
+
+                    </div>
                     <div class="actions">
                         <button id="backBtn" class="secondary-btn"> Powrót </button>
                         <button id="editProjectBtn" class="secondary-btn"> Edytuj </button>
@@ -81,5 +141,7 @@
 </div>
 <script type="module" src="../../js/projects/projectDetails.js"></script>
 <script src="../../js/theme.js"></script>
+<script src = "../../js/projekt.js"></script>
+
 </body>
 </html>

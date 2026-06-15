@@ -141,6 +141,151 @@ body {
     line-height: 1.4;
 }
 
+/* =========================
+   PROJEKT - CHAT I NOTATKI
+========================= */
+
+.formularzDolaczenia {
+    max-width: 600px;
+    margin: 30px auto;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.formularzDolaczenia input {
+    flex: 1;
+    height: 48px;
+    border: none;
+    border-radius: 14px;
+    padding: 0 16px;
+    background: white;
+    font-size: 14px;
+}
+
+.formularzDolaczenia button {
+    min-width: 120px;
+    height: 48px;
+    border: none;
+    border-radius: 14px;
+    background: #5b5347;
+    color: #d7b16b;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* kontener notatek */
+
+.notes-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* historia wiadomości */
+
+.messages {
+    background: white;
+    border-radius: 14px;
+    min-height: 250px;
+    max-height: 450px;
+    overflow-y: auto;
+    padding: 16px;
+    border: 1px solid #ddd;
+}
+
+.messages div {
+    padding: 10px 12px;
+    margin-bottom: 10px;
+    background: #f6f6f6;
+    border-radius: 10px;
+    word-break: break-word;
+}
+
+.messages strong {
+    color: #5b5347;
+}
+
+/* formularze */
+
+.notes-input,
+#search-form,
+#fileUploadForm {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.notes-input input,
+#search-form input {
+    flex: 1;
+    height: 48px;
+    border: 1px solid #d1d1d1;
+    border-radius: 12px;
+    padding: 0 16px;
+    background: white;
+}
+
+.notes-input button,
+#search-form button,
+#fileUploadForm button,
+#export-json {
+    border: none;
+    border-radius: 12px;
+    padding: 12px 18px;
+    background: #5b5347;
+    color: #d7b16b;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#export-json {
+    width: fit-content;
+}
+
+/* upload */
+
+#fileUploadForm {
+    flex-wrap: wrap;
+}
+
+#attachment {
+    flex: 1;
+    min-width: 250px;
+}
+
+/* załączniki projektu */
+
+.attachment-item {
+    background: white;
+    border-radius: 12px;
+    padding: 12px;
+    margin-top: 10px;
+    transition: .2s;
+}
+
+.attachment-item:hover {
+    transform: translateY(-2px);
+}
+
+.attachment-item img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 10px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* dokumenty */
+
+.document-item {
+    background: white;
+    border-radius: 12px;
+    padding: 12px;
+    margin-top: 10px;
+}
+
 @media (min-width: 768px) {
     body {
         padding: 20px;
@@ -177,6 +322,34 @@ body {
         display: flex;
         padding: 5px;
         margin: 10px;
+    }
+
+    @media (max-width: 768px) {
+
+        .formularzDolaczenia,
+        .notes-input,
+        #search-form,
+        #fileUploadForm {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .formularzDolaczenia button,
+        .notes-input button,
+        #search-form button,
+        #fileUploadForm button,
+        #export-json {
+            width: 100%;
+        }
+
+        .details-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .messages {
+            min-height: 200px;
+            max-height: 300px;
+        }
     }
 }
 

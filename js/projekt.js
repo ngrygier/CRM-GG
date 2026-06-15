@@ -5,13 +5,16 @@ let ws;
 let nickname = "";
 let shouldReconnect = false;
 
+let reconnectAttempts = 0;
+const MAX_DELAY = 30000;
+
 // stałe
 
 const hamburger = document.querySelector(".hamburger");
 const tabs = document.querySelector(".tabs");
 
 const joinBtn = document.getElementById("join");
-const clientCard = document.getElementById("client-card");
+const projectDetailsSection = document.getElementById("projectDetailsSection");
 
 const messages = document.querySelector(".messages");
 const formularzDolaczenia = document.getElementById("formularzDoDolaczenia");
@@ -20,6 +23,8 @@ const exportButton = document.getElementById("export-json");
 
 const searchForm = document.getElementById("search-form");
 const searchInput = document.getElementById("search-notes");
+
+const messageInput = document.getElementById("messageInput");
 
 // stan websocketów
 
@@ -52,9 +57,11 @@ function showWebSocketState() {
 
 
 // hamburger
-hamburger.addEventListener("click", () => {
-    tabs.classList.toggle("active");
-});
+if (hamburger && tabs) {
+    hamburger.addEventListener("click", () => {
+        tabs.classList.toggle("active");
+    });
+}
 
 //nie odswiezaj strony
 joinBtn.addEventListener("click", (e) => {
@@ -82,8 +89,9 @@ joinBtn.addEventListener("click", (e) => {
                     nickname
                 }));
 
-            document.querySelector(".formularzDolaczenia").style.display = "none";
-            document.getElementById("client-card").style.display = "block";
+            formularzDolaczenia.style.display = "none";
+            document.getElementById("projectDetailsSection").style.display = "block";
+            window.projectDetails.start();
 
             // ładowanie historii
             const history = JSON.parse(localStorage.getItem("notesData") || "[]");
@@ -106,7 +114,7 @@ joinBtn.addEventListener("click", (e) => {
             if(data.type === "error"){
                 alert(data.message);
                 ws.close();
-                clientCard.style.display = "none"
+                projectDetailsSection.style.display = "none"
                 formularzDolaczenia.style.display = "flex";
 
                 return;
@@ -151,7 +159,7 @@ joinBtn.addEventListener("click", (e) => {
         };
 
         // pokazywanie kart po zalogowaniu
-        clientCard.style.display = "block";
+        projectDetailsSection.style.display = "block";
 
         // rozłączenie
         ws.onclose = () => {
@@ -163,12 +171,12 @@ joinBtn.addEventListener("click", (e) => {
         };
 
         joinBtn.addEventListener("click", () => {
-            clientCard.style.display = "block";
+            projectDetailsSection.style.display = "block";
         });
 
         joinBtn.addEventListener("click", () => {
             document.querySelector(".formularzDolaczenia").style.display = "none";
-            clientCard.style.display = "block";
+            projectDetailsSection.style.display = "block";
         });
 
         // blokowanie przeladowania strony po wypisaniu formularza

@@ -175,5 +175,4 @@ class ProjectDetails {
         });
     }
 }
-const projectDetails = new ProjectDetails();
-projectDetails.start();
+window.projectDetails = new ProjectDetails();
